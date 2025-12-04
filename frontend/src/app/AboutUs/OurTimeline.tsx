@@ -131,6 +131,7 @@ export function OurTimeline() {
         </div>
       ),
     },
+    
   ];
 
   return (
