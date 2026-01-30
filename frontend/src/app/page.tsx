@@ -9,18 +9,18 @@ import Footer from "./components/Footer";
 
 
 export default function Page() {
-  return(
-    <> 
-    
-    <HomePage  />
-    
-    <BentoGrids />
-    <Features />
-    <AnimatedTestimonialsDemo />
-    <Contact />
-    <Footer />
-    
-    </>
+  return (
+    <main className="relative">
+
+      <HomePage />
+
+      <BentoGrids />
+      <Features />
+      <AnimatedTestimonialsDemo />
+      <Contact />
+      <Footer />
+
+    </main>
   )
-   ;
+    ;
 }
