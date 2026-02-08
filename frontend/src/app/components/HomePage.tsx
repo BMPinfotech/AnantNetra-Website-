@@ -115,7 +115,7 @@ function HomePage() {
           }
         >
           <video
-            src="./video_main.webm"
+            src="/video_main.webm"
             
             autoPlay
             loop
