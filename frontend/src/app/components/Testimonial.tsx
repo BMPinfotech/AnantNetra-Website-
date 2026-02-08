@@ -9,20 +9,20 @@ export function AnimatedTestimonialsDemo() {
         "Anantnetra Technologies has proper expertise in AI automation with strong industry experience and an excellent foundation in the tech stack. We are proud to partner with Anantnetra Technologies and look forward to continued collaboration.",
       name: "Dr. Yili Qin",
       designation: "Ph.D. in AI & Robotics",
-      src: "./Test_one.jpeg",
+      src: "/Test_one.WebP",
     },
     {
       quote:
         "We found Anantnetra Technologies’ cyber audit experience to be outstanding. Their cybersecurity team demonstrated great knowledge and expertise, delivering a detailed and high-quality audit report in minimal time. We truly appreciate their professionalism and efficiency.",
       name: "Alex S.",
       designation: "Project Manager, Cover",
-      src: "./Test_two.jpeg",
+      src: "/Test_two.WebP",
     },
     
   ];
   return (
     <div>
-          <motion.h2
+          <motion.h2 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

@@ -7,7 +7,6 @@ import { Github, Linkedin, Twitter, Youtube, Mail } from "lucide-react"
 import Link from "next/link"
 
 function Footer() {
-  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="w-full border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 mt-20">
@@ -40,11 +39,11 @@ function Footer() {
                 <Github className="w-5 h-5" />
               </a>
             </Button>
-            <Button variant="ghost" size="icon" asChild>
+            {/* <Button variant="ghost" size="icon" asChild>
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
                 <Youtube className="w-5 h-5" />
               </a>
-            </Button>
+            </Button> */}
             <Button variant="ghost" size="icon" asChild>
               <a href="mailto:contact@anantnetra.com">
                 <Mail className="w-5 h-5" />
@@ -103,7 +102,7 @@ function Footer() {
 
       {/* Bottom Bar */}
       <div className="w-full mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
-        <p>© {currentYear} AnantNetra Technologies. All Rights Reserved.</p>
+        <p>© 2023 AnantNetra Technologies. All Rights Reserved.</p>
         <div className="flex gap-4">
           <Link href="/PrivacyPolicy">Privacy Policy</Link>
           <span>|</span>

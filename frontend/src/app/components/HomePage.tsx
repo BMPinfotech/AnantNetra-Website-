@@ -99,8 +99,10 @@ function HomePage() {
       </div>
 
       {/* Video Section */}
-      <div ref={videoRef} className="flex flex-col overflow-hidden">
+      <div ref={videoRef} className="flex flex-col overflow-hidden ">
+        
         <ContainerScroll
+        
           titleComponent={
             <>
               <h1 className="text-4xl font-semibold text-black dark:text-white">
@@ -113,14 +115,17 @@ function HomePage() {
           }
         >
           <video
-            src="./video_two.mp4"
+            src="./video_main.webm"
+            
             autoPlay
             loop
             muted
             playsInline
             height={720}
             width={1400}
-            className="mx-auto rounded-2xl object-cover h-full object-left-top"
+            className="mx-auto rounded-2xl 
+    object-contain md:object-cover 
+    w-full h-auto  md:h-full "
             draggable={false}
           />
         </ContainerScroll>

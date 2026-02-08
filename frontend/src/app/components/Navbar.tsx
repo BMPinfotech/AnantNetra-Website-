@@ -9,7 +9,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Menu, X } from "lucide-react";
+
+import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./Theme-toggle";
 import Link from "next/link";
@@ -17,6 +18,18 @@ import Link from "next/link";
 
 function ClientNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<
+  | "services"
+  | "solutions"
+  | "platform"
+  | "company"
+  | "resources"
+  | "threat"
+  | "partners"
+  | "contact"
+  | null
+>(null);
+
   const [scrolled, setScrolled] = useState(false);
 
   // Listen to scroll
@@ -44,12 +57,15 @@ function ClientNavbar() {
       >
         {/* Logo or Brand */}
         
-        <div>
-        <img src="/darkLogo.svg" alt="" width="50" height="50" className="dark:hidden "/>
-        <img src="/lightLogo.svg" alt="" width="50" height="50" className=" hidden dark:block "/>
-        </div>
-        {/* <div className="text-xl font-semibold">AnantNetra</div> */}
-        <Link href="/" className="text-xl font-semibold">AnantNetra</Link>
+         <div className="flex items-center gap-2">
+  <img src="/darkLogo.svg" alt="" width="50" height="50" className="dark:hidden "/>
+  <img src="/lightLogo.svg" alt="" width="50" height="50" className=" hidden dark:block "/>
+
+  <Link href="/" className="text-xl font-semibold">
+  <span>AnantNetra</span>
+  </Link>
+</div>
+
          <ThemeToggle />
 
         {/* Desktop Menu */}
@@ -66,12 +82,12 @@ function ClientNavbar() {
                       <ul className="space-y-2">
                         <li>
                           <NavigationMenuLink asChild>
-                            <a href="#">IT Consultancy</a>
+                            <a href="/Services/IT-consult">IT Consultancy</a>
                           </NavigationMenuLink>
                         </li>
                         <li>
                           <NavigationMenuLink asChild>
-                            <a href="#">Business Consultancy</a>
+                           <a href="/Services/Busniessconsult">Business Consultancy</a>
                           </NavigationMenuLink>
                         </li>
                       </ul>
@@ -168,7 +184,8 @@ function ClientNavbar() {
                       <ul className="space-y-2 text-sm">
                         <li>
                           <NavigationMenuLink asChild>
-                            <Link href="./aboutUs">About Us</Link>
+                            <Link href="/AboutUs">About Us</Link>
+                            
                           </NavigationMenuLink>
                         </li>
                         <li>
@@ -266,7 +283,7 @@ function ClientNavbar() {
 
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Contact</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-auto min-w-[250px] p-6">
+                <NavigationMenuContent className="w-auto min-w-[150px] p-6">
                   <NavigationMenuLink asChild>
                     <a href="#contact">Contact Form / Details</a>
                   </NavigationMenuLink>
@@ -290,51 +307,189 @@ function ClientNavbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileOpen && (
-        <div className="md:hidden bg-background border-t shadow-sm">
-          <ul className="flex flex-col p-4 space-y-3 text-sm">
-            <li>
-              <a href="/Services" className="hover:underline">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="/Services" className="hover:underline">
-                Solutions
-              </a>
-            </li>
-            <li>
-              <a href="/Services" className="hover:underline">
-                Platform
-              </a>
-            </li>
-            <li>
-              <a href="/Services" className="hover:underline">
-                Company
-              </a>
-            </li>
-            <li>
-              <a href="/Services" className="hover:underline">
-                Resources
-              </a>
-            </li>
-            <li>
-              <a href="/Services" className="hover:underline">
-                Threat Advisory
-              </a>
-            </li>
-            <li>
-              <a href="/Services" className="hover:underline">
-                Partners
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:underline">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
+  <div className="md:hidden bg-background border-t shadow-sm">
+    <ul className="flex flex-col p-4 space-y-3 text-sm">
+
+      
+      
+      {/*  SERVICES  */}
+      <li>
+        <button
+          onClick={() => setOpenMenu(openMenu === "services" ? null : "services")}
+          className="flex justify-between items-center w-full py-2 font-medium"
+        >
+          Services
+<ChevronDown size={20} strokeWidth={1.75} />        </button>
+
+        {openMenu === "services" && (
+          <div className="pl-4 mt-2">
+
+            {/* Consultancy */}
+            <div className="mt-3">
+              <p className="font-semibold text-sm mb-1">Consultancy</p>
+              <ul className="space-y-1 ml-2">
+                <li><a className="block py-1" href="/Services">IT Consultancy</a></li>
+    <li><a className="block py-1" href="/Services/Business-consultancy">Business Consultancy</a></li>
+              </ul>
+            </div>
+
+            {/* IT Services */}
+            <div className="mt-3">
+              <p className="font-semibold text-sm mb-1">IT Services</p>
+              <ul className="space-y-1 ml-2">
+                <li><a className="block py-1" href="/Services">Artificial Intelligence</a></li>
+                <li><a className="block py-1" href="/Services">Data Related Services</a></li>
+                <li><a className="block py-1" href="/Services">Development</a></li>
+                <li><a className="block py-1" href="/Services">APIs & Dashboards</a></li>
+              </ul>
+            </div>
+
+            {/* Other services */}
+            <div className="mt-3 space-y-1 ml-2">
+              <a className="block py-1" href="/Services">Cyber Audit</a>
+              <a className="block py-1" href="/Services">Incident Response</a>
+              <a className="block py-1" href="/Services">Customer Success</a>
+            </div>
+
+          </div>
+        )}
+      </li>
+
+      {/* SOLUTIONS */}
+      <li>
+        <button
+          onClick={() => setOpenMenu(openMenu === "solutions" ? null : "solutions")}
+          className="flex justify-between items-center w-full py-2 font-medium"
+        >
+          Solutions
+<ChevronDown size={20} strokeWidth={1.75} />        </button>
+
+        {openMenu === "solutions" && (
+          <div className="pl-4 mt-2 space-y-1 ml-2">
+            <a className="block py-1" href="/Services">Free Consultancy & Audit Call</a>
+            <a className="block py-1" href="/Services">Cyber Audit</a>
+            <a className="block py-1" href="/Services">IT Audit / Product / Service</a>
+          </div>
+        )}
+      </li>
+
+      {/*  PLATFORM  */}
+      <li>
+        <button
+          onClick={() => setOpenMenu(openMenu === "platform" ? null : "platform")}
+          className="flex justify-between items-center w-full py-2 font-medium"
+        >
+          Platform
+<ChevronDown size={20} strokeWidth={1.75} />        </button>
+
+        {openMenu === "platform" && (
+          <div className="pl-4 mt-2 ml-2 space-y-1">
+            <a className="block py-1" href="/">AnantNetra</a>
+            <a className="block py-1" href="/Services">NetraSecure AI</a>
+          </div>
+        )}
+      </li>
+
+      {/*  COMPANY*/}
+      <li>
+        <button
+          onClick={() => setOpenMenu(openMenu === "company" ? null : "company")}
+          className="flex justify-between items-center w-full py-2 font-medium"
+        >
+          Company
+<ChevronDown size={20} strokeWidth={1.75} />        </button>
+
+        {openMenu === "company" && (
+          <div className="pl-4 mt-2 ml-2 space-y-1">
+            <a className="block py-1" href="/AboutUs">About Us</a>
+            <a className="block py-1" href="/Services">Meet the Team</a>
+            <a className="block py-1" href="/Services">Careers</a>
+            <a className="block py-1" href="/Services">Events</a>
+          </div>
+        )}
+      </li>
+
+      {/*  RESOURCES  */}
+      <li>
+        <button
+          onClick={() => setOpenMenu(openMenu === "resources" ? null : "resources")}
+          className="flex justify-between items-center w-full py-2 font-medium"
+        >
+          Resources
+<ChevronDown size={20} strokeWidth={1.75} />        </button>
+
+        {openMenu === "resources" && (
+          <div className="pl-4 mt-2 grid grid-cols-1 gap-1 ml-2">
+            <a className="block py-1" href="/Services">Blog</a>
+            <a className="block py-1" href="/Services">Knowledge Base</a>
+            <a className="block py-1" href="/Services">Press Releases</a>
+            <a className="block py-1" href="/Services">Data Sheets</a>
+            <a className="block py-1" href="/Services">White Papers</a>
+          </div>
+        )}
+      </li>
+
+      {/* THREAT ADVISORY  */}
+      <li>
+        <button
+          onClick={() => setOpenMenu(openMenu === "threat" ? null : "threat")}
+          className="flex justify-between items-center w-full py-2 font-medium"
+        >
+          Threat Advisory
+<ChevronDown size={20} strokeWidth={1.75} />        </button>
+
+        {openMenu === "threat" && (
+          <div className="pl-4 mt-2 ml-2 space-y-2 text-sm">
+            <a className="block py-1" href="/Services">Book a Free Audit</a>
+
+            <p className="text-xs text-muted-foreground">
+              AnantNetra Technologies | Beyond technology. Towards tomorrow.
+              <br />Visit us at www.AnantNetra.com
+              <br />Have questions? Schedule a call today.
+            </p>
+
+            <a className="block py-1" href="/Services">Report an Incident</a>
+          </div>
+        )}
+      </li>
+
+      {/*  PARTNERS */}
+      <li>
+        <button
+          onClick={() => setOpenMenu(openMenu === "partners" ? null : "partners")}
+          className="flex justify-between items-center w-full py-2 font-medium"
+        >
+          Partners
+<ChevronDown size={20} strokeWidth={1.75} />        </button>
+
+        {openMenu === "partners" && (
+          <div className="pl-4 mt-2 ml-2 space-y-1">
+            <a className="block py-1" href="/Services">Apply for Full-Time & Internship</a>
+            <a className="block py-1" href="/Services">Apply for Accelerator</a>
+            <a className="block py-1" href="/Services">Apply as an Investor</a>
+          </div>
+        )}
+      </li>
+
+      {/*  CONTACT  */}
+      <li>
+        <button
+          onClick={() => setOpenMenu(openMenu === "contact" ? null : "contact")}
+          className="flex justify-between items-center w-full py-2 font-medium"
+        >
+          Contact <ChevronDown size={20} strokeWidth={1.75} />        </button>
+
+        {openMenu === "contact" && (
+          <div className="pl-4 mt-2 ml-2">
+            <a className="block py-1" href="#contact">Contact Form / Details</a>
+          </div>
+        )}
+      </li>
+
+    </ul>
+  </div>
+)}
+
     </header>
   );
 }

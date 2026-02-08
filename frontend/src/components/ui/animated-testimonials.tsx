@@ -37,7 +37,10 @@ export const AnimatedTestimonials = ({
     }
   }, [autoplay]);
 
-  const randomRotateY = () => Math.floor(Math.random() * 21) - 10;
+  const getRotateY = (index: number) => {
+      const seed = index * 37;
+      return (seed % 21) - 10;
+  };
 
   return (
     <section className="relative mx-auto w-full max-w-[1400px] px-8 py-32 grid grid-cols-1 md:grid-cols-2 items-center gap-12 font-sans antialiased">
@@ -52,13 +55,13 @@ export const AnimatedTestimonials = ({
                   opacity: 0,
                   scale: 0.9,
                   x: -100,
-                  rotate: randomRotateY(),
+                  rotate: getRotateY(index),
                 }}
                 animate={{
                   opacity: isActive(index) ? 1 : 0,
                   scale: isActive(index) ? 1 : 0.9,
                   x: isActive(index) ? 0 : -100,
-                  rotate: isActive(index) ? 0 : randomRotateY(),
+                  rotate: isActive(index) ? 0 : getRotateY(index),
                   zIndex: isActive(index) ? 10 : 0,
                 }}
                 exit={{ opacity: 0, x: 100, scale: 0.8 }}
