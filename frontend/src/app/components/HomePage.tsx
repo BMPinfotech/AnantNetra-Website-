@@ -121,6 +121,7 @@ function HomePage() {
             loop
             muted
             playsInline
+             preload="auto"
             height={720}
             width={1400}
             className="mx-auto rounded-2xl 
