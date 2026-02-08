@@ -184,8 +184,7 @@ function ClientNavbar() {
                       <ul className="space-y-2 text-sm">
                         <li>
                           <NavigationMenuLink asChild>
-                            <Link href="/AboutUs">About Us</Link>
-                            
+                            <Link href="/about-us">About Us</Link>
                           </NavigationMenuLink>
                         </li>
                         <li>
@@ -401,7 +400,7 @@ function ClientNavbar() {
 
         {openMenu === "company" && (
           <div className="pl-4 mt-2 ml-2 space-y-1">
-            <a className="block py-1" href="/AboutUs">About Us</a>
+            <a className="block py-1" href="/about-us">About Us</a>
             <a className="block py-1" href="/Services">Meet the Team</a>
             <a className="block py-1" href="/Services">Careers</a>
             <a className="block py-1" href="/Services">Events</a>

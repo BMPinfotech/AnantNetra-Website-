@@ -68,7 +68,7 @@ function Footer() {
         <div>
           <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">Company</h3>
           <ul className="space-y-2 text-sm text-neutral-500 dark:text-neutral-400">
-            <li><a href="#">About Us</a></li>
+            <li><a href="/about-us">About Us</a></li>
             <li><a href="#">Meet the Team</a></li>
             <li><a href="#">Careers</a></li>
             <li><a href="#">Events</a></li>
