@@ -184,12 +184,7 @@ function ClientNavbar() {
                       <ul className="space-y-2 text-sm">
                         <li>
                           <NavigationMenuLink asChild>
-<<<<<<< HEAD
                             <Link href="/about-us">About Us</Link>
-=======
-                            <Link href="/AboutUs">About Us</Link>
-                            
->>>>>>> 3783e8faea14a3ea54caf9b121943f8e291ae728
                           </NavigationMenuLink>
                         </li>
                         <li>
