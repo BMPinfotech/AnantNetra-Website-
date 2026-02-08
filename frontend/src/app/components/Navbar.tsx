@@ -185,6 +185,7 @@ function ClientNavbar() {
                         <li>
                           <NavigationMenuLink asChild>
                             <Link href="/AboutUs">About Us</Link>
+                            
                           </NavigationMenuLink>
                         </li>
                         <li>

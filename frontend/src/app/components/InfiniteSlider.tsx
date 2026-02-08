@@ -17,10 +17,12 @@ function InfiniteSlider() {
                 <img src="./logo-mfour.svg" alt="any" className='w-36' />
             </Slider.Slide>
             <Slider.Slide>
-                <img src="./ATONARP.svg" alt="any2" className='w-36' />
+                <img src="./ATONARP.svg" alt="any2" className='w-36 dark:hidden ' />
+                <img src="./ATONARPDark.svg" alt="any2" className='w-36 hidden dark:block' />
             </Slider.Slide>
             <Slider.Slide>
-                <img src="./BoundRY.svg" alt="any4" width="200" height="200" className='w-36' />
+                <img src="./BoundRY.svg" alt="any4" width="200" height="200" className='w-36 dark:hidden' />
+                <img src="./BOUNDARYDark.svg" alt="any4" width="200" height="200" className='w-36 hidden dark:block' />
             </Slider.Slide>
             <Slider.Slide>
                 <img src="./Cover.svg" alt="any5" className='w-36' />
