@@ -327,8 +327,32 @@ function ClientNavbar() {
             <div className="mt-3">
               <p className="font-semibold text-sm mb-1">Consultancy</p>
               <ul className="space-y-1 ml-2">
-                <li><a className="block py-1" href="/Services">IT Consultancy</a></li>
-    <li><a className="block py-1" href="/Services/Business-consultancy">Business Consultancy</a></li>
+           <li>
+  <Link
+    href="/Services/IT-consult"
+    className="block py-1"
+    onClick={() => {
+      setMobileOpen(false);
+      setOpenMenu(null);
+    }}
+  >
+    IT Consultancy
+  </Link>
+</li>
+
+<li>
+  <Link
+    href="/Services/Busniessconsult"
+    className="block py-1"
+    onClick={() => {
+      setMobileOpen(false);
+      setOpenMenu(null);
+    }}
+  >
+    Business Consultancy
+  </Link>
+</li>
+
               </ul>
             </div>
 
