@@ -116,6 +116,7 @@ function HomePage() {
         >
           <video
             src="./video_main.webm"
+            
             autoPlay
             loop
             muted
