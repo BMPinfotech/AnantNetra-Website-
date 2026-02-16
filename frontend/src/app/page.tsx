@@ -1,5 +1,6 @@
 import HomePage from "@/app/components/HomePage";
 import Features from "./components/Feature";
+import WorldMapSection from "./components/WorldMapSection";
 import BentoGrids from "./components/BentoGrid";
 import { AnimatedTestimonialsDemo } from "./components/Testimonial";
 import Contact from "./components/Contact";
@@ -16,6 +17,7 @@ export default function Page() {
 
       <BentoGrids />
       <Features />
+      <WorldMapSection />
       <AnimatedTestimonialsDemo />
       <Contact />
       <Footer />

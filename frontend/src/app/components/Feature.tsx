@@ -65,12 +65,12 @@ export default function Features() {
   const y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
 
   return (
-<section
-  ref={sectionRef}
-  className="relative w-full min-h-screen py-32 flex items-center justify-center overflow-hidden 
+    <section
+      ref={sectionRef}
+      className="relative w-full min-h-screen py-20 flex items-center justify-center overflow-hidden 
   bg-white dark:bg-neutral-950"
->
-      <div className="relative z-10 mx-auto w-full px-4 sm:px-6 text-center">
+    >
+      <div className="relative z-10 mx-auto w-full px-2 sm:px-6 text-center">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

@@ -38,15 +38,15 @@ export const AnimatedTestimonials = ({
   }, [autoplay]);
 
   const getRotateY = (index: number) => {
-      const seed = index * 37;
-      return (seed % 21) - 10;
+    const seed = index * 37;
+    return (seed % 21) - 10;
   };
 
   return (
-    <section className="relative mx-auto w-full max-w-[1400px] px-8 py-32 grid grid-cols-1 md:grid-cols-2 items-center gap-12 font-sans antialiased">
+    <section className="relative mx-auto w-full max-w-6xl px-8 py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-12 font-sans antialiased">
       {/* 🖼️ Left Image Section */}
       <div className="relative flex justify-start md:justify-end">
-        <div className="relative w-[90%] sm:w-[85%] md:w-[600px] h-[400px] sm:h-[480px] md:h-[550px]">
+        <div className="relative w-[90%] sm:w-[85%] md:w-[500px] h-[400px] sm:h-[480px] md:h-[450px]">
           <AnimatePresence>
             {testimonials.map((testimonial, index) => (
               <motion.div
@@ -71,8 +71,8 @@ export const AnimatedTestimonials = ({
                 <img
                   src={testimonial.src}
                   alt={testimonial.name}
-                  width={600}
-                  height={600}
+                  width={500}
+                  height={500}
                   draggable={false}
                   className="h-full w-full rounded-3xl object-cover object-center shadow-2xl"
                 />

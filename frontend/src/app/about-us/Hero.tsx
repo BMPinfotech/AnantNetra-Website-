@@ -1,102 +1,67 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] dark:bg-dark">
-      
-      {/* Background decoration elements */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <section className="relative overflow-hidden pt-32 pb-20 lg:pt-[180px] lg:pb-[140px] dark:bg-black bg-white">
 
-        {/* Gradient blob (blue now) */}
-        <div className="absolute top-20 left-32 h-72 w-72 bg-blue-500/30 dark:bg-blue-700/30 rounded-full blur-3xl animate-pulse"></div>
-
-        {/* Light blue glow */}
-        <div className="absolute bottom-10 right-20 h-64 w-64 bg-blue-400/20 rounded-full blur-[90px]"></div>
-
-        {/* Floating glass shape */}
-        <div className="absolute top-1/2 left-1/4 h-40 w-40 bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-2xl rotate-12 shadow-2xl animate-[float_6s_ease-in-out_infinite]"></div>
+      {/* Premium Background Effects */}
+      <div className="absolute inset-0 w-full h-full bg-slate-50 dark:bg-black bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
+        <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       </div>
 
-      <div className="container mx-auto">
-        <div className="flex flex-wrap items-center justify-b1etween -mx-4">
-          
-          {/* LEFT IMAGES */}
-          <div className="w-full px-4 lg:w-6/12">
-            <div className="relative flex items-center -mx-3 sm:-mx-4">
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="flex flex-col items-center justify-center text-center max-w-5xl mx-auto">
 
-              <div className="w-full px-3 sm:px-4 xl:w-1/2">
-                <div className="py-3 sm:py-4">
-                  <img
-                    src="https://cdn.tailgrids.com/assets/images/marketing/about/about-01/image-1.jpg"
-                    alt=""
-                    className="w-full rounded-2xl shadow-lg shadow-blue-500/20"
-                  />
-                </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-sm font-medium mb-6 border border-blue-100 dark:border-blue-800">
+              About AnantNetra
+            </span>
+          </motion.div>
 
-                <div className="py-3 sm:py-4">
-                  <img
-                    src="https://cdn.tailgrids.com/assets/images/marketing/about/about-01/image-2.jpg"
-                    alt=""
-                    className="w-full rounded-2xl shadow-lg shadow-blue-500/20"
-                  />
-                </div>
-              </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-8 leading-tight"
+          >
+            Pioneering the Future of <br className="hidden md:block" />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600 animate-gradient-x">
+              Digital Innovation
+            </span>
+          </motion.h1>
 
-              <div className="w-full px-3 sm:px-4 xl:w-1/2">
-                <div className="relative my-4">
-                  <img
-                    src="https://cdn.tailgrids.com/assets/images/marketing/about/about-01/image-3.jpg"
-                    alt=""
-                    className="w-full rounded-2xl shadow-xl shadow-black/20"
-                  />
-                </div>
-              </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-3xl leading-relaxed"
+          >
+            We are a team of visionaries, engineers, and strategists dedicated to transforming complex challenges into elegant digital solutions. At AnantNetra, we don't just build software; we engineer growth and secure futures.
+          </motion.p>
 
-            </div>
-          </div>
-
-          {/* RIGHT TEXT CONTENT */}
-          <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-            <div className="mt-10 lg:mt-0">
-              <h2 className="mb-5 text-3xl font-bold text-dark dark:text-white sm:text-[40px]/[48px]">
-                Make your customers happy by giving services.
-              </h2>
-
-              <p className="mb-5 text-base text-body-color dark:text-dark-6">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-              </p>
-
-              <p className="mb-8 text-base text-body-color dark:text-dark-6">
-                A domain name is one of the first steps to establishing your
-                brand. Secure a consistent brand image with a domain name that
-                matches your business.
-              </p>
-
-              {/* BUTTON */}
-              {/* 
-              <a
-                href="#"
-                className="inline-flex items-center justify-center py-3 px-7 text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-md shadow-lg shadow-blue-500/30 hover:opacity-90 transition"
-              >
-                Get Started
-              </a>
-              */}
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center gap-4"
+          >
+            {/* Optional Stats or Trust Indicators can go here if needed later */}
+          </motion.div>
 
         </div>
       </div>
 
-      {/* Floating Animation Keyframes */}
-      <style>{`
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-          100% { transform: translateY(0px); }
-        }
-      `}</style>
+      {/* Decorative Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl -z-10 pointer-events-none">
+        <div className="absolute top-[20%] left-[20%] w-72 h-72 bg-purple-500/10 rounded-full blur-[100px] mix-blend-screen" />
+        <div className="absolute top-[30%] right-[20%] w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] mix-blend-screen" />
+      </div>
 
     </section>
   );
