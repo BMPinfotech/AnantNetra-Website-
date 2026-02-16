@@ -30,12 +30,25 @@ function ClientNavbar() {
 
   const [scrolled, setScrolled] = useState(false);
 
-  // Listen to scroll
+  // Listen to scroll with throttling
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50); // Trigger after 50px scroll
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateScrolled = () => {
+      setScrolled(window.scrollY > 50);
+      ticking = false;
     };
-    window.addEventListener("scroll", handleScroll);
+
+    const handleScroll = () => {
+      lastScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrolled);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
