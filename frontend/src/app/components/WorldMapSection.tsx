@@ -16,12 +16,7 @@ const WorldMapSection = () => {
             coordinates: [139.7034, 35.6939],
             color: "#ec4899", // Pink
             googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=35.6939,139.7034",
-            address: (
-                <>
-                    <p className="font-semibold text-slate-900 dark:text-white">Sakura Heights, 5-12-8 Shinjuku</p>
-                    <p>Shinjuku-ku, Tokyo 160-0022, Japan</p>
-                </>
-            ),
+
         },
         {
             id: 2,
@@ -29,12 +24,7 @@ const WorldMapSection = () => {
             coordinates: [13.3874, 52.5208],
             color: "#eab308", // Yellow
             googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=52.5208,13.3874",
-            address: (
-                <>
-                    <p className="font-semibold text-slate-900 dark:text-white">Friedrichstraße 128</p>
-                    <p>10117 Berlin, Germany</p>
-                </>
-            ),
+
         },
         {
             id: 3,
@@ -42,12 +32,7 @@ const WorldMapSection = () => {
             coordinates: [75.8758587, 26.8547146],
             color: "#a855f7", // Purple
             googleMapsUrl: "https://www.google.com/maps?q=26.8547146,75.8758587&z=17&hl=en",
-            address: (
-                <>
-                    <p className="font-semibold text-slate-900 dark:text-white">Rajesh Thakur Home, Ghati Karolan, Jagatpura</p>
-                    <p>Jaipur, Rajasthan, India</p>
-                </>
-            ),
+
         },
     ];
 
@@ -65,7 +50,7 @@ const WorldMapSection = () => {
                     >
                         Our Growing Footprint
                     </motion.h2>
-                   
+
                 </div>
 
                 {/* Map & Content Container */}
@@ -108,6 +93,7 @@ const WorldMapSection = () => {
                                     onMouseEnter={() => setActiveMarker(loc.id)}
                                     // onClick={() => window.open(loc.googleMapsUrl, '_blank')} // Optional: Click marker to open map
                                     className="cursor-pointer group"
+                                    onMouseLeave={() => setActiveMarker(null)}
                                 >
                                     <g
                                         fill="none"
@@ -121,80 +107,31 @@ const WorldMapSection = () => {
                                         <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z" />
                                     </g>
                                     <circle r={8} fill={loc.color} opacity={0.4} className="animate-ping" />
+                                    {/* Tooltip on Hover */}
+                                    {activeMarker === loc.id && (
+                                        <g pointerEvents="none">
+                                            <text
+                                                textAnchor="middle"
+                                                y="-35"
+                                                style={{
+                                                    fontFamily: 'system-ui',
+                                                    fill: loc.color,
+                                                    fontSize: '14px',
+                                                    fontWeight: 'bold',
+                                                    textShadow: '0px 2px 4px rgba(0,0,0,0.8)'
+                                                }}
+                                            >
+                                                {loc.name}
+                                            </text>
+                                        </g>
+                                    )}
                                 </Marker>
                             ))}
                         </ComposableMap>
-
-                        {/* Address Cards Overlay (Desktop) */}
-                        <div className="hidden md:flex flex-col gap-4 absolute bottom-10 left-10 z-30 pointer-events-none">
-                            {locations.map((loc) => (
-                                <motion.div
-                                    key={loc.id}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.5 + loc.id * 0.1 }}
-                                    onMouseEnter={() => setActiveMarker(loc.id)}
-                                    className={`pointer-events-auto bg-white/90 dark:bg-black/80 backdrop-blur-md border border-gray-200 dark:border-white/10 p-5 rounded-xl max-w-sm flex items-start gap-4 transition-all duration-300 hover:bg-white dark:hover:bg-black hover:scale-105 group shadow-lg ${activeMarker === loc.id ? 'ring-2 ring-blue-500/50' : ''}`}
-                                >
-                                    {/* Color Indicator */}
-                                    <div
-                                        className="w-3 h-3 rounded-full mt-1.5 shrink-0 shadow-sm"
-                                        style={{ backgroundColor: loc.color }}
-                                    />
-
-                                    {/* Content */}
-                                    <div className="text-left flex-1">
-                                        <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-0.5 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">{loc.name}</h4>
-                                        <div className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-normal mb-3">
-                                            {loc.address}
-                                        </div>
-                                        <a
-                                            href={loc.googleMapsUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-lg transition-colors gap-1.5"
-                                        >
-                                            <MapPin size={12} />
-                                            View Map
-                                        </a>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-
                     </motion.div>
 
-                    {/* Mobile Address Cards (Improved Stacking) */}
-                    <div className="md:hidden w-full mt-8 grid grid-cols-1 gap-4 px-2">
-                        {locations.map((loc) => (
-                            <div
-                                key={loc.id}
-                                className="bg-white dark:bg-zinc-900/50 border border-gray-200 dark:border-white/10 p-5 rounded-2xl flex flex-col gap-3 shadow-sm backdrop-blur-sm"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div
-                                        className="w-3 h-3 rounded-full mt-1.5 shrink-0"
-                                        style={{ backgroundColor: loc.color }}
-                                    />
-                                    <div>
-                                        <h4 className="text-slate-900 dark:text-white font-bold text-lg mb-1">{loc.name}</h4>
-                                        <div className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                                            {loc.address}
-                                        </div>
-                                    </div>
-                                </div>
-                                <a
-                                    href={loc.googleMapsUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="self-end mt-2 inline-flex items-center text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 active:scale-95 px-4 py-2 rounded-xl transition-all w-full justify-center gap-2"
-                                >
-                                    <ExternalLink size={16} />
-                                    View on Map
-                                </a>
-                            </div>
-                        ))}
-                    </div>
+
+
 
                 </div>
 

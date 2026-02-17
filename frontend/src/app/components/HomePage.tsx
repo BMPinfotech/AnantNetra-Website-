@@ -47,7 +47,7 @@ function HomePage() {
       >
         {/* Left Column: Content */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left z-10">
-          <h1 className="mx-auto max-w-4xl text-3xl font-bold text-slate-800 md:text-5xl lg:text-7xl sm:text-5xl dark:text-slate-300 lg:mx-0">
+          <h1 className="mx-auto max-w-4xl text-3xl font-normal text-slate-800 md:text-5xl lg:text-7xl sm:text-5xl dark:text-slate-300 lg:mx-0">
             {"AI-Driven Solutions for a Smarter & Secure Future"
               .split(" ")
               .map((word, index) => (
@@ -66,7 +66,7 @@ function HomePage() {
                 </motion.span>
               ))}
           </h1>
-{/* <h1 className="mx-auto max-w-4xl text-3xl font-bold md:text-5xl lg:text-7xl sm:text-5xl lg:mx-0">
+          {/* <h1 className="mx-auto max-w-4xl text-3xl font-bold md:text-5xl lg:text-7xl sm:text-5xl lg:mx-0">
   {"AI-Driven Solutions for a Smarter & Secure Future"
     .split(" ")
     .map((word, index) => (
@@ -92,34 +92,34 @@ function HomePage() {
       </motion.span>
     ))}
 </h1> */}
-         
-         
-  <motion.p
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.4, delay: 0.8 }}
-  className="
+
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.8 }}
+            className="
     mx-auto mt-8 max-w-xl 
     text-base md:text-lg 
     leading-relaxed 
     text-neutral-600 dark:text-neutral-400 
     lg:mx-0
   "
->
-  Transforming enterprises with next-generation{" "}
-  <span className="font-semibold text-neutral-800 dark:text-neutral-200">
-    Artificial Intelligence
-  </span>
-  ,{" "}
-  <span className="font-semibold text-neutral-800 dark:text-neutral-200">
-    Cybersecurity
-  </span>
-   and{" "}
-  <span className="font-semibold text-neutral-800 dark:text-neutral-200">
-    IT Consulting
-  </span>{" "}
-  — driving innovation, resilience and sustainable growth.
-</motion.p>
+          >
+            Transforming enterprises with next-generation{" "}
+            <span className="font-normal text-neutral-800 dark:text-neutral-200">
+              Artificial Intelligence
+            </span>
+            ,{" "}
+            <span className="font-normal text-neutral-800 dark:text-neutral-200">
+              Cybersecurity
+            </span>
+            and{" "}
+            <span className="font-normal text-neutral-800 dark:text-neutral-200">
+              IT Consulting
+            </span>{" "}
+            — driving innovation, resilience and sustainable growth.
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0 }}
@@ -129,13 +129,13 @@ function HomePage() {
           >
             <button
               onClick={scrollToVideo}
-              className="w-64 rounded-lg bg-black px-6 py-3 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+              className="w-64 rounded-lg bg-black px-6 py-3 font-normal text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
             >
               Explore Now
             </button>
             <a
               href="#contact"
-              className="w-64 flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
+              className="w-64 flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 font-normal text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
             >
               Contact Support
             </a>
@@ -154,15 +154,15 @@ function HomePage() {
       </div> */}
 
       {/* Video Section */}
-      <div ref={videoRef} className=" lg:-mt-90 -mt-50 flex flex-col overflow-hidden relative z-20 pt-4">
+      <div ref={videoRef} className=" lg:-mt-40 -mt-20 flex flex-col overflow-hidden relative z-20 pt-4">
 
         <ContainerScroll
 
           titleComponent={
             <>
-              <h1 className="text-4xl font-semibold text-black dark:text-white mb-8  ">
+              <h1 className="text-4xl font-normal text-black dark:text-white mb-8  ">
                 Unleash the power of <br />
-                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none ">
+                <span className="text-4xl md:text-[6rem] font-normal mt-1 leading-none ">
                   Quantum
                 </span>
               </h1>
