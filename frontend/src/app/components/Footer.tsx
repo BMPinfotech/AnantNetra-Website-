@@ -75,7 +75,7 @@ function Footer() {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full border-white/20 text-white hover:bg-white/10 hover:text-white px-8"
+              className="rounded-full border-white/20 text-black dark:text-white hover:bg-white/10 hover:text-white px-8"
               asChild
             >
               <Link href="#HomePage">Explore Now <ArrowRight className="ml-2 w-4 h-4" /></Link>
