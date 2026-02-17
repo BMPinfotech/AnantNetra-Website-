@@ -214,8 +214,8 @@ function ClientNavbar() {
 
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-                    <NavigationMenuContent className="w-auto min-w-[250px] p-6">
-                      <div className="grid grid-cols-2 gap-6 text-sm">
+                    <NavigationMenuContent className="w-auto min-w-[250px] p-4">
+                      <div className="grid grid-rows-5 gap-4 text-sm">
                         <NavigationMenuLink asChild>
                           <a href="/Services">Blog</a>
                         </NavigationMenuLink>
