@@ -94,14 +94,14 @@ function BusinessConsultancyPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center justify-center mb-6">
+            <div className="inline-flex items-center justify-center mb-6 mt-6">
               <Briefcase className="w-12 h-12 text-blue-500 mr-3" />
               <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-slate-100">
                 Business Consultancy
               </h1>
             </div>
             <p className="mt-6 text-xl text-slate-700 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Empowering businesses to achieve their goals through strategic insights and proven methodologies. 
+              Empowering businesses to achieve their goals through strategic insights and proven methodologies.
               We transform challenges into opportunities for sustainable growth.
             </p>
           </motion.div>
@@ -212,8 +212,11 @@ function BusinessConsultancyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-700 dark:to-blue-900 rounded-3xl p-12 text-white"
-          >
+            className="relative overflow-hidden bg-gradient-to-r from-[#fc0915] via-[#ee3984] to-[#7800da] rounded-3xl p-12 text-white shadow-2xl shadow-[#ee3984]/50 hover:shadow-[#ee3984]/70 transition-shadow duration-500"
+            // className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600 animate-gradient-x rounded-3xl p-12 text-white  duration-500"
+         >
+            {/* Shine Effect Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Transform Your Business?
             </h2>
