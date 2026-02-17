@@ -426,7 +426,7 @@ function ClientNavbar() {
 
               {openMenu === "partners" && (
                 <div className="pl-4 mt-2 ml-2 space-y-1">
-                  <a className="block py-1" href="/Services">Apply for Full-Time & Internship</a>
+                  <a className="block py-1" href="/Services">Apply for Fellowship</a>
                   <a className="block py-1" href="/Services">Apply for Accelerator</a>
                   <a className="block py-1" href="/Services">Apply as an Investor</a>
                 </div>
