@@ -131,8 +131,6 @@ const WorldMapSection = () => {
                     </motion.div>
 
 
-
-
                 </div>
 
                 {/* Stats Section */}
@@ -170,4 +168,4 @@ const WorldMapSection = () => {
     );
 };
 
-export default React.memo(WorldMapSection);
+export default WorldMapSection;

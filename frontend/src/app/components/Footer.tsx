@@ -155,7 +155,7 @@ function Footer() {
         <motion.div variants={item} className="lg:col-span-2">
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Solutions</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-                        <FooterLink href="/Services">Free Consultancy & Audit Call</FooterLink>
+            <FooterLink href="/Services">Free Consultancy & Audit Call</FooterLink>
             <FooterLink href="/Services">IT Audit / Product / Service</FooterLink>
             <FooterLink href="/report-incident" className="text-pink-500 font-medium">Incident Response</FooterLink>
             <FooterLink href="/Services">NetraSecure AI</FooterLink>
@@ -167,7 +167,7 @@ function Footer() {
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Company</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/about-us">About Us</FooterLink>
-            <FooterLink href="/Services">Meet the Team</FooterLink>
+            <FooterLink href="/meet-the-team">Meet the Team</FooterLink>
             <FooterLink href="/Services">Events</FooterLink>
             <FooterLink href="/#contact">Contact Us</FooterLink>
           </ul>

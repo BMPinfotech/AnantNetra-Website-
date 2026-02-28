@@ -99,7 +99,7 @@ whileHover={{ y: -5 }}
           </motion.div>
 
           {/* 🌍 Global Impact */}
-          <motion.div whileHover={{ scale: 1.05 }} className="col-span-1 sm:col-span-2 lg:col-span-1">
+          <motion.div whileHover={{ scale: 1.05 }} className="col-span-1 sm:col-span-1 lg:col-span-1">
             <Card className="h-full relative border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 overflow-hidden hover:shadow-xl transition-all duration-500 p-6 flex flex-col justify-between">
               <CardHeader className="p-0">
                 <CardTitle className="flex items-center gap-2 text-neutral-800 dark:text-neutral-100 text-lg font-semibold">
