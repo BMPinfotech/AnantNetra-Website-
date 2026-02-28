@@ -54,7 +54,7 @@ function ClientNavbar() {
 
   return (
     <header
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50
+      className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 overflow-visible
     transition-[width,background-color,backdrop-filter,box-shadow,padding] duration-500
     ${scrolled
           ? "max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1"
@@ -62,7 +62,7 @@ function ClientNavbar() {
         }`}
     >
       <div
-        className={`w-full max-w-7xl mx-auto hidden md:flex justify-end items-center gap-8 px-6 py-2 text-sm font-bold tracking-wide transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden py-0" : "h-auto opacity-100"
+        className={`w-full max-w-7xl mx-auto hidden xl:flex justify-end items-center gap-4 px-6 py-2 text-sm font-bold tracking-wide transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden py-0" : "h-auto opacity-100"
           }`}
       >
         <Link
@@ -86,7 +86,7 @@ function ClientNavbar() {
       </div>
 
       <nav
-        className={`max-w-7xl mx-auto px-4 flex items-center justify-between transition-all duration-500 ${scrolled ? "py-2" : "py-1"
+        className={`max-w-7xl mx-auto px-4 flex items-center justify-between transition-all duration-500 overflow-visible ${scrolled ? "py-2" : "py-1"
           }`}
       >
         {/* Logo or Brand */}
@@ -102,13 +102,13 @@ function ClientNavbar() {
 
 
         {/* Desktop Menu */}
-        <div className="hidden md:block">
+        <div className="hidden xl:block">
           <NavigationMenu viewport={false}>
-            <NavigationMenuList className="flex gap-4">
+            <NavigationMenuList className="flex gap-4 ">
               {/* --- Services --- */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-auto min-w-[250px] p-4">
+                <NavigationMenuContent className="w-auto min-w-[220px] p-4 md:right-auto md:left-1 md:origin-top-right">
                   <ul className="space-y-2 text-sm">
                     <li>
                       <NavigationMenuLink asChild>
@@ -141,7 +141,7 @@ function ClientNavbar() {
               {/* --- Solutions --- */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-auto min-w-[250px] p-6">
+                <NavigationMenuContent className="w-auto min-w-[220px] p-5">
                   <ul className="space-y-2 text-sm">
                     <li>
                       <NavigationMenuLink asChild>
@@ -165,7 +165,7 @@ function ClientNavbar() {
               {/* --- Platform --- */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Platform</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-auto min-w-[250px] p-6">
+                <NavigationMenuContent className="w-auto min-w-[220px] p-5">
                   <ul className="space-y-2 text-sm">
                     <li>
                       <NavigationMenuLink asChild>
@@ -186,7 +186,7 @@ function ClientNavbar() {
                 <>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Company</NavigationMenuTrigger>
-                    <NavigationMenuContent className="w-auto min-w-[250px] p-6">
+                    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
                       <ul className="space-y-2 text-sm">
                         <li>
                           <NavigationMenuLink asChild>
@@ -195,7 +195,7 @@ function ClientNavbar() {
                         </li>
                         <li>
                           <NavigationMenuLink asChild>
-                            <a href="/Services">Meet the Team</a>
+                            <Link href="/meet-the-team">Meet the Team</Link>
                           </NavigationMenuLink>
                         </li>
                         {/* <li>
@@ -205,7 +205,7 @@ function ClientNavbar() {
                         </li> */}
                         <li>
                           <NavigationMenuLink asChild>
-                            <a href="/Services">Events</a>
+                            <Link href="/events">Events</Link>
                           </NavigationMenuLink>
                         </li>
                       </ul>
@@ -214,7 +214,7 @@ function ClientNavbar() {
 
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-                    <NavigationMenuContent className="w-auto min-w-[250px] p-4">
+                    <NavigationMenuContent className="w-auto min-w-[220px] p-4">
                       <div className="grid grid-rows-5 gap-4 text-sm">
                         <NavigationMenuLink asChild>
                           <a href="/Services">Blog</a>
@@ -240,7 +240,7 @@ function ClientNavbar() {
               {/* These last ones will always show */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Partners</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-auto min-w-[250px] p-6">
+                <NavigationMenuContent className="w-auto min-w-[190px] p-4 md:right-0 md:left-auto md:origin-top-right">
                   <ul className="space-y-2 text-sm">
                     <li>
                       <NavigationMenuLink asChild>
@@ -270,7 +270,7 @@ function ClientNavbar() {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="xl:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -280,7 +280,7 @@ function ClientNavbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileOpen && (
-        <div className="md:hidden bg-background border-t shadow-sm">
+        <div className="xl:hidden bg-background border-t shadow-sm">
           <ul className="flex flex-col p-4 space-y-3 text-sm">
 
             {/* NEW: Report an Incident (Top of Mobile Menu) */}
@@ -388,9 +388,9 @@ function ClientNavbar() {
               {openMenu === "company" && (
                 <div className="pl-4 mt-2 ml-2 space-y-1">
                   <a className="block py-1" href="/about-us">About Us</a>
-                  <a className="block py-1" href="/Services">Meet the Team</a>
+                  <Link href="/meet-the-team" className="block py-1" onClick={() => setMobileOpen(false)}>Meet the Team</Link>
                   {/* <a className="block py-1" href="/Services">Careers</a> */}
-                  <a className="block py-1" href="/Services">Events</a>
+                  <Link href="/events" className="block py-1" onClick={() => setMobileOpen(false)}>Events</Link>
                 </div>
               )}
             </li>

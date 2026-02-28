@@ -22,8 +22,8 @@ function HomePage() {
     ? rawScrollYProgress
     : new MotionValue(0);
 
-  const heroScale = useTransform(scrollYProgress, [0, 0.1], [1, 0.9]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0.7]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.7]);
 
   const scrollToVideo = () => {
     videoRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -43,11 +43,11 @@ function HomePage() {
       {/* Hero Section */}
       <motion.div
         style={{ scale: heroScale, opacity: heroOpacity }}
-        className="relative z-30 grid min-h-screen grid-cols-1 items-center gap-8 px-4 lg:grid-cols-2 lg:px-16"
+        className="relative z-30 grid min-h-screen pt-32 pb-16 grid-cols-1 items-center gap-8 px-4 lg:grid-cols-2 lg:px-16"
       >
         {/* Left Column: Content */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left z-10">
-          <h1 className="mx-auto max-w-4xl text-3xl font-normal text-slate-800 md:text-5xl lg:text-7xl sm:text-5xl dark:text-slate-300 lg:mx-0">
+          <h1 className="mx-auto max-w-4xl text-4xl font-normal text-slate-800 md:text-6xl lg:text-[clamp(3rem,6vw,4.5rem)] dark:text-slate-300 lg:mx-0 leading-tight">
             {"AI-Driven Solutions for a Smarter & Secure Future"
               .split(" ")
               .map((word, index) => (
@@ -154,7 +154,7 @@ function HomePage() {
       </div> */}
 
       {/* Video Section */}
-      <div ref={videoRef} className=" lg:-mt-40 -mt-20 flex flex-col overflow-hidden relative z-20 pt-4">
+      <div ref={videoRef} className="flex flex-col overflow-hidden relative z-20 pt-20">
 
         <ContainerScroll
 
@@ -162,7 +162,7 @@ function HomePage() {
             <>
               <h1 className="text-4xl font-normal text-black dark:text-white mb-8  ">
                 Unleash the power of <br />
-                <span className="text-4xl md:text-[6rem] font-normal mt-1 leading-none ">
+                <span className="text-4xl md:text-[clamp(3rem,8vw,6rem)] font-normal mt-1 leading-none ">
                   Quantum
                 </span>
               </h1>
@@ -171,17 +171,12 @@ function HomePage() {
         >
           <video
             src="/video_main.webm"
-
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
-            height={720}
-            width={1400}
-            className="mx-auto rounded-2xl 
-    object-contain md:object-cover 
-    w-full h-auto  md:h-full "
+            className="mx-auto rounded-2xl object-contain xl:object-cover w-full h-auto xl:h-full max-w-full"
             draggable={false}
           />
         </ContainerScroll>
