@@ -14,7 +14,10 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 
+import { usePathname } from "next/navigation";
+
 function ClientNavbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<
     | "services"
@@ -50,7 +53,9 @@ function ClientNavbar() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
+
+  if (pathname === "/incident-response") return null;
 
   return (
     <header
@@ -66,7 +71,7 @@ function ClientNavbar() {
           }`}
       >
         <Link
-          href="/Services"
+          href="/incident-response"
           className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity"
         >
           Report an Incident
@@ -286,7 +291,7 @@ function ClientNavbar() {
             {/* NEW: Report an Incident (Top of Mobile Menu) */}
             <li>
               <Link
-                href="/Services"
+                href="/incident-response"
                 className="block w-full py-2 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] to-[#5155fd]"
                 onClick={() => setMobileOpen(false)}
               >

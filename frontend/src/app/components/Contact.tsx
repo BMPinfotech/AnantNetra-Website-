@@ -29,33 +29,39 @@ function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setResult("Sending...");
-    const form = e.currentTarget; // ✅ store it before await
+    const form = e.currentTarget; 
     const formData = new FormData(form);
-    formData.append("access_key", process.env.NEXT_PUBLIC_FORM_ACCESS_KEY || "");
-
+    const accessKey = process.env.NEXT_PUBLIC_FORM_ACCESS_KEY || "";
+    formData.append("access_key", accessKey);
     formData.append("subject", "New Contact Form Submission");
+    formData.append("from_name", (formData.get("name") as string) || "AnantNetra Web Form");
+    formData.append("replyto", (formData.get("email") as string) || "");
     formData.append(
       "auto_response",
       "Hi {name}, thanks for contacting AnantNetra! We’ve received your message and will get back to you shortly."
     );
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data.success) {
-      setResult(" Message sent successfully!");
-      form.reset();
-    } else {
-      console.error("Error:", data);
-      setResult(" Something went wrong. Please try again later.");
+      if (data.success) {
+        setResult(" Message sent successfully!");
+        form.reset();
+      } else {
+        console.error("Web3Forms Error:", data);
+        setResult(` Error: ${data.message || "Something went wrong."}`);
+      }
+    } catch (error) {
+      console.error("Form Submission Error:", error);
+      setResult(" Connection error. Please try again.");
     }
 
   };
-
   return (
     <div
       id="contact"
@@ -65,7 +71,7 @@ function Contact() {
       <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6">
         <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">
           Let’s build something amazing together     <span
-  className="
+            className="
     mr-2 inline-flex
     bg-gradient-to-r from-[#fc0915] via-[#ee3984] to-[#7800da]
     p-2 rounded-full
@@ -73,9 +79,9 @@ function Contact() {
     hover:drop-shadow-[0_0_40px_rgba(238,57,132,0.7)]
     transition-all duration-500
   "
->
-  <Rocket className="size-8 text-white" />
-</span>
+          >
+            <Rocket className="size-8 text-white" />
+          </span>
 
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-lg">

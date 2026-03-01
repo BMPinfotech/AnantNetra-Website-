@@ -4,7 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Moon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { usePathname } from "next/navigation";
+
 export function ThemeToggle() {
+  const pathname = usePathname();
   const { setTheme, theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -13,7 +16,7 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted || pathname === "/incident-response") return null;
 
   return (
     <Button
