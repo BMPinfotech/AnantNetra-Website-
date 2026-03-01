@@ -157,7 +157,7 @@ function Footer() {
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/Services">Free Consultancy & Audit Call</FooterLink>
             <FooterLink href="/Services">IT Audit / Product / Service</FooterLink>
-            <FooterLink href="/report-incident" className="text-pink-500 font-medium">Incident Response</FooterLink>
+            <FooterLink href="/incident-response" className="text-pink-500 font-medium">Incident Response</FooterLink>
             <FooterLink href="/Services">NetraSecure AI</FooterLink>
           </ul>
         </motion.div>
