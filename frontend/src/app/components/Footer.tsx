@@ -168,7 +168,7 @@ function Footer() {
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/about-us">About Us</FooterLink>
             <FooterLink href="/meet-the-team">Meet the Team</FooterLink>
-            <FooterLink href="/Services">Events</FooterLink>
+            <FooterLink href="/events">Events</FooterLink>
             <FooterLink href="/#contact">Contact Us</FooterLink>
           </ul>
         </motion.div>
