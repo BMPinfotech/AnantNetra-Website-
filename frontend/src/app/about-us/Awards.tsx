@@ -29,9 +29,9 @@ export function Awards() {
   ];
 
   return (
-    <div className="relative w-full overflow-hidden ">
+    <div className="relative w-full overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5 blur-3xl -z-10 " />
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5 blur-3xl -z-10" />
 
       <div className="relative bg-white/5 rounded-2xl py-20 px-6 shadow-xl">
         <InfiniteSlider gap={60} reverse className="py-2">

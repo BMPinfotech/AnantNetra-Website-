@@ -189,7 +189,7 @@ function Footer() {
       {/* Bottom Bar */}
       <div className="bg-slate-100 dark:bg-[#050505] py-6 border-t border-slate-200 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
-          <p>© {/*{new Date().getFullYear()}*/} 2023 AnantNetra Technologies. All Rights Reserved.</p>
+          <p>© {/*{new Date().getFullYear()}*/} 2026 AnantNetra Technologies. All Rights Reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/PrivacyPolicy" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/Terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Service</Link>

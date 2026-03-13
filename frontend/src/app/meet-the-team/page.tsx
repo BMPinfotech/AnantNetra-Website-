@@ -21,67 +21,75 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
     {
         id: 1,
-        name: "Dr. Anant Sharma",
-        role: "Founder & CEO",
-        bio: "Visionary leader with 15+ years of experience in Cyber Security and AI. Driven by the mission to secure the digital world.",
-        imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&h=400&auto=format&fit=crop",
-        socials: { linkedin: "#", twitter: "#", email: "anant@anantnetra.com" },
-    },
-    {
-        id: 2,
-        name: "Vikram Malhotra",
-        role: "Chief Technology Officer",
-        bio: "Pioneer in Blockchain and Quantum computing. Leads our R&D wing with a focus on future-proof technologies.",
-        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop",
+        name: "Parth Vyas",
+        role: "Co-Founder & Chief Technology Officer",
+        bio: "Technology leader specializing in AI, machine learning, and cybersecurity, driving the development of secure, scalable, and intelligent digital solutions for modern enterprises.",
+        imageUrl: "/images/Parth-Image.WebP",
         socials: { linkedin: "#", github: "#", twitter: "#" },
     },
     {
+        id: 2,
+        name: "Puneet Soni",
+        role: "Tech Operations Manager",
+        bio: "AI and Automation specialist dedicated to optimizing technical operations and implementing intelligent workflow systems.",
+        imageUrl: "/images/Puneet-Image.WebP",
+        socials: { linkedin: "#", github: "#" },
+    },
+    {
         id: 3,
-        name: "Sarah Jenkins",
-        role: "Head of Cyber Security",
-        bio: "Expert in threat intelligence and incident response. Previously secured critical infrastructure for global enterprises.",
-        imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&auto=format&fit=crop",
-        socials: { linkedin: "#", twitter: "#" },
+        name: "Vaibhav Maheshwari",
+        role: "Tech Operations Manager",
+        bio: "Solution development experts focused on designing efficient, scalable, and performance-driven technology systems.",
+        imageUrl: "/images/Vaibhav-Image.WebP",
+        socials: { linkedin: "#", github: "#" },
     },
     {
         id: 4,
-        name: "Amit Patel",
-        role: "Director of IT Strategy",
-        bio: "Specializes in digital transformation and cloud architecture. Helps businesses scale through innovative IT roadmaps.",
-        imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=400&auto=format&fit=crop",
-        socials: { linkedin: "#", email: "amit@anantnetra.com" },
+        name: "Vamasikrishna",
+        role: "AI Engineer",
+        bio: "Passionate AI engineer focused on building intelligent systems that transform data into impactful real-world solutions.",
+        imageUrl: "/images/Vamsi.WebP",
+        socials: { linkedin: "#", github: "#" },
     },
     {
         id: 5,
-        name: "Elena Rodriguez",
-        role: "Lead UI/UX Designer",
-        bio: "Crafting intuitive and beautiful digital experiences. Focuses on the intersection of human psychology and design.",
-        imageUrl: "/images/Tanmai.WebP",
+        name: "Khushi Kumari",
+        role: "AI Engineer",
+        bio: "Dedicated to developing advanced AI models and data-driven solutions that enable smarter decision-making.",
+        imageUrl: "/images/Khushi Pic.WebP",
         socials: { linkedin: "#", github: "#" },
     },
     {
         id: 6,
-        name: "Ankita Das",
-        role: "Senior Security Analyst",
-        bio: "Red-teaming specialist with a knack for finding vulnerabilities before the hackers do. Certified ethical hacker.",
-        imageUrl: "/images/Khushi Pic.WebP",
-        socials: { linkedin: "#", twitter: "#" },
+        name: "Vinit Kumar Soni",
+        role: "Software Engineer",
+        bio: "Software Developer focused on building reliable, scalable, and high-performance applications for modern digital platforms.",
+        imageUrl: "/images/Vinit-Image.WebP",
+        socials: { linkedin: "#", github: "#" },
     },
     {
         id: 7,
-        name: "Priya Dey",
-        role: "Customer Success Manager",
-        bio: "Ensures our clients get the absolute best out of AnantNetra services. Dedicated to building long-term partnerships.",
-        imageUrl: "/images/Khushi deb.WebP",
-        socials: { linkedin: "#", email: "priya@anantnetra.com" },
+        name: "Disha Mali",
+        role: "Sales Manager",
+        bio: "Strategic sales professional focused on building strong client relationships and delivering technology solutions that create business value.",
+        imageUrl: "/images/Disha-Image.WebP",
+        socials: { linkedin: "#", github: "#" },
     },
     {
         id: 8,
-        name: "James Wilson",
-        role: "Operations Manager",
-        bio: "The engine behind our daily efficiency. James keeps our global projects running smoothly and on schedule.",
-        imageUrl: "/images/Vamsi.WebP",
-        socials: { linkedin: "#", twitter: "#" },
+        name: "Khushi Deb",
+        role: "Digital Marketing Specialist",
+        bio: "Digital marketing strategist focused on building brand presence, audience engagement, and data-driven marketing campaigns.",
+        imageUrl: "/images/Khushi deb.WebP",
+        socials: { linkedin: "#", github: "#" },
+    },
+    {
+        id: 9,
+        name: "Tanmai S",
+        role: "Digital Marketing Specialist",
+        bio: "Growth-focused digital marketer specializing in online campaigns, social media strategy, and performance marketing.",
+        imageUrl: "/images/Tanmai.WebP",
+        socials: { linkedin: "#", github: "#" },
     },
 ];
 
@@ -104,7 +112,7 @@ export default function MeetTheTeam() {
                             Our People
                         </span>
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
-                             Meet the Minds Behind <br />
+                            Meet the Minds Behind <br />
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600">
                                 AnantNetra
                             </span>
@@ -128,7 +136,7 @@ export default function MeetTheTeam() {
                             viewport={{ once: true }}
                             className="group relative"
                         >
-                            <div className="relative h-96 overflow-hidden rounded-2xl bg-slate-100 dark:bg-zinc-900">
+                            <div className="relative h-84 overflow-hidden rounded-2xl bg-slate-100 dark:bg-zinc-900">
                                 <img
                                     src={member.imageUrl}
                                     alt={member.name}

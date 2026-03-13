@@ -21,14 +21,13 @@ const mockUpcomingEvents = [
         isOnline: false,
         registrationLink: "https://anantnetra.com/register/cyber-summit-2026",
         speakers: [
-            { name: "Dr. Anant Sharma", designation: "CEO, AnantNetra", photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&h=400&auto=format&fit=crop" },
-            { name: "Sarah Jenkins", designation: "Head of Security", photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&auto=format&fit=crop" },
-            { name: "Vikram Malhotra", designation: "CTO, AnantNetra", photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop" },
-            { name: "Elena Rodriguez", designation: "Lead Designer", photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&h=400&auto=format&fit=crop" }
+            { name: "Parth Vyas", designation: "CTO, AnantNetra", photo: "/images/Parth-Image.WebP" },
+            { name: "Khushi Kumari", designation: "AI Engineer", photo: "/images/Khushi Pic.WebP" },
+            { name: "Vamasikrishna", designation: "AI Engineer", photo: "/images/Vamsi.WebP" }
         ],
         agenda: [
             { time: "10:00 AM", activity: "Check-in & Welcome Coffee", description: "Collect your badges and enjoy networking with peers over morning refreshments." },
-            { time: "11:00 AM", activity: "Keynote: Securing the Quantum Era", description: "Dr. Anant Sharma discusses the roadmap for universal digital defense mechanisms." },
+            { time: "11:00 AM", activity: "Keynote: Securing the Quantum Era", description: "Parth Vyas discusses the roadmap for universal digital defense mechanisms." },
             { time: "12:30 PM", activity: "Networking Lunch", description: "Enjoy a curated menu while discussing morning insights with industry leaders." },
             { time: "02:00 PM", activity: "Workshop: AI in Threat Detection", description: "Hands-on session using AnantNetra's proprietary AI tools to identify zero-day exploits." },
             { time: "03:30 PM", activity: "Panel Discussion & QA", description: "Closing thoughts and audience Q&A with our panel of experts." }
@@ -45,8 +44,10 @@ const mockUpcomingEvents = [
         isOnline: true,
         registrationLink: "https://anantnetra.com/webinar/ai-transform-2026",
         speakers: [
-            { name: "Amit Patel", designation: "Director of IT Strategy", photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=400&auto=format&fit=crop" },
-            { name: "James Wilson", designation: "Operations Manager", photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&h=400&auto=format&fit=crop" }
+            { name: "Parth Vyas", designation: "CTO, AnantNetra", photo: "/images/Parth-Image.WebP" },
+            { name: "Puneet Soni", designation: "Tech Operations Manager", photo: "/images/Puneet-Image.WebP" },
+            { name: "Vaibhav Maheshwari", designation: "Tech Operations Manager", photo: "/images/Vaibhav-Image.WebP" }
+
         ],
         agenda: [
             { time: "03:00 PM", activity: "Introduction to AI in SaaS", description: "Brief overview of current trends and market shifts." },
@@ -65,8 +66,10 @@ const mockUpcomingEvents = [
         isOnline: false,
         registrationLink: "https://anantnetra.com/events/cloud-migration-2026",
         speakers: [
-            { name: "Priya Das", designation: "CS Manager", photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&h=400&auto=format&fit=crop" },
-            { name: "Vikram Malhotra", designation: "CTO, AnantNetra", photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop" }
+            { name: "Parth Vyas", designation: "CTO, AnantNetra", photo: "/images/Parth-Image.WebP" },
+            { name: "Vinit Soni", designation: "Software Engineer", photo: "/images/Vinit-Image.WebP" },
+            { name: "Disha Mali", designation: "Sales Manager", photo: "/images/Disha-Image.WebP" }
+
         ],
         agenda: [
             { time: "09:00 AM", activity: "Opening Remarks", description: "Overview of the current cloud landscape." },
@@ -85,8 +88,9 @@ const mockUpcomingEvents = [
         isOnline: true,
         registrationLink: "https://anantnetra.com/events/blockchain-sec-2026",
         speakers: [
-            { name: "Sarah Jenkins", designation: "Head of Security", photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&auto=format&fit=crop" },
-            { name: "Rajesh Kannan", designation: "Senior Analyst", photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop" }
+            { name: "Tanmai S", designation: "Digital Marketing Specialist", photo: "/images/Tanmai.WebP" },
+            { name: "Parth Vyas", designation: "CTO, AnantNetra", photo: "/images/Parth-Image.WebP" }
+
         ],
         agenda: [
             { time: "11:00 AM", activity: "The State of DeFi Security", description: "Exploring major hacks of 2025 and lessons learned." },
@@ -143,7 +147,7 @@ export default function EventsPage() {
             {/* Gallery Section */}
             <PastEventsGallery photos={mockPastPhotos} />
 
-           
+
 
             <Footer />
         </main>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo, memo } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,261 +12,361 @@ import {
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
-
 import { usePathname } from "next/navigation";
+
+// --- Memoized Desktop Sub-components ---
+
+const ServicesMenu = memo(() => (
+  <NavigationMenuItem>
+    <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+    <NavigationMenuContent className="w-auto min-w-[220px] p-4 md:right-auto md:left-1 md:origin-top-right">
+      <ul className="space-y-2 text-sm">
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/Services/IT-consult" className="block p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors">
+              <strong className="block font-medium">IT Consultancy</strong>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Strategic planning & tech roadmaps</span>
+            </Link>
+          </NavigationMenuLink>
+        </li>
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/Services/Busniessconsult" className="block p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors">
+              <strong className="block font-medium">Business Consultancy</strong>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Optimizing operations & growth</span>
+            </Link>
+          </NavigationMenuLink>
+        </li>
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/Services/Cyber-security" className="block p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors">
+              <strong className="block font-medium">Cyber Security</strong>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Protecting your digital assets</span>
+            </Link>
+          </NavigationMenuLink>
+        </li>
+      </ul>
+    </NavigationMenuContent>
+  </NavigationMenuItem>
+));
+ServicesMenu.displayName = "ServicesMenu";
+
+const SolutionsMenu = memo(() => (
+  <NavigationMenuItem>
+    <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
+    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
+      <ul className="space-y-2 text-sm">
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/#contact">Free Consultancy & Audit Call</Link>
+          </NavigationMenuLink>
+        </li>
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/Services/Cyber-security">Cyber Security</Link>
+          </NavigationMenuLink>
+        </li>
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/Services">IT Audit / Product / Service</Link>
+          </NavigationMenuLink>
+        </li>
+      </ul>
+    </NavigationMenuContent>
+  </NavigationMenuItem>
+));
+SolutionsMenu.displayName = "SolutionsMenu";
+
+const PlatformMenu = memo(() => (
+  <NavigationMenuItem>
+    <NavigationMenuTrigger>Platform</NavigationMenuTrigger>
+    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
+      <ul className="space-y-2 text-sm">
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/">AnantNetra</Link>
+          </NavigationMenuLink>
+        </li>
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/Services">NetraSecure AI</Link>
+          </NavigationMenuLink>
+        </li>
+      </ul>
+    </NavigationMenuContent>
+  </NavigationMenuItem>
+));
+PlatformMenu.displayName = "PlatformMenu";
+
+const CompanyMenu = memo(() => (
+  <NavigationMenuItem>
+    <NavigationMenuTrigger>Company</NavigationMenuTrigger>
+    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
+      <ul className="space-y-2 text-sm">
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/about-us">About Us</Link>
+          </NavigationMenuLink>
+        </li>
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/meet-the-team">Meet the Team</Link>
+          </NavigationMenuLink>
+        </li>
+        <li>
+          <NavigationMenuLink asChild>
+            <Link href="/events">Events</Link>
+          </NavigationMenuLink>
+        </li>
+      </ul>
+    </NavigationMenuContent>
+  </NavigationMenuItem>
+));
+CompanyMenu.displayName = "CompanyMenu";
+
+const ResourcesMenu = memo(() => (
+  <NavigationMenuItem>
+    <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
+    <NavigationMenuContent className="w-auto min-w-[220px] p-4">
+      <div className="grid grid-rows-5 gap-4 text-sm">
+        <NavigationMenuLink asChild><Link href="/Services">Blog</Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/Services">Knowledge Base</Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/Services">Press Releases</Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/Services">Data Sheets</Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/Services">White Papers</Link></NavigationMenuLink>
+      </div>
+    </NavigationMenuContent>
+  </NavigationMenuItem>
+));
+ResourcesMenu.displayName = "ResourcesMenu";
+
+const PartnersMenu = memo(() => (
+  <NavigationMenuItem>
+    <NavigationMenuTrigger>Partners</NavigationMenuTrigger>
+    <NavigationMenuContent className="w-auto min-w-[190px] p-4 md:right-0 md:left-auto md:origin-top-right">
+      <ul className="space-y-2 text-sm">
+        <li><NavigationMenuLink asChild><Link href="/Services">Apply for Fellowship</Link></NavigationMenuLink></li>
+        <li><NavigationMenuLink asChild><Link href="/Services">Apply for Accelerator</Link></NavigationMenuLink></li>
+        <li><NavigationMenuLink asChild><Link href="/Services">Apply as an Investor</Link></NavigationMenuLink></li>
+      </ul>
+    </NavigationMenuContent>
+  </NavigationMenuItem>
+));
+PartnersMenu.displayName = "PartnersMenu";
+
+// --- Mobile Sub-menu logic ---
+
+const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  const toggleSection = useCallback((section: string) => {
+    setOpenSection((prev) => (prev === section ? null : section));
+  }, []);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="xl:hidden bg-background border-t shadow-sm">
+      <ul className="flex flex-col p-4 space-y-3 text-sm">
+        <li>
+          <Link
+            href="/incident-response"
+            className="block w-full py-2 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] to-[#5155fd]"
+            onClick={onClose}
+          >
+            Report an Incident
+          </Link>
+        </li>
+
+        {/* SERVICES */}
+        <li>
+          <button onClick={() => toggleSection("services")} className="flex justify-between items-center w-full py-2 font-medium">
+            Services <ChevronDown size={20} className={openSection === "services" ? "rotate-180 transition-transform" : "transition-transform"} />
+          </button>
+          {openSection === "services" && (
+            <div className="pl-4 mt-2 space-y-2">
+              <Link href="/Services/IT-consult" className="block py-1" onClick={onClose}>IT Consultancy</Link>
+              <Link href="/Services/Busniessconsult" className="block py-1" onClick={onClose}>Business Consultancy</Link>
+              <Link href="/Services/Cyber-security" className="block py-1" onClick={onClose}>Cyber Security</Link>
+            </div>
+          )}
+        </li>
+
+        {/* SOLUTIONS */}
+        <li>
+          <button onClick={() => toggleSection("solutions")} className="flex justify-between items-center w-full py-2 font-medium">
+            Solutions <ChevronDown size={20} className={openSection === "solutions" ? "rotate-180 transition-transform" : "transition-transform"} />
+          </button>
+          {openSection === "solutions" && (
+            <div className="pl-4 mt-2 space-y-1 ml-2">
+              <Link className="block py-1" href="/Services" onClick={onClose}>Free Consultancy & Audit Call</Link>
+              <Link className="block py-1" href="/Services/Cyber-security" onClick={onClose}>Cyber Security</Link>
+              <Link className="block py-1" href="/Services" onClick={onClose}>IT Audit / Product / Service</Link>
+            </div>
+          )}
+        </li>
+
+        {/* PLATFORM */}
+        <li>
+          <button onClick={() => toggleSection("platform")} className="flex justify-between items-center w-full py-2 font-medium">
+            Platform <ChevronDown size={20} className={openSection === "platform" ? "rotate-180 transition-transform" : "transition-transform"} />
+          </button>
+          {openSection === "platform" && (
+            <div className="pl-4 mt-2 ml-2 space-y-1">
+              <Link className="block py-1" href="/" onClick={onClose}>AnantNetra</Link>
+              <Link className="block py-1" href="/Services" onClick={onClose}>NetraSecure AI</Link>
+            </div>
+          )}
+        </li>
+
+        {/* COMPANY */}
+        <li>
+          <button onClick={() => toggleSection("company")} className="flex justify-between items-center w-full py-2 font-medium">
+            Company <ChevronDown size={20} className={openSection === "company" ? "rotate-180 transition-transform" : "transition-transform"} />
+          </button>
+          {openSection === "company" && (
+            <div className="pl-4 mt-2 ml-2 space-y-1">
+              <Link className="block py-1" href="/about-us" onClick={onClose}>About Us</Link>
+              <Link href="/meet-the-team" className="block py-1" onClick={onClose}>Meet the Team</Link>
+              <Link href="/events" className="block py-1" onClick={onClose}>Events</Link>
+            </div>
+          )}
+        </li>
+
+        {/* RESOURCES */}
+        <li>
+          <button onClick={() => toggleSection("resources")} className="flex justify-between items-center w-full py-2 font-medium">
+            Resources <ChevronDown size={20} className={openSection === "resources" ? "rotate-180 transition-transform" : "transition-transform"} />
+          </button>
+          {openSection === "resources" && (
+            <div className="pl-4 mt-2 grid grid-cols-1 gap-1 ml-2">
+              <Link className="block py-1" href="/Services" onClick={onClose}>Blog</Link>
+              <Link className="block py-1" href="/Services" onClick={onClose}>Knowledge Base</Link>
+              <Link className="block py-1" href="/Services" onClick={onClose}>Press Releases</Link>
+              <Link className="block py-1" href="/Services" onClick={onClose}>Data Sheets</Link>
+              <Link className="block py-1" href="/Services" onClick={onClose}>White Papers</Link>
+            </div>
+          )}
+        </li>
+
+        {/* PARTNERS */}
+        <li>
+          <button onClick={() => toggleSection("partners")} className="flex justify-between items-center w-full py-2 font-medium">
+            Partners <ChevronDown size={20} className={openSection === "partners" ? "rotate-180 transition-transform" : "transition-transform"} />
+          </button>
+          {openSection === "partners" && (
+            <div className="pl-4 mt-2 ml-2 space-y-1">
+              <Link className="block py-1" href="/Services" onClick={onClose}>Apply for Fellowship</Link>
+              <Link className="block py-1" href="/Services" onClick={onClose}>Apply for Accelerator</Link>
+              <Link className="block py-1" href="/Services" onClick={onClose}>Apply as an Investor</Link>
+            </div>
+          )}
+        </li>
+
+        <li>
+          <Link href="/Services" onClick={onClose} className="flex justify-between items-center w-full py-2 font-medium">
+            Threat Advisory
+          </Link>
+        </li>
+
+        <li>
+          <Link href="/#contact" className="block w-full py-2 font-medium" onClick={onClose}>
+            Contact Us
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
+});
+MobileMenu.displayName = "MobileMenu";
 
 function ClientNavbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState<
-    | "services"
-    | "solutions"
-    | "platform"
-    | "company"
-    | "resources"
-    | "threat"
-    | "partners"
-    | "contact"
-    | null
-  >(null);
-
   const [scrolled, setScrolled] = useState(false);
 
-  // Listen to scroll with throttling
+  // Listen to scroll with requestAnimationFrame for performance
   useEffect(() => {
-    let lastScrollY = window.scrollY;
     let ticking = false;
 
-    const updateScrolled = () => {
-      setScrolled(window.scrollY > 50);
-      ticking = false;
-    };
-
     const handleScroll = () => {
-      lastScrollY = window.scrollY;
       if (!ticking) {
-        window.requestAnimationFrame(updateScrolled);
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50);
+          ticking = false;
+        });
         ticking = true;
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    // Run once on mount to catch initial scroll state
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+  }, []); // Empty dependency array - effect stays stable across renders
+
+  const handleMobileToggle = useCallback(() => {
+    setMobileOpen((prev) => !prev);
+  }, []);
+
+  const handleMobileClose = useCallback(() => {
+    setMobileOpen(false);
+  }, []);
+
+  const headerClass = useMemo(() => {
+    return `fixed top-4 left-1/2 transform -translate-x-1/2 z-50 overflow-visible
+    transition-[width,background-color,backdrop-filter,box-shadow,padding] duration-500
+    ${scrolled
+        ? "max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1"
+        : "w-full bg-background shadow-sm rounded-none top-0 py-3"
+      }`;
+  }, [scrolled]);
+
+  const topBarClass = useMemo(() => {
+    return `w-full max-w-7xl mx-auto hidden xl:flex justify-end items-center gap-4 px-6 py-2 text-sm font-bold tracking-wide transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden py-0" : "h-auto opacity-100"
+      }`;
+  }, [scrolled]);
 
   if (pathname === "/incident-response") return null;
 
   return (
-    <header
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 overflow-visible
-    transition-[width,background-color,backdrop-filter,box-shadow,padding] duration-500
-    ${scrolled
-          ? "max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1"
-          : "w-full bg-background shadow-sm rounded-none top-0 py-3"
-        }`}
-    >
-      <div
-        className={`w-full max-w-7xl mx-auto hidden xl:flex justify-end items-center gap-4 px-6 py-2 text-sm font-bold tracking-wide transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden py-0" : "h-auto opacity-100"
-          }`}
-      >
-        <Link
-          href="/incident-response"
-          className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity"
-        >
+    <header className={headerClass}>
+      <div className={topBarClass}>
+        <Link href="/incident-response" className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
           Report an Incident
         </Link>
-        <Link
-          href="/Services"
-          className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity"
-        >
+        <Link href="/Services" className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
           Threat Advisory
         </Link>
-        <Link
-          href="/#contact"
-          className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 animate-gradient-x hover:opacity-80 transition-opacity"
-        >
+        <Link href="/#contact" className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 animate-gradient-x hover:opacity-80 transition-opacity">
           Contact Us
         </Link>
       </div>
 
-      <nav
-        className={`max-w-7xl mx-auto px-4 flex items-center justify-between transition-all duration-500 overflow-visible ${scrolled ? "py-2" : "py-1"
-          }`}
-      >
-        {/* Logo or Brand */}
-
+      <nav className={`max-w-7xl mx-auto px-4 flex items-center justify-between transition-all duration-500 overflow-visible ${scrolled ? "py-2" : "py-1"}`}>
         <div className="flex items-center gap-2">
-          <img src="/darkLogo.svg" alt="" width="50" height="50" className="dark:hidden " />
-          <img src="/lightLogo.svg" alt="" width="50" height="50" className=" hidden dark:block " />
-
+          <img src="/darkLogo.svg" alt="AnantNetra Logo" width="50" height="50" className="dark:hidden" />
+          <img src="/lightLogo.svg" alt="AnantNetra Logo" width="50" height="50" className="hidden dark:block" />
           <Link href="/" className="text-xl font-semibold">
             <span>AnantNetra</span>
           </Link>
         </div>
 
-
         {/* Desktop Menu */}
         <div className="hidden xl:block">
           <NavigationMenu viewport={false}>
-            <NavigationMenuList className="flex gap-4 ">
-              {/* --- Services --- */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-auto min-w-[220px] p-4 md:right-auto md:left-1 md:origin-top-right">
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/Services/IT-consult" className="block p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors">
-                          <strong className="block font-medium">IT Consultancy</strong>
-                          <span className="text-xs text-slate-500 dark:text-slate-400">Strategic planning & tech roadmaps</span>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/Services/Busniessconsult" className="block p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors">
-                          <strong className="block font-medium">Business Consultancy</strong>
-                          <span className="text-xs text-slate-500 dark:text-slate-400">Optimizing operations & growth</span>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/Services/Cyber-security" className="block p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors">
-                          <strong className="block font-medium">Cyber Security</strong>
-                          <span className="text-xs text-slate-500 dark:text-slate-400">Protecting your digital assets</span>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* --- Solutions --- */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-auto min-w-[220px] p-5">
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/#contact">Free Consultancy & Audit Call</a>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/Services/Cyber-security">Cyber Security</a>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/Services">IT Audit / Product / Service</a>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* --- Platform --- */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Platform</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-auto min-w-[220px] p-5">
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link href="/">AnantNetra</Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/Services">NetraSecure AI</a>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* The next few will hide when scrolled */}
+            <NavigationMenuList className="flex gap-4">
+              <ServicesMenu />
+              <SolutionsMenu />
+              <PlatformMenu />
               {!scrolled && (
                 <>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>Company</NavigationMenuTrigger>
-                    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
-                      <ul className="space-y-2 text-sm">
-                        <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/about-us">About Us</Link>
-                          </NavigationMenuLink>
-                        </li>
-                        <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/meet-the-team">Meet the Team</Link>
-                          </NavigationMenuLink>
-                        </li>
-                        {/* <li>
-                          <NavigationMenuLink asChild>
-                            <a href="/Services">Careers</a>
-                          </NavigationMenuLink>
-                        </li> */}
-                        <li>
-                          <NavigationMenuLink asChild>
-                            <Link href="/events">Events</Link>
-                          </NavigationMenuLink>
-                        </li>
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-                    <NavigationMenuContent className="w-auto min-w-[220px] p-4">
-                      <div className="grid grid-rows-5 gap-4 text-sm">
-                        <NavigationMenuLink asChild>
-                          <a href="/Services">Blog</a>
-                        </NavigationMenuLink>
-                        <NavigationMenuLink asChild>
-                          <a href="/Services">Knowledge Base</a>
-                        </NavigationMenuLink>
-                        <NavigationMenuLink asChild>
-                          <a href="/Services">Press Releases</a>
-                        </NavigationMenuLink>
-                        <NavigationMenuLink asChild>
-                          <a href="/Services">Data Sheets</a>
-                        </NavigationMenuLink>
-                        <NavigationMenuLink asChild>
-                          <a href="/Services">White Papers</a>
-                        </NavigationMenuLink>
-                      </div>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
+                  <CompanyMenu />
+                  <ResourcesMenu />
                 </>
               )}
-
-              {/* These last ones will always show */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Partners</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-auto min-w-[190px] p-4 md:right-0 md:left-auto md:origin-top-right">
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/Services">Apply for Fellowship</a>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/Services">Apply for Accelerator</a>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <a href="/Services">Apply as an Investor</a>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* REMOVED Threat Advisory and Contact from here as they are moved to Top Bar */}
+              <PartnersMenu />
             </NavigationMenuList>
           </NavigationMenu>
         </div>
@@ -276,7 +376,7 @@ function ClientNavbar() {
           variant="ghost"
           size="icon"
           className="xl:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
+          onClick={handleMobileToggle}
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -284,188 +384,9 @@ function ClientNavbar() {
       </nav>
 
       {/* Mobile Menu Dropdown */}
-      {mobileOpen && (
-        <div className="xl:hidden bg-background border-t shadow-sm">
-          <ul className="flex flex-col p-4 space-y-3 text-sm">
-
-            {/* NEW: Report an Incident (Top of Mobile Menu) */}
-            <li>
-              <Link
-                href="/incident-response"
-                className="block w-full py-2 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] to-[#5155fd]"
-                onClick={() => setMobileOpen(false)}
-              >
-                Report an Incident
-              </Link>
-            </li>
-
-            {/*  SERVICES  */}
-            <li>
-              <button
-                onClick={() => setOpenMenu(openMenu === "services" ? null : "services")}
-                className="flex justify-between items-center w-full py-2 font-medium"
-              >
-                Services
-                <ChevronDown size={20} strokeWidth={1.75} />        </button>
-
-              {openMenu === "services" && (
-                <div className="pl-4 mt-2 space-y-2">
-                  <Link
-                    href="/Services/IT-consult"
-                    className="block py-1"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setOpenMenu(null);
-                    }}
-                  >
-                    IT Consultancy
-                  </Link>
-
-                  <Link
-                    href="/Services/Busniessconsult"
-                    className="block py-1"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setOpenMenu(null);
-                    }}
-                  >
-                    Business Consultancy
-                  </Link>
-
-                  <Link
-                    href="/Services/Cyber-security"
-                    className="block py-1"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setOpenMenu(null);
-                    }}
-                  >
-                    Cyber Security
-                  </Link>
-                </div>
-              )}
-            </li>
-
-            {/* SOLUTIONS */}
-            <li>
-              <button
-                onClick={() => setOpenMenu(openMenu === "solutions" ? null : "solutions")}
-                className="flex justify-between items-center w-full py-2 font-medium"
-              >
-                Solutions
-                <ChevronDown size={20} strokeWidth={1.75} />        </button>
-
-              {openMenu === "solutions" && (
-                <div className="pl-4 mt-2 space-y-1 ml-2">
-                  <a className="block py-1" href="/Services">Free Consultancy & Audit Call</a>
-                  <a className="block py-1" href="/Services/Cyber-security">Cyber Security</a>
-                  <a className="block py-1" href="/Services">IT Audit / Product / Service</a>
-                </div>
-              )}
-            </li>
-
-            {/*  PLATFORM  */}
-            <li>
-              <button
-                onClick={() => setOpenMenu(openMenu === "platform" ? null : "platform")}
-                className="flex justify-between items-center w-full py-2 font-medium"
-              >
-                Platform
-                <ChevronDown size={20} strokeWidth={1.75} />        </button>
-
-              {openMenu === "platform" && (
-                <div className="pl-4 mt-2 ml-2 space-y-1">
-                  <a className="block py-1" href="/">AnantNetra</a>
-                  <a className="block py-1" href="/Services">NetraSecure AI</a>
-                </div>
-              )}
-            </li>
-
-            {/*  COMPANY*/}
-            <li>
-              <button
-                onClick={() => setOpenMenu(openMenu === "company" ? null : "company")}
-                className="flex justify-between items-center w-full py-2 font-medium"
-              >
-                Company
-                <ChevronDown size={20} strokeWidth={1.75} />        </button>
-
-              {openMenu === "company" && (
-                <div className="pl-4 mt-2 ml-2 space-y-1">
-                  <a className="block py-1" href="/about-us">About Us</a>
-                  <Link href="/meet-the-team" className="block py-1" onClick={() => setMobileOpen(false)}>Meet the Team</Link>
-                  {/* <a className="block py-1" href="/Services">Careers</a> */}
-                  <Link href="/events" className="block py-1" onClick={() => setMobileOpen(false)}>Events</Link>
-                </div>
-              )}
-            </li>
-
-            {/*  RESOURCES  */}
-            <li>
-              <button
-                onClick={() => setOpenMenu(openMenu === "resources" ? null : "resources")}
-                className="flex justify-between items-center w-full py-2 font-medium"
-              >
-                Resources
-                <ChevronDown size={20} strokeWidth={1.75} />        </button>
-
-              {openMenu === "resources" && (
-                <div className="pl-4 mt-2 grid grid-cols-1 gap-1 ml-2">
-                  <a className="block py-1" href="/Services">Blog</a>
-                  <a className="block py-1" href="/Services">Knowledge Base</a>
-                  <a className="block py-1" href="/Services">Press Releases</a>
-                  <a className="block py-1" href="/Services">Data Sheets</a>
-                  <a className="block py-1" href="/Services">White Papers</a>
-                </div>
-              )}
-            </li>
-
-            {/*  PARTNERS */}
-            <li>
-              <button
-                onClick={() => setOpenMenu(openMenu === "partners" ? null : "partners")}
-                className="flex justify-between items-center w-full py-2 font-medium"
-              >
-                Partners
-                <ChevronDown size={20} strokeWidth={1.75} />        </button>
-
-              {openMenu === "partners" && (
-                <div className="pl-4 mt-2 ml-2 space-y-1">
-                  <a className="block py-1" href="/Services">Apply for Fellowship</a>
-                  <a className="block py-1" href="/Services">Apply for Accelerator</a>
-                  <a className="block py-1" href="/Services">Apply as an Investor</a>
-                </div>
-              )}
-            </li>
-
-            {/* THREAT ADVISORY (Kept for Mobile) */}
-            <li>
-              <Link
-                href="/Services"
-                onClick={() => setMobileOpen(false)}
-                className="flex justify-between items-center w-full py-2 font-medium"
-              >
-                Threat Advisory
-              </Link>
-            </li>
-
-            {/*  CONTACT (Kept for Mobile)  */}
-            <li>
-              <a
-                className="block w-full py-2 font-medium"
-                href="/#contact"
-                onClick={() => setMobileOpen(false)}
-              >
-                Contact Us
-              </a>
-            </li>
-
-          </ul>
-        </div>
-      )}
-
+      <MobileMenu isOpen={mobileOpen} onClose={handleMobileClose} />
     </header>
   );
 }
 
-export default ClientNavbar;
+export default memo(ClientNavbar);
