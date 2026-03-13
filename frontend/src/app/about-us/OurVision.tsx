@@ -36,56 +36,55 @@ const cardData: BentoCardProps[] = [
     color: '#000310',
     title: "Vision",
     description:
-      "To emerge as a trusted global leader in IT & Business Consulting, delivering intelligent, future-ready digital solutions that help organizations innovate boldly, operate efficiently, and scale without limitations.",
+      "To emerge as a globally trusted leader in intelligent technology and digital consulting, empowering organizations with innovative solutions that drive efficiency, security, and long-term growth.",
     label: 'Insights',
     backgroundImage:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" // analytics style
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
   },
   {
     color: '#000310',
     title: "Mission",
     description:
-      "To empower businesses worldwide with secure, data-driven, high-value technology solutions built on transparency, collaboration, and continuous innovation.",
+      "To enable businesses worldwide with advanced, data-driven, and secure technology solutions that simplify complexity, enhance operational performance, and accelerate digital transformation.",
     label: 'Overview',
     backgroundImage:
-      "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1200&auto=format&fit=crop" // dashboard-style
+      "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1200&auto=format&fit=crop"
   },
   {
     color: '#000310',
-    title: "Strength",
+    title: "Strength through Teamwork",
     description:
-      "We unite technological excellence, analytical depth, and strategic vision to deliver scalable, end-to-end solutions tailored to each client’s goals.",
+      "At AnantNetra, collaboration lies at the heart of our success. Our multidisciplinary teams combine expertise across AI, software engineering, cloud computing, and business consulting to deliver impactful solutions. We believe that strong teamwork fosters innovation, ensures quality execution, and enables us to solve complex challenges efficiently for our clients.\n\nOur strength lies in the integration of technological excellence, analytical insight, and strategic thinking. By blending these capabilities, we deliver scalable end-to-end solutions tailored to the unique needs of every organization we work with.",
     label: 'Teamwork',
     backgroundImage:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" // teamwork style
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop"
   },
   {
     color: '#000310',
-    title: "Key Highlight 1",
+    title: "Key Highlight 1 – Technology Expertise",
     description:
-      "Specialized expertise across AI/ML, Cloud Computing, Web & App Development, DevOps, and Cybersecurity.",
+      "Efficiency is embedded in every stage of our development and consulting processes. We focus on optimized workflows, agile delivery models, and advanced automation to ensure that our clients achieve faster results with maximum operational efficiency.",
     label: 'Efficiency',
     backgroundImage:
       "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop"
   },
   {
     color: '#000310',
-    title: "Key Highlight 2",
+    title: "Key Highlight 2 – Strategic Consulting",
     description:
-      "Deep business consulting experience helping enterprises automate workflows, optimize operations, and maximize ROI.",
+      "We build resilient digital ecosystems that ensure seamless connectivity and data flow across global infrastructures, enabling secure and real-time collaboration.",
     label: 'Connectivity',
     backgroundImage:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" // connectivity/dev
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
   },
   {
     color: '#000310',
-    title: "Key Highlight 3",
+    title: "Key Highlight 3 – Agile Delivery",
     description:
-      "Agile, transparent, and collaborative delivery models ensuring faster time-to-value and long-term scalability.",
+      "Our zero-trust security frameworks provide comprehensive protection against emerging digital threats, safeguarding critical assets and ensuring business continuity.",
     label: 'Protection',
     backgroundImage:
       "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9"
-    ,
   }
 ];
 
@@ -556,8 +555,7 @@ const OurVision: React.FC<BentoProps> = ({
 
   return (
     <>
-      <style>
-        {`
+      <style dangerouslySetInnerHTML={{ __html: `
           .bento-section {
             --glow-x: 50%;
             --glow-y: 50%;
@@ -681,8 +679,7 @@ const OurVision: React.FC<BentoProps> = ({
               min-height: 180px;
             }
           }
-        `}
-      </style>
+        ` }} />
 
       {enableSpotlight && (
         <GlobalSpotlight

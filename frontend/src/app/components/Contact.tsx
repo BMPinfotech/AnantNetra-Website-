@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback, memo } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -23,10 +23,10 @@ import {
 } from "@/components/ui/select";
 import { Mail, Phone, Rocket } from "lucide-react";
 
-function Contact() {
+const Contact = memo(() => {
   const [result, setResult] = useState<string>("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setResult("Sending...");
     const form = e.currentTarget; 
@@ -61,13 +61,16 @@ function Contact() {
       setResult(" Connection error. Please try again.");
     }
 
-  };
+  }, []);
+
+  const handleClearResult = useCallback(() => setResult(""), []);
+
   return (
     <div
       id="contact"
       className="flex flex-col lg:flex-row items-start justify-between w-full px-6 lg:px-20 py-16 gap-10 scroll-mt-28"
     >
-      {/* Left Section */}
+      {/* Left Section (same as before) */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6">
         <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">
           Let’s build something amazing together     <span
@@ -198,7 +201,7 @@ function Contact() {
                   type="button"
                   variant="outline"
                   className="w-full sm:w-auto"
-                  onClick={() => setResult("")}
+                  onClick={handleClearResult}
                 >
                   Cancel
                 </Button>
@@ -215,6 +218,7 @@ function Contact() {
       </div>
     </div>
   );
-}
+});
+Contact.displayName = "Contact";
 
 export default Contact;
