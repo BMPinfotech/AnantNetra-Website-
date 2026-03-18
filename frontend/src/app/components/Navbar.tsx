@@ -51,32 +51,6 @@ const ServicesMenu = memo(() => (
 ));
 ServicesMenu.displayName = "ServicesMenu";
 
-const SolutionsMenu = memo(() => (
-  <NavigationMenuItem>
-    <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
-      <ul className="space-y-2 text-sm">
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/contact">Free Consultancy & Audit Call</Link>
-          </NavigationMenuLink>
-        </li>
-        {/* <li>
-          <NavigationMenuLink asChild>
-            <Link href="/Services/Cyber-security">Cyber Security</Link>
-          </NavigationMenuLink>
-        </li> */}
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/Services">IT Audit / Product / Service</Link>
-          </NavigationMenuLink>
-        </li>
-      </ul>
-    </NavigationMenuContent>
-  </NavigationMenuItem>
-));
-SolutionsMenu.displayName = "SolutionsMenu";
-
 const PlatformMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Platform</NavigationMenuTrigger>
@@ -191,20 +165,7 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
             </div>
           )}
         </li>
-
-        {/* SOLUTIONS */}
-        <li>
-          <button onClick={() => toggleSection("solutions")} className="flex justify-between items-center w-full py-2 font-medium">
-            Solutions <ChevronDown size={20} className={openSection === "solutions" ? "rotate-180 transition-transform" : "transition-transform"} />
-          </button>
-          {openSection === "solutions" && (
-            <div className="pl-4 mt-2 space-y-1 ml-2">
-              <Link className="block py-1" href="/Services" onClick={onClose}>Free Consultancy & Audit Call</Link>
-              {/* <Link className="block py-1" href="/Services/Cyber-security" onClick={onClose}>Cyber Security</Link> */}
-              <Link className="block py-1" href="/Services" onClick={onClose}>IT Audit / Product / Service</Link>
-            </div>
-          )}
-        </li>
+      
 
         {/* PLATFORM */}
         <li>
@@ -368,14 +329,15 @@ function ClientNavbar() {
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="flex gap-4">
               <ServicesMenu />
-              <SolutionsMenu />
-              <PlatformMenu />
+                                <ResourcesMenu />
+
               {!scrolled && (
                 <>
                   <CompanyMenu />
-                  <ResourcesMenu />
                 </>
               )}
+                            <PlatformMenu />
+
               <PartnersMenu />
             </NavigationMenuList>
           </NavigationMenu>
