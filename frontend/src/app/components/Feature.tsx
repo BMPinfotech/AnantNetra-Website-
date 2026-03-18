@@ -105,7 +105,7 @@ function Features() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-screen py-20 flex items-center justify-center overflow-hidden 
+      className="relative w-full min-h-screen py-8 md:py-18 flex items-center justify-center overflow-hidden 
   bg-white dark:bg-neutral-950"
     >
       <div className="relative z-10 mx-auto w-full px-2 sm:px-6 text-center">
@@ -124,7 +124,7 @@ function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
-          className="mt-6 text-lg leading-8 text-slate-700 dark:text-slate-400 max-w-3xl mx-auto"
+          className="mt-6 text-lg leading-8 text-slate-700 dark:text-slate-400 max-w-3xl mx-auto "
         >
           At AnantNetra Technologies, we design intelligent, secure, and ethical
           innovations that empower businesses to thrive in a connected future.
@@ -132,7 +132,7 @@ function Features() {
 
         <motion.div
           style={{ rotateX, y, transformStyle: "preserve-3d", perspective: "1000px" }}
-          className="mt-20"
+          className="mt-1 md:mt-10"
         >
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (

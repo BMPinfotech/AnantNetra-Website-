@@ -2,7 +2,12 @@
 
 import React, { MouseEvent as ReactMouseEvent, useEffect, useState } from "react";
 import { useMotionValue, motion, useMotionTemplate } from "motion/react";
-import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import dynamic from "next/dynamic";
+
+const CanvasRevealEffect = dynamic(
+  () => import("@/components/ui/canvas-reveal-effect").then((mod) => mod.CanvasRevealEffect),
+  { ssr: false }
+);
 import { cn } from "@/lib/utils";
 
 interface CardSpotlightProps extends React.HTMLAttributes<HTMLDivElement> {

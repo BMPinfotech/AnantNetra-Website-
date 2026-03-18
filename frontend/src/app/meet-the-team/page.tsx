@@ -10,12 +10,12 @@ interface TeamMember {
     role: string;
     bio: string;
     imageUrl: string;
-    socials: {
-        linkedin?: string;
-        twitter?: string;
-        github?: string;
-        email?: string;
-    };
+    // socials: {
+    //     linkedin?: string;
+    //     twitter?: string;
+    //     github?: string;
+    //     email?: string;
+    // };
 }
 
 const teamMembers: TeamMember[] = [
@@ -25,7 +25,7 @@ const teamMembers: TeamMember[] = [
         role: "Co-Founder & Chief Technology Officer",
         bio: "Technology leader specializing in AI, machine learning, and cybersecurity, driving the development of secure, scalable, and intelligent digital solutions for modern enterprises.",
         imageUrl: "/images/Parth-Image.WebP",
-        socials: { linkedin: "#", github: "#", twitter: "#" },
+        // socials: { linkedin: "#", github: "#", twitter: "#" },
     },
     {
         id: 2,
@@ -33,7 +33,7 @@ const teamMembers: TeamMember[] = [
         role: "Tech Operations Manager",
         bio: "AI and Automation specialist dedicated to optimizing technical operations and implementing intelligent workflow systems.",
         imageUrl: "/images/Puneet-Image.WebP",
-        socials: { linkedin: "#", github: "#" },
+        // socials: { linkedin: "#", github: "#" },
     },
     {
         id: 3,
@@ -41,7 +41,7 @@ const teamMembers: TeamMember[] = [
         role: "Tech Operations Manager",
         bio: "Solution development experts focused on designing efficient, scalable, and performance-driven technology systems.",
         imageUrl: "/images/Vaibhav-Image.WebP",
-        socials: { linkedin: "#", github: "#" },
+        // socials: { linkedin: "#", github: "#" },
     },
     {
         id: 4,
@@ -49,7 +49,7 @@ const teamMembers: TeamMember[] = [
         role: "AI Engineer",
         bio: "Passionate AI engineer focused on building intelligent systems that transform data into impactful real-world solutions.",
         imageUrl: "/images/Vamsi.WebP",
-        socials: { linkedin: "#", github: "#" },
+        // socials: { linkedin: "#", github: "#" },
     },
     {
         id: 5,
@@ -57,7 +57,7 @@ const teamMembers: TeamMember[] = [
         role: "AI Engineer",
         bio: "Dedicated to developing advanced AI models and data-driven solutions that enable smarter decision-making.",
         imageUrl: "/images/Khushi Pic.WebP",
-        socials: { linkedin: "#", github: "#" },
+        // socials: { linkedin: "#", github: "#" },
     },
     {
         id: 6,
@@ -65,7 +65,7 @@ const teamMembers: TeamMember[] = [
         role: "Software Engineer",
         bio: "Software Developer focused on building reliable, scalable, and high-performance applications for modern digital platforms.",
         imageUrl: "/images/Vinit-Image.WebP",
-        socials: { linkedin: "#", github: "#" },
+        // socials: { linkedin: "#", github: "#" },
     },
     {
         id: 7,
@@ -73,7 +73,7 @@ const teamMembers: TeamMember[] = [
         role: "Sales Manager",
         bio: "Strategic sales professional focused on building strong client relationships and delivering technology solutions that create business value.",
         imageUrl: "/images/Disha-Image.WebP",
-        socials: { linkedin: "#", github: "#" },
+        // socials: { linkedin: "#", github: "#" },
     },
     {
         id: 8,
@@ -81,7 +81,7 @@ const teamMembers: TeamMember[] = [
         role: "Digital Marketing Specialist",
         bio: "Digital marketing strategist focused on building brand presence, audience engagement, and data-driven marketing campaigns.",
         imageUrl: "/images/Khushi deb.WebP",
-        socials: { linkedin: "#", github: "#" },
+        // socials: { linkedin: "#", github: "#" },
     },
     {
         id: 9,
@@ -89,7 +89,7 @@ const teamMembers: TeamMember[] = [
         role: "Digital Marketing Specialist",
         bio: "Growth-focused digital marketer specializing in online campaigns, social media strategy, and performance marketing.",
         imageUrl: "/images/Tanmai.WebP",
-        socials: { linkedin: "#", github: "#" },
+        // socials: { linkedin: "#", github: "#" },
     },
 ];
 
@@ -108,16 +108,15 @@ export default function MeetTheTeam() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <span className="inline-block py-1 px-3 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 text-sm font-bold mb-6 border border-indigo-100 dark:border-indigo-800">
-                            Our People
-                        </span>
-                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
+                        <span className="inline-block py-1 px-3 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-md font-[800] mb-6 border border-blue-100 dark:border-blue-800">
+Our People            </span>
+                        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
                             Meet the Minds Behind <br />
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600">
                                 AnantNetra
                             </span>
                         </h1>
-                        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-normal text-left">
                             Our multi-disciplinary team of strategists and engineers is dedicated to bridging the gap between complex digital challenges and resilient, future-ready business solutions.
                         </p>
                     </motion.div>
@@ -144,30 +143,7 @@ export default function MeetTheTeam() {
                                 />
 
                                 {/* Overlay on Hover */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                                    <div className="flex gap-4 mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 text-white">
-                                        {member.socials.linkedin && (
-                                            <a href={member.socials.linkedin} className="hover:text-blue-400 transition-colors">
-                                                <Linkedin size={20} />
-                                            </a>
-                                        )}
-                                        {member.socials.twitter && (
-                                            <a href={member.socials.twitter} className="hover:text-blue-400 transition-colors">
-                                                <Twitter size={20} />
-                                            </a>
-                                        )}
-                                        {member.socials.github && (
-                                            <a href={member.socials.github} className="hover:text-blue-400 transition-colors">
-                                                <Github size={20} />
-                                            </a>
-                                        )}
-                                        {member.socials.email && (
-                                            <a href={`mailto:${member.socials.email}`} className="hover:text-blue-400 transition-colors">
-                                                <Mail size={20} />
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
+                               
                             </div>
 
                             <div className="mt-6 text-center lg:text-left">

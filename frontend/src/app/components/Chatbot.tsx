@@ -27,6 +27,11 @@ export function Chatbot() {
     const [input, setInput] = useState("");
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -109,15 +114,24 @@ export function Chatbot() {
         ]);
     };
 
+    if (!mounted) {
+        return null; // Return nothing initially to make initial page load fast
+    }
+
     return (
         <>
             {/* Floating Action Button with Pulse Effect */}
-            <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+            <div className="fixed bottom-6 right-6 z-50 flex items-center justify-center group">
+                
+                {/* Tooltip text that appears on hover */}
+                <span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 scale-0 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 px-3 py-1.5 rounded-full text-sm font-medium shadow-lg border border-zinc-200 dark:border-zinc-700 whitespace-nowrap pointer-events-none origin-right">
+                   Ask About AnantNetra ✨
+                </span>
                 
                 <Button
                     onClick={() => setIsOpen(!isOpen)}
                     className={cn(
-                        "h-14 w-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-110",
+                        "h-14 w-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 relative",
                         isOpen ? "bg-red-600 hover:bg-red-600 rotate-90" : "bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600 animate-gradient-x hover:from-blue-700 hover:to-indigo-700 hover:via-purple-600"
                     )}
                     size="icon"

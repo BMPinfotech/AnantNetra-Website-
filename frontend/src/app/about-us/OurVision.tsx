@@ -47,7 +47,8 @@ const cardData: BentoCardProps[] = [
     description:
       "To enable businesses worldwide with advanced, data-driven, and secure technology solutions that simplify complexity, enhance operational performance, and accelerate digital transformation.",
     label: 'Overview',
-    backgroundImage:
+    backgroundImage: 
+
       "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1200&auto=format&fit=crop"
   },
   {
@@ -61,16 +62,16 @@ const cardData: BentoCardProps[] = [
   },
   {
     color: '#000310',
-    title: "Key Highlight 1 – Technology Expertise",
+    title: "Technology Expertise",
     description:
-      "Efficiency is embedded in every stage of our development and consulting processes. We focus on optimized workflows, agile delivery models, and advanced automation to ensure that our clients achieve faster results with maximum operational efficiency.",
+           "Efficiency is embedded in every stage of our development and consulting processes.We leverage modern frameworks, advanced automation, and agile methodologies to deliver optimized workflows and scalable digital solutions. \n\nOur technology expertise helps organizations achieve faster results, improved performance, reduced operational complexity, and long-term digital resilience in a rapidly evolving technology landscape.",
     label: 'Efficiency',
     backgroundImage:
       "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop"
   },
   {
     color: '#000310',
-    title: "Key Highlight 2 – Strategic Consulting",
+    title: "Strategic Consulting",
     description:
       "We build resilient digital ecosystems that ensure seamless connectivity and data flow across global infrastructures, enabling secure and real-time collaboration.",
     label: 'Connectivity',
@@ -79,7 +80,7 @@ const cardData: BentoCardProps[] = [
   },
   {
     color: '#000310',
-    title: "Key Highlight 3 – Agile Delivery",
+    title: "Agile Delivery",
     description:
       "Our zero-trust security frameworks provide comprehensive protection against emerging digital threats, safeguarding critical assets and ensuring business continuity.",
     label: 'Protection',
@@ -555,7 +556,8 @@ const OurVision: React.FC<BentoProps> = ({
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
           .bento-section {
             --glow-x: 50%;
             --glow-y: 50%;
@@ -694,7 +696,7 @@ const OurVision: React.FC<BentoProps> = ({
       <BentoCardGrid gridRef={gridRef}>
         <div className="card-responsive grid gap-2">
           {cardData.map((card, index) => {
-            const baseClassName = `card flex flex-col justify-between relative aspect-[4/3] min-h-[220px] w-full max-w-full  p-5 rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] ${enableBorderGlow ? 'card--border-glow' : ''
+            const baseClassName = `card flex flex-col justify-start relative h-full min-h-[250px] w-full max-w-full  p-6 rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] ${enableBorderGlow ? 'card--border-glow' : ''
               }`;
 
             const cardStyle = {
@@ -726,17 +728,12 @@ const OurVision: React.FC<BentoProps> = ({
                       style={{ backgroundImage: `url(${card.backgroundImage})` }}
                     />
                   )}
-                  <div className="card__header flex justify-between gap-3 relative text-white">
-                    <span className="card__label text-base">{card.label}</span>
-                  </div>
-                  <div className="card__content flex flex-col relative text-white">
-                    <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
+                  <div className="card__content flex flex-col relative text-white z-10 w-full">
+                    <h3 className="card__title font-bold text-sm md:text-lg m-0 mb-2 block">
                       {card.title}
                     </h3>
-                    <p
-                      className={`card__description text-xs leading-5 opacity-90 ${textAutoHide ? 'text-clamp-2' : ''}`}
-                    >
-                      {card.description}
+                    <p className="card__description text-xs md:text-sm leading-normal opacity-90 whitespace-pre-wrap">
+<span className="mt-6">{card.description}</span>
                     </p>
                   </div>
                 </ParticleCard>
@@ -858,14 +855,11 @@ const OurVision: React.FC<BentoProps> = ({
                   el.addEventListener('click', handleClick);
                 }}
               >
-                <div className="card__header flex justify-between gap-3 relative text-white">
-                  <span className="card__label text-base">{card.label}</span>
-                </div>
-                <div className="card__content flex flex-col relative text-white">
-                  <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
+                <div className="card__content flex flex-col relative text-white z-10 w-full">
+                  <h3 className="card__title font-bold text-lg md:text-xl m-0 mb-3 block">
                     {card.title}
                   </h3>
-                  <p className={`card__description text-xs leading-5 opacity-90 ${textAutoHide ? 'text-clamp-2' : ''}`}>
+                  <p className="card__description text-sm md:text-base leading-relaxed opacity-90 whitespace-pre-wrap">
                     {card.description}
                   </p>
                 </div>

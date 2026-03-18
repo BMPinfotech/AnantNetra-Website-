@@ -19,7 +19,7 @@ export default function AgendaSection({ agenda }: AgendaSectionProps) {
             <div className="container mx-auto px-4 max-w-4xl">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-                        Event <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">Agenda</span>
+                        Event <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600">Agenda</span>
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400">
                         A comprehensive schedule of sessions, workshops, and networking opportunities.

@@ -32,11 +32,11 @@ export const ContainerScroll: React.FC<ContainerScrollProps> = ({
 
   return (
    <div
-  className="h-auto xl:h-[80rem] flex items-center justify-center relative p-2 xl:p-20"
+  className="h-auto xl:h-[80rem] flex items-center justify-center relative p-2 xl:p-6"
   ref={containerRef}
 
     >
-      <div className="py-10 xl:py-40 w-full relative" style={{ perspective: "1000px" }}>
+      <div className="py-9 xl:py-12 w-full relative " style={{ perspective: "1000px" }}>
         <Header translate={translate} titleComponent={titleComponent} />
         <Card rotate={rotate} scale={scale} translate={translate}>
           {children}

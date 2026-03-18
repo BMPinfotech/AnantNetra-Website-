@@ -9,23 +9,23 @@ import { CardSpotlight } from "@/components/ui/card-spotlight"; // ✅ your inst
 
 export default function BentoGrids() {
   return (
-    <section className="w-full py-4 bg-neutral-50 dark:bg-neutral-950">
+    <section className="relative z-20 w-full py-4 bg-neutral-50 dark:bg-neutral-950">
       <div className="mx-auto max-w-7xl px-6">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center text-neutral-800 dark:text-neutral-100 lg:-mt-25"
+          className="text-3xl md:text-5xl font-bold text-center text-neutral-800 dark:text-neutral-100 lg:mt-10 xl:-mt-98"
         >
           Explore Our Intelligent Ecosystem
         </motion.h2>
 
         {/* ✅ Dynamic Mesh Grid - Compact & Full */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-4">
+        <div className="mt-16 relative z-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-4">
           {/* 🟦 Evervault Interactive Card */}
           <motion.div
-whileHover={{ y: -5 }}
+            whileHover={{ y: -5 }}
             className="col-span-1 sm:col-span-2 lg:col-span-2 lg:row-span-1 h-full"
           >
             <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col justify-between items-start p-4 relative h-full rounded-xl bg-white dark:bg-neutral-900 hover:shadow-2xl transition-all duration-500 overflow-hidden group">

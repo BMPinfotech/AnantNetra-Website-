@@ -21,19 +21,19 @@ export function AnimatedTestimonialsDemo() {
   ];
 
   return (
-    <div className="py-20 bg-white dark:bg-neutral-950 overflow-hidden">
+    <div className="relative z-20 py-1 md:py-20 bg-white dark:bg-neutral-950 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center text-neutral-800 dark:text-neutral-100 mb-16"
+          className="text-3xl md:text-5xl font-bold text-center text-neutral-800 dark:text-neutral-100 mb-16 lg:-mt-20 xl:-mt-22"
         >
           What Others Say About Us
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        <div className="relative z-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}

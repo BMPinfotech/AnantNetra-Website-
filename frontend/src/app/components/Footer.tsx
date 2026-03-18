@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,10 +15,21 @@ import {
   Instagram
 } from "lucide-react";
 import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
+
 import { motion } from "framer-motion";
+import PreFooterCTA from "./PreFooterCTA";
 
 function Footer() {
-  const container = {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Component ko mount hone ke baad render allow karenge, 
+    // isse initial page load time aur rendering fast hoti hai.
+    setMounted(true);
+  }, []);
+
+  const container = useMemo(() => ({
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -27,12 +38,17 @@ function Footer() {
         delayChildren: 0.3,
       },
     },
-  };
+  }), []);
 
-  const item = {
+  const item = useMemo(() => ({
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
-  };
+  }), []);
+
+  if (!mounted) {
+    // Return an initial lightweight placeholder structure
+    return <footer className="w-full min-h-[400px] bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden"></footer>;
+  }
 
   return (
     <footer className="w-full bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden">
@@ -42,47 +58,6 @@ function Footer() {
       <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" /> */}
 
 
-      {/* Pre-Footer CTA */}
-      <div className="w-full max-w-7xl mx-auto px-6 py-12 md:py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 to-slate-800 dark:from-neutral-900 dark:to-neutral-800 p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 border border-white/10 shadow-2xl"
-        >
-          {/* Abstract Shapes in CTA for visual interest */}
-          <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-pink-500/20 rounded-full blur-2xl" />
-          <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl" />
-
-          <div className="relative z-10 max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Secure Your Future?
-            </h2>
-            <p className="text-slate-300 text-lg">
-              Join leading enterprises in transforming digital landscapes with robust security and intelligent solutions.
-            </p>
-          </div>
-          <div className="relative z-10 flex flex-col sm:flex-row gap-4">
-            <Button
-              size="lg"
-              className="rounded-full bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 hover:scale-105 transition-transform duration-300"
-              asChild
-            >
-              <Link href="/#contact">
-                Get Started Now <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="rounded-full border-white/20 text-black dark:text-white hover:bg-white/10 hover:text-white px-8"
-              asChild
-            >
-              <Link href="#HomePage">Explore Now <ArrowRight className="ml-2 w-4 h-4" /></Link>
-            </Button>
-          </div>
-        </motion.div>
-      </div>
 
       <Separator className="bg-slate-200 dark:bg-white/5 opacity-50" />
 
@@ -99,12 +74,11 @@ function Footer() {
         <motion.div variants={item} className="lg:col-span-4 space-y-6">
           <Link href="/" className="inline-block group">
             <div className="flex items-center gap-2">
-              {/* Logo Placeholder - assuming images are available as per Navbar */}
               <div className="relative w-10 h-10">
                 <img src="/darkLogo.svg" alt="AnantNetra" className="dark:hidden w-full h-full object-contain" />
                 <img src="/lightLogo.svg" alt="AnantNetra" className="hidden dark:block w-full h-full object-contain" />
               </div>
-              <h2 className="text-2xl font-bold  max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1">
+              <h2  className="text-2xl font-bold  max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1">
                 AnantNetra
               </h2>
             </div>
@@ -121,14 +95,13 @@ function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-purple-500" />
-              <a href="mailto:Services@anantnetra.com" className="hover:text-purple-500 transition-colors">Services@anantnetra.com</a>
+              <a href="mailto:contact@anantnetra.com" className="hover:text-purple-500 transition-colors">contact@anantnetra.com</a>
             </div>
-            {/* Add Phone if available, placeholder for now 
-             <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-purple-500" />
-                <span>+91 123 456 7890</span>
-             </div>
-             */}
+            <div className="flex items-center gap-2 ">
+              <FaWhatsapp className="w-5 h-5 text-purple-500"  />
+              <span>+91 87695 12003</span>
+            </div>
+
           </div>
 
           <div className="flex gap-3">
@@ -169,7 +142,7 @@ function Footer() {
             <FooterLink href="/about-us">About Us</FooterLink>
             <FooterLink href="/meet-the-team">Meet the Team</FooterLink>
             <FooterLink href="/events">Events</FooterLink>
-            <FooterLink href="/#contact">Contact Us</FooterLink>
+            <FooterLink href="/contact">Contact Us</FooterLink>
           </ul>
         </motion.div>
 
@@ -188,13 +161,13 @@ function Footer() {
 
       {/* Bottom Bar */}
       <div className="bg-slate-100 dark:bg-[#050505] py-6 border-t border-slate-200 dark:border-white/5">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
-          <p>© {/*{new Date().getFullYear()}*/} 2026 AnantNetra Technologies. All Rights Reserved.</p>
-          <div className="flex items-center gap-6">
+        <div className="max-w-8xl mx-auto px-6 flex flex-col items-center justify-center gap-4 text-xs text-slate-500 dark:text-slate-500">
+          <p className="text-center">©  2026 AnantNetra Technologies. All Rights Reserved.</p>
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <Link href="/PrivacyPolicy" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/Terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors">Sitemap</Link>
-            <Link href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors">Cookies</Link>
+            <Link href="/#world-map-section" className="hover:text-slate-900 dark:hover:text-white transition-colors">Sitemap</Link>
+            {/* <Link href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors">Cookies</Link> */}
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ function HomePage() {
       {/* Hero Section */}
       <motion.div
         style={{ scale: heroScale, opacity: heroOpacity }}
-        className="relative z-30 grid min-h-screen pt-32 pb-16 grid-cols-1 items-center gap-8 px-4 lg:grid-cols-2 lg:px-16"
+        className="relative z-30 grid min-h-[45h] md:min-h-[70h] lg:min-h-[65vh] pt-32 pb-2 md:pb-4  grid-cols-1 items-center gap-8 px-4 lg:grid-cols-2 lg:px-16"
       >
         {/* Left Column: Content */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left z-10">
@@ -125,7 +125,7 @@ function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 1 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
+            className="mt-6 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
           >
             <button
               onClick={scrollToVideo}
@@ -154,13 +154,13 @@ function HomePage() {
       </div> */}
 
       {/* Video Section */}
-      <div ref={videoRef} className="flex flex-col overflow-hidden relative z-20 pt-20">
+      <div ref={videoRef} className="flex flex-col overflow-hidden relative z-20 pt-0 md:pt-12 lg:pt-12">
 
         <ContainerScroll
 
           titleComponent={
             <>
-              <h1 className="text-4xl font-normal text-black dark:text-white mb-8  ">
+              <h1 className="text-4xl font-normal text-black dark:text-white mb-8 xl:-mt-105 ">
                 Unleash the power of <br />
                 <span className="text-4xl md:text-[clamp(3rem,8vw,6rem)] font-normal mt-1 leading-none ">
                   Quantum

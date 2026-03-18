@@ -5,6 +5,7 @@ import BentoGrids from "./components/BentoGrid";
 import { AnimatedTestimonialsDemo } from "./components/Testimonial";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import PreFooterCTA from "./components/PreFooterCTA";
 
 
 
@@ -20,6 +21,8 @@ export default function Page() {
       <WorldMapSection />
       <AnimatedTestimonialsDemo />
       <Contact />
+      {/** only Home page */}
+<PreFooterCTA />
       <Footer />
 
     </main>

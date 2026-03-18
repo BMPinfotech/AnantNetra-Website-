@@ -34,7 +34,7 @@ const IncidentResponsePage = () => {
         setResult("Sending...");
         const form = e.currentTarget;
         const formData = new FormData(form);
-        const accessKey = process.env.NEXT_PUBLIC_FORM_ACCESS_KEY || "";
+        const accessKey = process.env.NEXT_PUBLIC_FORM_ACCESS_KEY_For_INCIDENCE_RES || "";
         formData.append("access_key", accessKey);
         formData.append("subject", "CRITICAL: New Incident Report");
 

@@ -17,13 +17,13 @@ export default function EventsHero() {
                     transition={{ duration: 0.6 }}
                     className="mt-2"
                 >
-                    <span className="inline-block py-1 px-4 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 text-sm font-bold mb-6 border border-indigo-100 dark:border-indigo-800 tracking-wide">
-                        Stay Connected
-                    </span>
-                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-8 leading-tight">
+                     <span className="inline-block py-1 px-3 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-md font-[800] mb-6 border border-blue-100 dark:border-blue-800">
+Stay Connected
+            </span>
+                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-8 leading-tight">
                         Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600">Events</span> & Experiences
                     </h1>
-                    <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed font-medium">
+                    <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-normal font-medium text-left">
                         Join us for industry-leading webinars, workshops, and conferences. Explore our upcoming schedule and revisit our past highlights.
                     </p>
                 </motion.div>

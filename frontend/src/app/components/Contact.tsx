@@ -29,9 +29,9 @@ const Contact = memo(() => {
   const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setResult("Sending...");
-    const form = e.currentTarget; 
+    const form = e.currentTarget;
     const formData = new FormData(form);
-    const accessKey = process.env.NEXT_PUBLIC_FORM_ACCESS_KEY || "";
+    const accessKey = process.env.NEXT_PUBLIC_FORM_ACCESS_KEY_For_Contact || "";
     formData.append("access_key", accessKey);
     formData.append("subject", "New Contact Form Submission");
     formData.append("from_name", (formData.get("name") as string) || "AnantNetra Web Form");
@@ -44,7 +44,7 @@ const Contact = memo(() => {
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
+        body: formData
       });
 
       const data = await response.json();
@@ -68,11 +68,11 @@ const Contact = memo(() => {
   return (
     <div
       id="contact"
-      className="flex flex-col lg:flex-row items-start justify-between w-full px-6 lg:px-20 py-16 gap-10 scroll-mt-28"
+      className="w-full max-w-8xl mx-auto px-6 lg:px-20 py-16 space-y-12 scroll-mt-28"
     >
       {/* Left Section (same as before) */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6">
-        <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">
+      <div className="w-full text-center space-y-6 max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight  xl:-mt-12">
           Let’s build something amazing together     <span
             className="
     mr-2 inline-flex
@@ -87,12 +87,12 @@ const Contact = memo(() => {
           </span>
 
         </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-lg">
+        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto ">
           Have a question, a project idea, or just want to say hello?
           Our team is here to help you every step of the way.
         </p>
 
-        <div className="space-y-4 mt-6">
+        {/* <div className="space-y-4 mt-6">
           <div className="flex items-center gap-3">
             <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
             <p className="text-gray-700 dark:text-gray-300">
@@ -104,17 +104,16 @@ const Contact = memo(() => {
             <p className="text-gray-700 dark:text-gray-300">+91 72299 84997</p>
           </div>
 
-        </div>
+        </div> */}
 
 
       </div>
 
       {/* Right Section */}
-      <div className="w-full lg:w-1/2">
+      <div className="w-full flex justify-center">
         <form
           onSubmit={handleSubmit}
-          className="bg-white dark:bg-neutral-900 shadow-xl rounded-2xl p-8 border border-gray-200 dark:border-neutral-800"
-        >
+          className="bg-white dark:bg-neutral-900 shadow-xl rounded-2xl p-8 border border-gray-200 dark:border-neutral-800 w-full max-w-3xl mx-auto">
           <FieldSet>
             <FieldLegend>Contact Form</FieldLegend>
             <FieldDescription>

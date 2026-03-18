@@ -18,7 +18,7 @@ import {
   Zap,
   CheckCircle2
 } from 'lucide-react';
-
+import { useRouter } from 'next/navigation';
 const itConsultancyServices = [
   {
     title: "Strategic IT Planning",
@@ -81,7 +81,10 @@ const benefits = [
   }
 ];
 
+
+
 function ITConsultancyPage() {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
       {/* Hero Section */}
@@ -211,9 +214,9 @@ function ITConsultancyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-                        className="relative overflow-hidden bg-gradient-to-r from-[#fc0915] via-[#ee3984] to-[#7800da] rounded-3xl p-12 text-white shadow-2xl shadow-[#ee3984]/50 hover:shadow-[#ee3984]/70 transition-shadow duration-500"
+            className="relative overflow-hidden bg-gradient-to-r from-[#fc0915] via-[#ee3984] to-[#7800da] rounded-3xl p-12 text-white shadow-2xl shadow-[#ee3984]/50 hover:shadow-[#ee3984]/70 transition-shadow duration-500"
 
-            // className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600 animate-gradient-x rounded-3xl p-12 text-white duration-500"
+          // className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600 animate-gradient-x rounded-3xl p-12 text-white duration-500"
           >
             {/* Shine Effect Overlay */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -224,8 +227,11 @@ function ITConsultancyPage() {
               Let's discuss how our IT consultancy services can drive innovation and growth for your business.
             </p>
             <motion.button
+
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => router.push("/contact")}
+
               className="bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-colors"
             >
               Schedule a Consultation

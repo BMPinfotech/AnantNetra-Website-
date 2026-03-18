@@ -20,7 +20,7 @@ const Hero = () => {
             transition={{ duration: 0.5 }}
             className="-mt-12"
           >
-            <span className="inline-block py-2 px-4 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-sm font-[800] mb-6 border border-blue-100 dark:border-blue-800">
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-md font-[800] mb-6 border border-blue-100 dark:border-blue-800">
               About AnantNetra
             </span>
           </motion.div>
@@ -29,7 +29,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-8 leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-8 leading-tight"
           >
             Engineering the Future of <br className="hidden md:block" />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600 animate-gradient-x">
@@ -41,7 +41,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-4xl leading-relaxed space-y-6"
+            className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-3xl leading-relaxed space-y-6 text-left"
           >
             <p>
               At <strong>AnantNetra</strong>, we are a forward-thinking technology and business consulting organization dedicated to helping enterprises navigate the rapidly evolving digital landscape. Our team of strategists, engineers, and AI specialists work together to transform complex challenges into scalable, secure, and intelligent digital solutions.

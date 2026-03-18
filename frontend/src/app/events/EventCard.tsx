@@ -17,8 +17,9 @@ interface EventCardProps {
     time: string;
     location: string;
     isOnline: boolean;
-    registrationLink: string;
+    registrationLink?: string;
     speakers: Speaker[];
+    onRegister?: (title: string) => void;
 }
 
 export default function EventCard({
@@ -31,6 +32,7 @@ export default function EventCard({
     isOnline,
     registrationLink,
     speakers,
+    onRegister,
 }: EventCardProps) {
     return (
         <motion.div
@@ -70,7 +72,7 @@ export default function EventCard({
                     </div>
                 </div>
 
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
                     {title}
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 mb-8 line-clamp-3 leading-relaxed">
@@ -116,14 +118,12 @@ export default function EventCard({
 
                 {/* Footer Actions */}
                 <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-zinc-800">
-                    <a
-                        href={registrationLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <button
+                        onClick={() => onRegister?.(title)}
                         className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:gap-3 transition-all duration-300"
                     >
                         Register Now <ArrowRight className="w-4 h-4" />
-                    </a>
+                    </button>
                 </div>
             </div>
         </motion.div>

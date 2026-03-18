@@ -50,15 +50,15 @@ const WorldMapSection = () => {
     const [activeMarker, setActiveMarker] = useState<number | null>(null);
 
     return (
-        <section className="w-full bg-white dark:bg-neutral-950 py-24 relative overflow-hidden flex flex-col items-center justify-center min-h-screen transition-colors duration-300">
-            <div className="max-w-[1400px] mx-auto px-4 w-full relative z-20 flex flex-col items-center">
+        <section id="world-map-section" className="w-full bg-white dark:bg-neutral-950 py-24 relative overflow-hidden flex flex-col items-center justify-center min-h-screen transition-colors duration-300">
+            <div className="max-w-[1400px] mx-auto px-4 w-full relative z-20 flex flex-col items-center -mt-26 md:-mt-20 lg:-mt-16 xl:-mt-20">
 
-                <div className="text-center mb-10 md:mb-20 w-full">
+                <div className="text-center mb-10 md:mb-20 w-full ">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight"
+                        className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight xl:-mt-6"
                     >
                         Our Growing Footprint
                     </motion.h2>
