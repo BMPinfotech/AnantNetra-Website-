@@ -24,7 +24,8 @@ const teamMembers: TeamMember[] = [
         name: "Parth Vyas",
         role: "Co-Founder & Chief Technology Officer",
         bio: "Technology leader specializing in AI, machine learning, and cybersecurity, driving the development of secure, scalable, and intelligent digital solutions for modern enterprises.",
-        imageUrl: "/images/Parth-Image.WebP",
+        imageUrl: "/images/Parth-Image-1.WebP",
+        
         // socials: { linkedin: "#", github: "#", twitter: "#" },
     },
     {
@@ -64,7 +65,7 @@ const teamMembers: TeamMember[] = [
         name: "Vinit Kumar Soni",
         role: "Software Engineer",
         bio: "Software Developer focused on building reliable, scalable, and high-performance applications for modern digital platforms.",
-        imageUrl: "/images/Vinit-Image.WebP",
+        imageUrl: "https://ui-avatars.com/api/?name=Vinit+Kumar+Soni&size=300&background=c7d2fe&color=3730a3",
         // socials: { linkedin: "#", github: "#" },
     },
     {
@@ -139,6 +140,7 @@ Our People            </span>
                                 <img
                                     src={member.imageUrl}
                                     alt={member.name}
+                                    loading="lazy"
                                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                                 />
 

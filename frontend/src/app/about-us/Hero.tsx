@@ -41,7 +41,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-3xl leading-relaxed space-y-6 text-left"
+            className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-3xl leading-relaxed space-y-6 text-center"
           >
             <p>
               At <strong>AnantNetra</strong>, we are a forward-thinking technology and business consulting organization dedicated to helping enterprises navigate the rapidly evolving digital landscape. Our team of strategists, engineers, and AI specialists work together to transform complex challenges into scalable, secure, and intelligent digital solutions.

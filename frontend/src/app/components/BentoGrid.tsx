@@ -5,7 +5,12 @@ import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Cpu, Lock, Globe2, LineChart, Brain } from "lucide-react";
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
-import { CardSpotlight } from "@/components/ui/card-spotlight"; // ✅ your installed components
+import dynamic from "next/dynamic";
+
+const CardSpotlight = dynamic(
+  () => import("@/components/ui/card-spotlight").then((mod) => mod.CardSpotlight),
+  { ssr: false }
+);
 
 export default function BentoGrids() {
   return (
