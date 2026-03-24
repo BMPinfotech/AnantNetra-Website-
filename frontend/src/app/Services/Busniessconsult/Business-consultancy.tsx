@@ -205,7 +205,7 @@ function BusinessConsultancyPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      {/* <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -215,7 +215,6 @@ function BusinessConsultancyPage() {
             className="relative overflow-hidden bg-gradient-to-r from-[#fc0915] via-[#ee3984] to-[#7800da] rounded-3xl p-12 text-white shadow-2xl shadow-[#ee3984]/50 hover:shadow-[#ee3984]/70 transition-shadow duration-500"
             // className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600 animate-gradient-x rounded-3xl p-12 text-white  duration-500"
          >
-            {/* Shine Effect Overlay */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Transform Your Business?
@@ -232,7 +231,7 @@ function BusinessConsultancyPage() {
             </motion.button>
           </motion.div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

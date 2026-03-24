@@ -5,6 +5,7 @@ import Hero from './Hero'
 import HeroVideo from "./HeroVideo"
 import { ChooseUs } from './ChooseUs'
 import Footer from "../components/Footer"
+import EmployeeTestimonials from './EmployeeTestimonials'
 
 function Page() {
   return (
@@ -12,8 +13,9 @@ function Page() {
     <div className='mt-12'>
 
         <Hero />
+        
         <HeroVideo />
-      <div className=' flex mt-30 items-center justify-center'> 
+      <div className='flex mt-32 items-center justify-center'> 
 
 <OurVision 
   textAutoHide={true}
@@ -29,6 +31,7 @@ function Page() {
 /> </div>
    
         <OurTimeline />
+        <EmployeeTestimonials />
         <ChooseUs />
     
 

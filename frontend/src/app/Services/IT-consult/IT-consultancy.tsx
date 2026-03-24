@@ -207,6 +207,7 @@ function ITConsultancyPage() {
       </section>
 
       {/* CTA Section */}
+     {/* 
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -218,7 +219,6 @@ function ITConsultancyPage() {
 
           // className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600 animate-gradient-x rounded-3xl p-12 text-white duration-500"
           >
-            {/* Shine Effect Overlay */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Transform Your IT Strategy?
@@ -239,6 +239,8 @@ function ITConsultancyPage() {
           </motion.div>
         </div>
       </section>
+      */}
+      
     </div>
   );
 }

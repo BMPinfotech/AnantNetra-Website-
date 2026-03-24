@@ -122,12 +122,13 @@ export function Chatbot() {
         <>
             {/* Floating Action Button with Pulse Effect */}
             <div className="fixed bottom-6 right-6 z-50 flex items-center justify-center group">
-                
+
                 {/* Tooltip text that appears on hover */}
+
                 <span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 scale-0 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 px-3 py-1.5 rounded-full text-sm font-medium shadow-lg border border-zinc-200 dark:border-zinc-700 whitespace-nowrap pointer-events-none origin-right">
-                   Ask About AnantNetra ✨
+                    Ask About AnantNetra ✨
                 </span>
-                
+
                 <Button
                     onClick={() => setIsOpen(!isOpen)}
                     className={cn(
