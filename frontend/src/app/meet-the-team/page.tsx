@@ -62,10 +62,10 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 6,
-        name: "Vinit Kumar Soni",
-        role: "Software Engineer",
+        name: "Lakshita Goyal",
+        role: "Full Stack Developer",
         bio: "Software Developer focused on building reliable, scalable, and high-performance applications for modern digital platforms.",
-        imageUrl: "https://ui-avatars.com/api/?name=Vinit+Kumar+Soni&size=300&background=c7d2fe&color=3730a3",
+        imageUrl: "https://ui-avatars.com/api/?name=Lakshita+Goyal&size=300&background=c7d2fe&color=3730a3",
         // socials: { linkedin: "#", github: "#" },
     },
     {
