@@ -96,7 +96,7 @@ const teamMembers: TeamMember[] = [
 
 export default function MeetTheTeam() {
     return (
-        <main className="min-h-screen pt-24 pb-20 bg-white dark:bg-black">
+        <main className="min-h-screen pt-24 pb-2 bg-white dark:bg-black">
             {/* Hero Section */}
             <section className="relative py-20 overflow-hidden">
                 <div className="absolute inset-0 bg-slate-50 dark:bg-black bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
