@@ -40,7 +40,7 @@ const StatItem = React.memo(({ value, label, delay }: { value: string, label: st
         transition={{ duration: 0.5, delay }}
         className="flex flex-col items-center group"
     >
-        <h3 className="text-5xl md:text-6xl font-bold text-black dark:text-transparent dark:bg-clip-text dark:text-white mb-3">{value}</h3>
+        <h3 className="text-5xl md:text-6xl font-bold text-black ark:text-white dark:bg-clip-text dark:text-white mb-3">{value}</h3>
         <p className="text-black dark:text-white text-sm md:text-base font-medium tracking-wide" dangerouslySetInnerHTML={{ __html: label }} />
     </motion.div>
 ));
@@ -51,9 +51,9 @@ const WorldMapSection = () => {
 
     return (
         <section id="world-map-section" className="w-full bg-white dark:bg-neutral-950 py-24 relative overflow-hidden flex flex-col items-center justify-center min-h-screen transition-colors duration-300">
-            <div className="max-w-[1400px] mx-auto px-4 w-full relative z-20 flex flex-col items-center -mt-26 md:-mt-20 lg:-mt-16 xl:-mt-20">
+            <div className="max-w-350 mx-auto px-4 w-full relative z-20 flex flex-col items-center -mt-26 md:-mt-20 lg:-mt-16 xl:-mt-20">
 
-                <div className="text-center mb-10 md:mb-20 w-full ">
+                <div className="text-center mb-1 md:mb-5 w-full ">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ const WorldMapSection = () => {
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8 }}
-                        className="relative w-full h-[300px] md:h-[600px] lg:h-[700px] flex items-center justify-center"
+                        className="relative w-full h-75 md:h-150 lg:h-175 flex items-center justify-center"
                     >
                         <ComposableMap
                             projectionConfig={{ scale: 220, center: [20, 0] }}

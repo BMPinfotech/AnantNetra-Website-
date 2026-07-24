@@ -41,7 +41,7 @@ function HomePage() {
   return (
     <div className="relative w-full bg-white dark:bg-black">
       {/* Hero Section */}
-      <div className="relative flex min-h-[100vh] sm:min-h-[95vh] w-full flex-col items-center justify-center overflow-hidden pt-24 pb-16">
+      <div className="relative flex min-h-screen sm:min-h-[95vh] w-full flex-col items-center justify-center overflow-hidden pt-40 pb-16">
         {/* Background Video */}
         <div className="absolute inset-0 z-0 h-full w-full">
           <video

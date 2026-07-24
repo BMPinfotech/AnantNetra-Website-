@@ -19,7 +19,7 @@ import { usePathname } from "next/navigation";
 const ServicesMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[220px] p-4 md:right-auto md:left-1 md:origin-top-right">
+    <NavigationMenuContent className="w-auto min-w-55 p-4 md:right-auto md:left-1 md:origin-top-right">
       <ul className="space-y-2 text-sm">
         <li>
           <NavigationMenuLink asChild>
@@ -54,7 +54,7 @@ ServicesMenu.displayName = "ServicesMenu";
 const PlatformMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Platform</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
+    <NavigationMenuContent className="w-auto min-w-55 p-5">
       <ul className="space-y-2 text-sm">
         <li>
           <NavigationMenuLink asChild>
@@ -75,7 +75,7 @@ PlatformMenu.displayName = "PlatformMenu";
 const CompanyMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Company</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
+    <NavigationMenuContent className="w-auto min-w-55 p-5">
       <ul className="space-y-2 text-sm">
         <li>
           <NavigationMenuLink asChild>
@@ -102,7 +102,7 @@ CompanyMenu.displayName = "CompanyMenu";
 const ResourcesMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[220px] p-4">
+    <NavigationMenuContent className="w-auto min-w-55 p-4">
       <div className="grid grid-rows-5 gap-4 text-sm">
         <NavigationMenuLink asChild><Link href="/Services">Blog</Link></NavigationMenuLink>
         <NavigationMenuLink asChild><Link href="/Services">Knowledge Base</Link></NavigationMenuLink>
@@ -118,7 +118,7 @@ ResourcesMenu.displayName = "ResourcesMenu";
 const PartnersMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Partners</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[190px] p-4 md:right-0 md:left-auto md:origin-top-right">
+    <NavigationMenuContent className="w-auto min-w-47.5 p-4 md:right-0 md:left-auto md:origin-top-right">
       <ul className="space-y-2 text-sm">
         <li><NavigationMenuLink asChild><Link href="/Services">Apply for Fellowship</Link></NavigationMenuLink></li>
         <li><NavigationMenuLink asChild><Link href="/Services">Apply for Accelerator</Link></NavigationMenuLink></li>
@@ -146,7 +146,7 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
         <li>
           <Link
             href="/incident-response"
-            className="block w-full py-2 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] to-[#5155fd]"
+            className="block w-full py-2 font-bold bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] to-[#5155fd]"
             onClick={onClose}
           >
             Report an Incident
@@ -297,7 +297,7 @@ function ClientNavbar() {
 
   if (!mounted) {
     // Lightweight placeholder for fast initial render
-    return <header className="w-full bg-background shadow-sm py-3 min-h-[70px] fixed top-0 left-0 right-0 z-50 transition-all duration-500"></header>;
+    return <header className="w-full bg-background shadow-sm py-3 min-h-17.5 fixed top-0 left-0 right-0 z-50 transition-all duration-500"></header>;
   }
 
   if (pathname === "/incident-response") return null;
@@ -305,13 +305,13 @@ function ClientNavbar() {
   return (
     <header className={headerClass}>
       <div className={topBarClass}>
-        <Link href="/incident-response" className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
+        <Link href="/incident-response" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
           Report an Incident
         </Link>
-        <Link href="/Services" className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
+        <Link href="/Services" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
           Threat Advisory
         </Link>
-        <Link href="/contact" className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 animate-gradient-x hover:opacity-80 transition-opacity">
+        <Link href="/contact" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 animate-gradient-x hover:opacity-80 transition-opacity">
           Contact Us
         </Link>
       </div>
@@ -330,14 +330,15 @@ function ClientNavbar() {
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="flex gap-4">
               <ServicesMenu />
-                                <ResourcesMenu />
 
               {!scrolled && (
                 <>
                   <CompanyMenu />
                 </>
               )}
-                            <PlatformMenu />
+
+              <PlatformMenu />
+              <ResourcesMenu />
 
               <PartnersMenu />
             </NavigationMenuList>
