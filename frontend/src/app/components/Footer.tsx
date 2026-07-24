@@ -19,6 +19,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 import PreFooterCTA from "./PreFooterCTA";
+import Image from "next/image";
 
 function Footer() {
   const [mounted, setMounted] = useState(false);
@@ -47,7 +48,7 @@ function Footer() {
 
   if (!mounted) {
     // Return an initial lightweight placeholder structure
-    return <footer className="w-full min-h-[400px] bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden"></footer>;
+    return <footer className="w-full min-h-100 bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden"></footer>;
   }
 
   return (
@@ -56,8 +57,6 @@ function Footer() {
       {/* <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
       <div className="absolute -top-20 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" /> */}
-
-
 
       <Separator className="bg-slate-200 dark:bg-white/5 opacity-50" />
 
@@ -78,7 +77,7 @@ function Footer() {
                 <img src="/darkLogo.svg" alt="AnantNetra" className="dark:hidden w-full h-full object-contain" />
                 <img src="/lightLogo.svg" alt="AnantNetra" className="hidden dark:block w-full h-full object-contain" />
               </div>
-              <h2  className="text-2xl font-bold  max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1">
+              <h2 className="text-2xl font-bold max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1">
                 AnantNetra
               </h2>
             </div>
@@ -98,10 +97,9 @@ function Footer() {
               <a href="mailto:contact@anantnetra.com" className="hover:text-purple-500 transition-colors">contact@anantnetra.com</a>
             </div>
             <div className="flex items-center gap-2 ">
-              <FaWhatsapp className="w-5 h-5 text-purple-500"  />
+              <FaWhatsapp className="w-5 h-5 text-purple-500" />
               <span>+91 87695 12003</span>
             </div>
-
           </div>
 
           <div className="flex gap-3">
@@ -119,8 +117,6 @@ function Footer() {
             <FooterLink href="/Services/IT-consult">IT Consultancy</FooterLink>
             <FooterLink href="/Services/Busniessconsult">Business Consultancy</FooterLink>
             <FooterLink href="/Services/Cyber-security">Cyber Security</FooterLink>
-            {/* <FooterLink href="/Services">Digital Transformation</FooterLink>
-            <FooterLink href="/Services">Cloud Solutions</FooterLink> */}
           </ul>
         </motion.div>
 
@@ -140,34 +136,86 @@ function Footer() {
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Company</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/about-us">About Us</FooterLink>
-            <FooterLink href="/meet-the-team">Meet the Team</FooterLink>
             <FooterLink href="/events">Events</FooterLink>
             <FooterLink href="/contact">Contact Us</FooterLink>
           </ul>
+
+          {/* Large Divice */}
+          <div className="hidden lg:block mt-20  border-slate-200 dark:border-neutral-800/80 space-y-3">
+            <div className="flex items-center gap-3">
+              <Image
+                width={500}
+                height={300}
+                src="/startup_india.webp"
+                alt="Startup India"
+                className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+              />
+              <div className="bg-white">
+                <Image
+                  width={500}
+                  height={300}
+                  src="/mca.webp"
+                  alt="MCA Logo"
+                   className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+              />
+              </div>
+              
+            </div>
+            <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+              <span className="font-bold text-slate-700 dark:text-slate-300">CIN:</span> U62099RJ2026PTC112881
+            </p>
+          </div>
+
         </motion.div>
 
-        {/* Resources Column (Span 2) */}
-        <motion.div variants={item} className="lg:col-span-2">
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Resources</h3>
-          <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-            <FooterLink href="/Services">Blog</FooterLink>
-            <FooterLink href="/Services">Knowledge Base</FooterLink>
-            <FooterLink href="/Services">White Papers</FooterLink>
-            <FooterLink href="/Services">Press Releases</FooterLink>
-          </ul>
+        {/* Resources & Legal Badges Column (Span 2) */}
+        <motion.div variants={item} className="lg:col-span-2 flex flex-col justify-between space-y-6">
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Resources</h3>
+            <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+              <FooterLink href="/Services">Blog</FooterLink>
+              <FooterLink href="/Services">Knowledge Base</FooterLink>
+              <FooterLink href="/Services">White Papers</FooterLink>
+              <FooterLink href="/Services">Press Releases</FooterLink>
+            </ul>
+          </div>
         </motion.div>
+
+         {/* Small Divice */}
+          <div className="lg:hidden mt-2 border-slate-200 dark:border-neutral-800/80 space-y-3">
+            <div className="flex items-center gap-3">
+              <Image
+                width={500}
+                height={300}
+                src="/startup_india.webp"
+                alt="Startup India"
+                className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+              />
+              <div className="bg-white">
+                <Image
+                  width={500}
+                  height={300}
+                  src="/mca.webp"
+                  alt="MCA Logo"
+                   className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+                />
+              </div>
+            </div>
+            <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+              <span className="font-bold text-slate-700 dark:text-slate-300">CIN:</span> U62099RJ2026PTC112881
+            </p>
+          </div>
 
       </motion.div>
 
       {/* Bottom Bar */}
       <div className="bg-slate-100 dark:bg-[#050505] py-6 border-t border-slate-200 dark:border-white/5">
         <div className="max-w-8xl mx-auto px-6 flex flex-col items-center justify-center gap-4 text-xs text-slate-500 dark:text-slate-500">
-          <p className="text-center">©  2026 AnantNetra Technologies. All Rights Reserved.</p>
+          <p className="text-center">© 2026 AnantNetra Technologies. All Rights Reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-6">
             <Link href="/PrivacyPolicy" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/Terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Service</Link>
             <Link href="/#world-map-section" className="hover:text-slate-900 dark:hover:text-white transition-colors">Sitemap</Link>
-            {/* <Link href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors">Cookies</Link> */}
           </div>
         </div>
       </div>

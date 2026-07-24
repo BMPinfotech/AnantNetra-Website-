@@ -63,7 +63,7 @@ const PlatformMenu = memo(() => (
         </li>
         <li>
           <NavigationMenuLink asChild>
-            <Link href="/Services">NetraSecure AI</Link>
+            <Link href="/netrasecure-ai">NetraSecure AI</Link>
           </NavigationMenuLink>
         </li>
       </ul>
@@ -82,11 +82,12 @@ const CompanyMenu = memo(() => (
             <Link href="/about-us">About Us</Link>
           </NavigationMenuLink>
         </li>
-        <li>
+        {/* TODO: Now it hidden "Meet the Team" navigation. In feature it will shows */}
+        {/* <li>
           <NavigationMenuLink asChild>
             <Link href="/meet-the-team">Meet the Team</Link>
           </NavigationMenuLink>
-        </li>
+        </li> */}
         <li>
           <NavigationMenuLink asChild>
             <Link href="/events">Events</Link>
