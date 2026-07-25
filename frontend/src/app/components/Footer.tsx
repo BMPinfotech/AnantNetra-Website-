@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React from "react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,44 +12,14 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Instagram
+  Instagram,
+  Smartphone,
 } from "lucide-react";
 import Link from "next/link";
-import { FaWhatsapp } from "react-icons/fa";
 
-import { motion } from "framer-motion";
-import PreFooterCTA from "./PreFooterCTA";
+import Image from "next/image";
 
 function Footer() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // Component ko mount hone ke baad render allow karenge, 
-    // isse initial page load time aur rendering fast hoti hai.
-    setMounted(true);
-  }, []);
-
-  const container = useMemo(() => ({
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  }), []);
-
-  const item = useMemo(() => ({
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  }), []);
-
-  if (!mounted) {
-    // Return an initial lightweight placeholder structure
-    return <footer className="w-full min-h-[400px] bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden"></footer>;
-  }
-
   return (
     <footer className="w-full bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden">
       {/* Dynamic Background Elements */}
@@ -57,28 +27,20 @@ function Footer() {
       <div className="absolute -top-20 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" /> */}
 
-
-
       <Separator className="bg-slate-200 dark:bg-white/5 opacity-50" />
 
       {/* Main Footer Grid */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8"
-      >
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 animate-fade-in-up">
 
         {/* Brand Column (Span 4) */}
-        <motion.div variants={item} className="lg:col-span-4 space-y-6">
+        <div className="lg:col-span-4 space-y-6">
           <Link href="/" className="inline-block group">
             <div className="flex items-center gap-2">
               <div className="relative w-10 h-10">
-                <img src="/darkLogo.svg" alt="AnantNetra" className="dark:hidden w-full h-full object-contain" />
-                <img src="/lightLogo.svg" alt="AnantNetra" className="hidden dark:block w-full h-full object-contain" />
+                <Image src="/darkLogo.svg" alt="AnantNetra" width={40} height={40} className="dark:hidden w-full h-full object-contain" />
+                <Image src="/lightLogo.svg" alt="AnantNetra" width={40} height={40} className="hidden dark:block w-full h-full object-contain" />
               </div>
-              <h2  className="text-2xl font-bold  max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1">
+              <h2 className="text-2xl font-bold max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1">
                 AnantNetra
               </h2>
             </div>
@@ -98,10 +60,9 @@ function Footer() {
               <a href="mailto:contact@anantnetra.com" className="hover:text-purple-500 transition-colors">contact@anantnetra.com</a>
             </div>
             <div className="flex items-center gap-2 ">
-              <FaWhatsapp className="w-5 h-5 text-purple-500"  />
+              <Smartphone className="w-5 h-5 text-purple-500" />
               <span>+91 87695 12003</span>
             </div>
-
           </div>
 
           <div className="flex gap-3">
@@ -110,22 +71,20 @@ function Footer() {
             <SocialButton href="https://github.com" icon={<Github />} label="GitHub" />
             <SocialButton href="mailto:Services@anantnetra.com" icon={<Mail />} label="Email" />
           </div>
-        </motion.div>
+        </div>
 
         {/* Services Column (Span 2) */}
-        <motion.div variants={item} className="lg:col-span-2">
+        <div className="lg:col-span-2">
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Services</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/Services/IT-consult">IT Consultancy</FooterLink>
             <FooterLink href="/Services/Busniessconsult">Business Consultancy</FooterLink>
             <FooterLink href="/Services/Cyber-security">Cyber Security</FooterLink>
-            {/* <FooterLink href="/Services">Digital Transformation</FooterLink>
-            <FooterLink href="/Services">Cloud Solutions</FooterLink> */}
           </ul>
-        </motion.div>
+        </div>
 
         {/* Solutions Column (Span 2) */}
-        <motion.div variants={item} className="lg:col-span-2">
+        <div className="lg:col-span-2">
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Solutions</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/Services">Free Consultancy & Audit Call</FooterLink>
@@ -133,41 +92,93 @@ function Footer() {
             <FooterLink href="/incident-response" className="text-pink-500 font-medium">Incident Response</FooterLink>
             <FooterLink href="/Services">NetraSecure AI</FooterLink>
           </ul>
-        </motion.div>
+        </div>
 
         {/* Company Column (Span 2) */}
-        <motion.div variants={item} className="lg:col-span-2">
+        <div className="lg:col-span-2">
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Company</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/about-us">About Us</FooterLink>
-            <FooterLink href="/meet-the-team">Meet the Team</FooterLink>
             <FooterLink href="/events">Events</FooterLink>
             <FooterLink href="/contact">Contact Us</FooterLink>
           </ul>
-        </motion.div>
 
-        {/* Resources Column (Span 2) */}
-        <motion.div variants={item} className="lg:col-span-2">
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Resources</h3>
-          <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-            <FooterLink href="/Services">Blog</FooterLink>
-            <FooterLink href="/Services">Knowledge Base</FooterLink>
-            <FooterLink href="/Services">White Papers</FooterLink>
-            <FooterLink href="/Services">Press Releases</FooterLink>
-          </ul>
-        </motion.div>
+          {/* Large Divice */}
+          <div className="hidden lg:block mt-20  border-slate-200 dark:border-neutral-800/80 space-y-3">
+            <div className="flex items-center gap-3">
+              <Image
+                width={100}
+                height={36}
+                src="/startup_india.webp"
+                alt="Startup India"
+                className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+              />
+              <div className="bg-white">
+                <Image
+                  width={100}
+                  height={36}
+                  src="/mca.webp"
+                  alt="MCA Logo"
+                   className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+              />
+              </div>
+              
+            </div>
+            <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+              <span className="font-bold text-slate-700 dark:text-slate-300">CIN:</span> U62099RJ2026PTC112881
+            </p>
+          </div>
 
-      </motion.div>
+        </div>
+
+        {/* Resources & Legal Badges Column (Span 2) */}
+        <div className="lg:col-span-2 flex flex-col justify-between space-y-6">
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Resources</h3>
+            <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+              <FooterLink href="/Services">Blog</FooterLink>
+              <FooterLink href="/Services">Knowledge Base</FooterLink>
+              <FooterLink href="/Services">White Papers</FooterLink>
+              <FooterLink href="/Services">Press Releases</FooterLink>
+            </ul>
+          </div>
+        </div>
+
+         {/* Small Divice */}
+          <div className="lg:hidden mt-2 border-slate-200 dark:border-neutral-800/80 space-y-3">
+            <div className="flex items-center gap-3">
+              <Image
+                width={100}
+                height={36}
+                src="/startup_india.webp"
+                alt="Startup India"
+                className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+              />
+              <div className="bg-white">
+                <Image
+                  width={100}
+                  height={36}
+                  src="/mca.webp"
+                  alt="MCA Logo"
+                   className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
+                />
+              </div>
+            </div>
+            <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+              <span className="font-bold text-slate-700 dark:text-slate-300">CIN:</span> U62099RJ2026PTC112881
+            </p>
+          </div>
+
+      </div>
 
       {/* Bottom Bar */}
       <div className="bg-slate-100 dark:bg-[#050505] py-6 border-t border-slate-200 dark:border-white/5">
         <div className="max-w-8xl mx-auto px-6 flex flex-col items-center justify-center gap-4 text-xs text-slate-500 dark:text-slate-500">
-          <p className="text-center">©  2026 AnantNetra Technologies. All Rights Reserved.</p>
+          <p className="text-center">© 2026 AnantNetra Technologies. All Rights Reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-6">
             <Link href="/PrivacyPolicy" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/Terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Service</Link>
             <Link href="/#world-map-section" className="hover:text-slate-900 dark:hover:text-white transition-colors">Sitemap</Link>
-            {/* <Link href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors">Cookies</Link> */}
           </div>
         </div>
       </div>

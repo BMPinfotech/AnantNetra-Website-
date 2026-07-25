@@ -1,8 +1,5 @@
-"use client";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, memo } from "react";
+import { memo } from "react";
 import {
   ShieldCheck,
   Cpu,
@@ -55,15 +52,9 @@ const features = [
 const FeatureItem = memo(({ feature, index }: { feature: typeof features[0], index: number }) => {
   const Icon = feature.icon;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.1,
-        ease: [0.25, 1, 0.5, 1],
-      }}
-      viewport={{ once: true, amount: 0.5 }}
+    <div
+      className="animate-fade-in-up"
+      style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "both" }}
     >
       <SpotlightCard
         spotlightColor="rgba(18, 51, 157, 0.94)"
@@ -80,66 +71,39 @@ const FeatureItem = memo(({ feature, index }: { feature: typeof features[0], ind
           </CardTitle>
         </CardHeader>
 
-        <CardContent className="flex-grow z-20 flex items-center justify-center pb-10 px-6">
+        <CardContent className="grow z-20 flex items-center justify-center pb-10 px-6">
           <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
             {feature.description}
           </p>
         </CardContent>
       </SpotlightCard>
-    </motion.div>
+    </div>
   );
 });
 FeatureItem.displayName = "FeatureItem";
 
 function Features() {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const rotateX = useTransform(scrollYProgress, [0, 1], ["-15deg", "15deg"]);
-  const y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full min-h-screen py-8 md:py-18 flex items-center justify-center overflow-hidden 
+    <section className="relative w-full min-h-screen py-8 md:py-18 flex items-center justify-center overflow-hidden 
   bg-white dark:bg-neutral-950"
     >
       <div className="relative z-10 mx-auto w-full px-2 sm:px-6 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-4xl font-bold tracking-tight md:text-6xl text-slate-900 dark:text-slate-100"
-        >
+        <h2 className="text-4xl font-bold tracking-tight md:text-6xl text-slate-900 dark:text-slate-100 animate-fade-in-up">
           Beyond Technology. Towards Tomorrow.
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="mt-6 text-lg leading-8 text-slate-700 dark:text-slate-400 max-w-3xl mx-auto "
-        >
+        <p className="mt-6 text-lg leading-8 text-slate-700 dark:text-slate-400 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.1s", animationFillMode: "both" }}>
           At AnantNetra Technologies, we design intelligent, secure, and ethical
           innovations that empower businesses to thrive in a connected future.
-        </motion.p>
+        </p>
 
-        <motion.div
-          style={{ rotateX, y, transformStyle: "preserve-3d", perspective: "1000px" }}
-          className="mt-1 md:mt-10"
-        >
+        <div className="mt-1 md:mt-10">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
               <FeatureItem key={feature.title} feature={feature} index={index} />
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

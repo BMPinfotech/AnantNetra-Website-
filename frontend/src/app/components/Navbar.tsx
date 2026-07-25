@@ -12,6 +12,7 @@ import {
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 // --- Memoized Desktop Sub-components ---
@@ -19,7 +20,7 @@ import { usePathname } from "next/navigation";
 const ServicesMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[220px] p-4 md:right-auto md:left-1 md:origin-top-right">
+    <NavigationMenuContent className="w-auto min-w-55 p-4 md:right-auto md:left-1 md:origin-top-right">
       <ul className="space-y-2 text-sm">
         <li>
           <NavigationMenuLink asChild>
@@ -54,7 +55,7 @@ ServicesMenu.displayName = "ServicesMenu";
 const PlatformMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Platform</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
+    <NavigationMenuContent className="w-auto min-w-55 p-5">
       <ul className="space-y-2 text-sm">
         <li>
           <NavigationMenuLink asChild>
@@ -63,9 +64,14 @@ const PlatformMenu = memo(() => (
         </li>
         <li>
           <NavigationMenuLink asChild>
-            <Link href="/Services">NetraSecure AI</Link>
+            <Link href="/netrasecure-ai">NetraSecure AI</Link>
           </NavigationMenuLink>
         </li>
+        {/* <li>
+          <NavigationMenuLink asChild>
+            <Link href="/netrasecure-ai">QUANTIQEN</Link>
+          </NavigationMenuLink>
+        </li> */}
       </ul>
     </NavigationMenuContent>
   </NavigationMenuItem>
@@ -75,18 +81,19 @@ PlatformMenu.displayName = "PlatformMenu";
 const CompanyMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Company</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[220px] p-5">
+    <NavigationMenuContent className="w-auto min-w-55 p-5">
       <ul className="space-y-2 text-sm">
         <li>
           <NavigationMenuLink asChild>
             <Link href="/about-us">About Us</Link>
           </NavigationMenuLink>
         </li>
-        <li>
+        {/* TODO: Now it hidden "Meet the Team" navigation. In feature it will shows */}
+        {/* <li>
           <NavigationMenuLink asChild>
             <Link href="/meet-the-team">Meet the Team</Link>
           </NavigationMenuLink>
-        </li>
+        </li> */}
         <li>
           <NavigationMenuLink asChild>
             <Link href="/events">Events</Link>
@@ -101,7 +108,7 @@ CompanyMenu.displayName = "CompanyMenu";
 const ResourcesMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[220px] p-4">
+    <NavigationMenuContent className="w-auto min-w-55 p-4">
       <div className="grid grid-rows-5 gap-4 text-sm">
         <NavigationMenuLink asChild><Link href="/Services">Blog</Link></NavigationMenuLink>
         <NavigationMenuLink asChild><Link href="/Services">Knowledge Base</Link></NavigationMenuLink>
@@ -117,7 +124,7 @@ ResourcesMenu.displayName = "ResourcesMenu";
 const PartnersMenu = memo(() => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>Partners</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-[190px] p-4 md:right-0 md:left-auto md:origin-top-right">
+    <NavigationMenuContent className="w-auto min-w-47.5 p-4 md:right-0 md:left-auto md:origin-top-right">
       <ul className="space-y-2 text-sm">
         <li><NavigationMenuLink asChild><Link href="/Services">Apply for Fellowship</Link></NavigationMenuLink></li>
         <li><NavigationMenuLink asChild><Link href="/Services">Apply for Accelerator</Link></NavigationMenuLink></li>
@@ -145,7 +152,7 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
         <li>
           <Link
             href="/incident-response"
-            className="block w-full py-2 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] to-[#5155fd]"
+            className="block w-full py-2 font-bold bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] to-[#5155fd]"
             onClick={onClose}
           >
             Report an Incident
@@ -175,7 +182,7 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           {openSection === "platform" && (
             <div className="pl-4 mt-2 ml-2 space-y-1">
               <Link className="block py-1" href="/" onClick={onClose}>AnantNetra</Link>
-              <Link className="block py-1" href="/Services" onClick={onClose}>NetraSecure AI</Link>
+              <Link className="block py-1" href="/netrasecure-ai" onClick={onClose}>NetraSecure AI</Link>
             </div>
           )}
         </li>
@@ -188,7 +195,7 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           {openSection === "company" && (
             <div className="pl-4 mt-2 ml-2 space-y-1">
               <Link className="block py-1" href="/about-us" onClick={onClose}>About Us</Link>
-              <Link href="/meet-the-team" className="block py-1" onClick={onClose}>Meet the Team</Link>
+              {/* <Link href="/meet-the-team" className="block py-1" onClick={onClose}>Meet the Team</Link> */}
               <Link href="/events" className="block py-1" onClick={onClose}>Events</Link>
             </div>
           )}
@@ -245,32 +252,15 @@ function ClientNavbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Listen to scroll with requestAnimationFrame for performance
-  useEffect(() => {
-    let ticking = false;
-
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 50);
-          ticking = false;
-        });
-        ticking = true;
-      }
+      setScrolled(window.scrollY > 50);
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    // Run once on mount to catch initial scroll state
     handleScroll();
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []); // Empty dependency array - effect stays stable across renders
+  }, []);
 
   const handleMobileToggle = useCallback(() => {
     setMobileOpen((prev) => !prev);
@@ -294,31 +284,26 @@ function ClientNavbar() {
       }`;
   }, [scrolled]);
 
-  if (!mounted) {
-    // Lightweight placeholder for fast initial render
-    return <header className="w-full bg-background shadow-sm py-3 min-h-[70px] fixed top-0 left-0 right-0 z-50 transition-all duration-500"></header>;
-  }
-
   if (pathname === "/incident-response") return null;
 
   return (
     <header className={headerClass}>
       <div className={topBarClass}>
-        <Link href="/incident-response" className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
+        <Link href="/incident-response" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
           Report an Incident
         </Link>
-        <Link href="/Services" className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
+        <Link href="/Services" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
           Threat Advisory
         </Link>
-        <Link href="/contact" className="bg-clip-text text-transparent bg-gradient-to-r from-[#fc4a82] via-purple-500 to-blue-600 animate-gradient-x hover:opacity-80 transition-opacity">
+        <Link href="/contact" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 animate-gradient-x hover:opacity-80 transition-opacity">
           Contact Us
         </Link>
       </div>
 
       <nav className={`max-w-7xl mx-auto px-4 flex items-center justify-between transition-all duration-500 overflow-visible ${scrolled ? "py-2" : "py-1"}`}>
         <div className="flex items-center gap-2">
-          <img src="/darkLogo.svg" alt="AnantNetra Logo" width="50" height="50" className="dark:hidden" />
-          <img src="/lightLogo.svg" alt="AnantNetra Logo" width="50" height="50" className="hidden dark:block" />
+          <Image src="/darkLogo.svg" alt="AnantNetra Logo" width={50} height={50} className="dark:hidden" />
+          <Image src="/lightLogo.svg" alt="AnantNetra Logo" width={50} height={50} className="hidden dark:block" />
           <Link href="/" className="text-xl font-semibold">
             <span>AnantNetra</span>
           </Link>
@@ -329,14 +314,15 @@ function ClientNavbar() {
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="flex gap-4">
               <ServicesMenu />
-                                <ResourcesMenu />
 
               {!scrolled && (
                 <>
                   <CompanyMenu />
                 </>
               )}
-                            <PlatformMenu />
+
+              <PlatformMenu />
+              <ResourcesMenu />
 
               <PartnersMenu />
             </NavigationMenuList>

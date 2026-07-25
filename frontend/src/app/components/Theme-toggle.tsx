@@ -2,21 +2,14 @@
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Moon, SunIcon } from "lucide-react";
-import { useEffect, useState } from "react";
 
 import { usePathname } from "next/navigation";
 
 export function ThemeToggle() {
   const pathname = usePathname();
   const { setTheme, theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
-  // Wait until the component mounts to avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted || pathname === "/incident-response") return null;
+  if (pathname === "/incident-response") return null;
 
   const currentTheme = theme === "system" ? resolvedTheme : theme;
 
@@ -28,7 +21,7 @@ export function ThemeToggle() {
       onClick={() => setTheme(currentTheme === "light" ? "dark" : "light")}
       aria-label="Toggle theme"
     >
-      {currentTheme === "light" ? <SunIcon className="size-5" /> : <Moon className="size-5" />}
+      {currentTheme === "light" ? <SunIcon className="size-5" suppressHydrationWarning /> : <Moon className="size-5" suppressHydrationWarning />}
     </Button>
   );
 }

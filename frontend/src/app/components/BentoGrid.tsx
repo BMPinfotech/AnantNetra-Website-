@@ -1,7 +1,4 @@
-"use client";
-
 import React from "react";
-import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Cpu, Lock, Globe2, LineChart, Brain } from "lucide-react";
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
@@ -16,31 +13,22 @@ export default function BentoGrids() {
   return (
     <section className="relative z-20 w-full py-4 bg-neutral-50 dark:bg-neutral-950">
       <div className="mx-auto max-w-7xl px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center text-neutral-800 dark:text-neutral-100 lg:mt-10 xl:-mt-98"
-        >
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-neutral-800 dark:text-neutral-100 lg:mt-10 animate-fade-in-up">
           Explore Our Intelligent Ecosystem
-        </motion.h2>
+        </h2>
 
         {/* ✅ Dynamic Mesh Grid - Compact & Full */}
         <div className="mt-16 relative z-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-4">
           {/* 🟦 Evervault Interactive Card */}
-          <motion.div
-            whileHover={{ y: -5 }}
-            className="col-span-1 sm:col-span-2 lg:col-span-2 lg:row-span-1 h-full"
-          >
-            <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col justify-between items-start p-4 relative h-full rounded-xl bg-white dark:bg-neutral-900 hover:shadow-2xl transition-all duration-500 overflow-hidden group">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-2 lg:row-span-1 h-full hover:-translate-y-1 transition-transform duration-300">
+            <div className="border border-black/20 dark:border-white/20 flex flex-col justify-between items-start p-4 relative h-full rounded-xl bg-white dark:bg-neutral-900 hover:shadow-2xl transition-all duration-500 overflow-hidden group">
               {/* Corner icons */}
               <Icon className="absolute h-5 w-5 -top-2 -left-2 dark:text-white text-black opacity-30 group-hover:opacity-100 transition-opacity" />
               <Icon className="absolute h-5 w-5 -bottom-2 -left-2 dark:text-white text-black opacity-30 group-hover:opacity-100 transition-opacity" />
               <Icon className="absolute h-5 w-5 -top-2 -right-2 dark:text-white text-black opacity-30 group-hover:opacity-100 transition-opacity" />
               <Icon className="absolute h-5 w-5 -bottom-2 -right-2 dark:text-white text-black opacity-30 group-hover:opacity-100 transition-opacity" />
 
-              <div className="w-full flex-grow flex justify-center items-center my-2">
+              <div className="w-full grow flex justify-center items-center my-2">
                 <EvervaultCard text="Security" />
               </div>
 
@@ -50,27 +38,27 @@ export default function BentoGrids() {
 
 
             </div>
-          </motion.div>
+          </div>
 
           {/* 🟩 AI Architecture */}
-          <motion.div whileHover={{ y: -5 }} className="col-span-1 lg:col-span-2">
-            <Card className="h-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-all duration-500 !p-5 !gap-3 flex flex-col justify-between">
+          <div className="col-span-1 lg:col-span-2 hover:-translate-y-1 transition-transform duration-300">
+            <Card className="h-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-all duration-500 p-5! gap-3! flex flex-col justify-between">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg font-semibold text-neutral-800 dark:text-neutral-100 !mb-0 -ml-4">
+                <CardTitle className="flex items-center gap-2 text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-0! -ml-4">
                   <Cpu className="text-blue-600 dark:text-cyan-400 " />
                   AI Architecture
                 </CardTitle>
               </CardHeader>
-              <CardContent className="!pt-0 !pb-2 px-2">
+              <CardContent className="pt-0! pb-2! px-2">
                 <p className="text-neutral-600 dark:text-neutral-400 text-[15px] leading-relaxed">
                   Our systems don't just process data; they think, adapt, and evolve. Powered by modular AI infrastructure, we provide a foundation that scales with your needs, ensuring your technology is always ahead of the curve.
                 </p>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
 
           {/* 🟣 Cognitive Edge */}
-          <motion.div whileHover={{ scale: 1.02 }} className="col-span-1 sm:col-span-1 lg:row-span-1">
+          <div className="col-span-1 sm:col-span-1 lg:row-span-1 hover:scale-[1.02] transition-transform duration-300">
             <CardSpotlight className="h-full border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 hover:shadow-xl transition-all duration-500 flex flex-col justify-between p-6">
               <CardHeader className="p-0">
                 <CardTitle className="flex z-20 items-center gap-2 text-neutral-800 dark:text-neutral-100 text-lg font-semibold">
@@ -84,10 +72,10 @@ export default function BentoGrids() {
                 </p>
               </CardContent>
             </CardSpotlight>
-          </motion.div>
+          </div>
 
           {/* 🟢 Zero Trust Security */}
-          <motion.div whileHover={{ scale: 1.05 }} className="col-span-1 ">
+          <div className="col-span-1 hover:scale-105 transition-transform duration-300">
             <Card className="h-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-all duration-500 p-6 flex flex-col justify-between">
               <CardHeader className="p-0">
                 <CardTitle className="flex items-center gap-2 text-neutral-800 dark:text-neutral-100 text-lg font-semibold">
@@ -101,10 +89,10 @@ export default function BentoGrids() {
                 </p>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
 
           {/* 🌍 Global Impact */}
-          <motion.div whileHover={{ scale: 1.05 }} className="col-span-1 sm:col-span-1 lg:col-span-1">
+          <div className="col-span-1 sm:col-span-1 lg:col-span-1 hover:scale-105 transition-transform duration-300">
             <Card className="h-full relative border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 overflow-hidden hover:shadow-xl transition-all duration-500 p-6 flex flex-col justify-between">
               <CardHeader className="p-0">
                 <CardTitle className="flex items-center gap-2 text-neutral-800 dark:text-neutral-100 text-lg font-semibold">
@@ -117,45 +105,16 @@ export default function BentoGrids() {
                   Transforming industries across the globe with secure, intelligent technology. We are committed to making a positive impact on the world by delivering solutions that are not only effective but also ethical & sustainable.
                 </p>
               </CardContent>
-              {/* Flashy gradient motion sweep */}
-              <motion.div
-                initial={{ x: "-120%", scale: 1, opacity: 0.8 }}
-                animate={{ x: "120%", scale: 1.1, opacity: [0.8, 1, 0.8] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 6,
-                  ease: "easeInOut",
-                }}
-                className="absolute inset-y-0 w-[100px]
-             bg-gradient-to-r from-transparent 
-             via-cyan-400/60 to-transparent
-             dark:via-cyan-300/60 
-             blur-2xl opacity-90
-             mix-blend-screen"
-              />
+              {/* Flashy gradient sweep */}
+              <div className="absolute inset-y-0 w-25 bg-linear-to-r from-transparent via-cyan-400/60 to-transparent dark:via-cyan-300/60 blur-2xl opacity-90 mix-blend-screen animate-sweep" />
 
-              {/* Optional glowing tail for depth */}
-              <motion.div
-                initial={{ x: "-130%", scale: 1 }}
-                animate={{ x: "130%", scale: 1 }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 6,
-                  ease: "easeInOut",
-                  delay: 0.3,
-                }}
-                className="absolute inset-y-0 w-[140px]
-             bg-gradient-to-r from-transparent 
-             via-blue-500/30 to-transparent 
-             dark:via-blue-400/30
-             blur-3xl opacity-70
-             mix-blend-overlay"
-              />
+              {/* Glowing tail for depth */}
+              <div className="absolute inset-y-0 w-35 bg-linear-to-r from-transparent via-blue-500/30 to-transparent dark:via-blue-400/30 blur-3xl opacity-70 mix-blend-overlay animate-sweep-delayed" />
             </Card>
-          </motion.div>
+          </div>
 
           {/* 📊 Predictive Scaling */}
-          <motion.div whileHover={{ scale: 1.05 }} className="col-span-1">
+          <div className="col-span-1 hover:scale-105 transition-transform duration-300">
             <Card className="h-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-all duration-500 p-6 flex flex-col justify-between">
               <CardHeader className="p-0">
                 <CardTitle className="flex items-center gap-2 text-neutral-800 dark:text-neutral-100 text-lg font-semibold">
@@ -169,7 +128,7 @@ export default function BentoGrids() {
                 </p>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

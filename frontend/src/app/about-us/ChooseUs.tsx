@@ -44,14 +44,14 @@ export function ChooseUs() {
               "Business Process Automation",
               "Research & Innovation Ecosystems"
             ].map((industry, i) => (
-              <div key={i} className="flex items-center p-4 rounded-xl bg-slate-50 dark:bg-zinc-900/50 border border-slate-100 dark:border-zinc-800 text-left hover:border-blue-500/30 transition-all group  hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors">
+              <div key={i} className="flex items-center p-4 rounded-md bg-slate-50 dark:bg-zinc-900/50 border border-slate-100 dark:border-zinc-800 text-left hover:border-blue-500/30 transition-all group  hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors">
                 <div className="w-2 h-2 rounded-full bg-blue-500 mr-3 group-hover:scale-125 transition-transform" />
                 <span className="text-slate-700 dark:text-slate-300 text-sm font-medium ">{industry}</span>
               </div>
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto p-8 rounded-3xl bg-gradient-to-br from-blue-50 to-teal-50 dark:from-blue-900/10 dark:to-teal-900/10 border border-blue-100/50 dark:border-blue-800/20 mb-20">
+          <div className="max-w-4xl mx-auto p-8 rounded-3xl bg-linear-to-br from-blue-50 to-teal-50 dark:from-blue-900/10 dark:to-teal-900/10 border border-blue-100/50 dark:border-blue-800/20 mb-20">
             <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Participation & Global Engagement</h3>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed italic text-left">
               "AnantNetra actively participates in international conferences, research collaborations, hackathons, and technology forums to contribute to the global innovation ecosystem. Our involvement in academic research, AI development programs, and industry events enables us to remain at the forefront of emerging technologies and continuously deliver cutting-edge solutions."
@@ -71,12 +71,17 @@ export function ChooseUs() {
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-3xl mx-auto mb-16">
             <div className="w-full lg:w-1/2 group">
               <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white dark:bg-zinc-900 p-2">
-                <img
+                {/* <img
                   src="/images/Anantnetra-Technologies-Certificate.WebP"
                   alt="AnantNetra Technologies Certificate"
                   className="w-full h-auto rounded-2xl"
+                /> */}
+                <img
+                  src="/images/certificate.webp"
+                  alt="AnantNetra Technologies Certificate"
+                  className="w-full  h-auto rounded-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-none" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent pointer-none" />
               </div>
             </div>
 

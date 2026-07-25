@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Mail, Github, Sparkles } from "lucide-react";
 import Footer from "@/app/components/Footer";
+import { useRouter } from "next/navigation";
 
 interface TeamMember {
     id: number;
@@ -95,6 +96,15 @@ const teamMembers: TeamMember[] = [
 ];
 
 export default function MeetTheTeam() {
+
+    const router = useRouter();
+
+    useEffect(() => {
+         router.replace('/');
+    }, [router]);
+
+  return null;
+
     return (
         <main className="min-h-screen pt-24 pb-2 bg-white dark:bg-black">
             {/* Hero Section */}
