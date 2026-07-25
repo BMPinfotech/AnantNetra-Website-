@@ -12,6 +12,7 @@ import {
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 // --- Memoized Desktop Sub-components ---
@@ -318,8 +319,8 @@ function ClientNavbar() {
 
       <nav className={`max-w-7xl mx-auto px-4 flex items-center justify-between transition-all duration-500 overflow-visible ${scrolled ? "py-2" : "py-1"}`}>
         <div className="flex items-center gap-2">
-          <img src="/darkLogo.svg" alt="AnantNetra Logo" width="50" height="50" className="dark:hidden" />
-          <img src="/lightLogo.svg" alt="AnantNetra Logo" width="50" height="50" className="hidden dark:block" />
+          <Image src="/darkLogo.svg" alt="AnantNetra Logo" width={50} height={50} className="dark:hidden" />
+          <Image src="/lightLogo.svg" alt="AnantNetra Logo" width={50} height={50} className="hidden dark:block" />
           <Link href="/" className="text-xl font-semibold">
             <span>AnantNetra</span>
           </Link>

@@ -74,8 +74,8 @@ function Footer() {
           <Link href="/" className="inline-block group">
             <div className="flex items-center gap-2">
               <div className="relative w-10 h-10">
-                <img src="/darkLogo.svg" alt="AnantNetra" className="dark:hidden w-full h-full object-contain" />
-                <img src="/lightLogo.svg" alt="AnantNetra" className="hidden dark:block w-full h-full object-contain" />
+                <Image src="/darkLogo.svg" alt="AnantNetra" width={40} height={40} className="dark:hidden w-full h-full object-contain" />
+                <Image src="/lightLogo.svg" alt="AnantNetra" width={40} height={40} className="hidden dark:block w-full h-full object-contain" />
               </div>
               <h2 className="text-2xl font-bold max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1">
                 AnantNetra

@@ -32,7 +32,7 @@ function HomePage() {
   // --- Optional: show nothing until mounted to avoid hydration mismatches ---
   if (!isMounted) {
     return (
-      <div className="flex h-screen items-center justify-center bg-white dark:bg-black">
+      <div className="flex min-h-screen sm:min-h-[95vh] items-center justify-center bg-white dark:bg-black">
         <p className="text-gray-400">Loading...</p>
       </div>
     );
@@ -44,16 +44,19 @@ function HomePage() {
       <div className="relative flex min-h-screen sm:min-h-[95vh] w-full flex-col items-center justify-center overflow-hidden pt-40 pb-16">
         {/* Background Video */}
         <div className="absolute inset-0 z-0 h-full w-full">
-          <video
-            src="/video_Three-1.WebM"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="h-full w-full object-cover mt-20"
-          />
-          {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-black/50 dark:bg-black/50" />
+          <div className="relative aspect-video h-full w-full">
+            <video
+              src="/video_Three-1.WebM"
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/video_Three-1-poster.jpg"
+              className="h-full w-full object-cover mt-20"
+            />
+            {/* Overlay for readability */}
+            <div className="absolute inset-0 bg-black/50 dark:bg-black/50" />
+          </div>
         </div>
 
         {/* Content */}
