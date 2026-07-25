@@ -155,7 +155,7 @@ function HomePage() {
             muted
             playsInline
             preload="none"
-            className="mx-auto rounded-2xl object-contain xl:object-cover w-full h-auto xl:h-full max-w-full"
+            className="mx-auto rounded-2xl object-contain xl:object-cover w-full aspect-video xl:h-full max-w-full"
             draggable={false}
           />
         </ContainerScroll>

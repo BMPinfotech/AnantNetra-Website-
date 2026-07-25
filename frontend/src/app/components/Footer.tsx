@@ -144,16 +144,16 @@ function Footer() {
           <div className="hidden lg:block mt-20  border-slate-200 dark:border-neutral-800/80 space-y-3">
             <div className="flex items-center gap-3">
               <Image
-                width={500}
-                height={300}
+                width={100}
+                height={36}
                 src="/startup_india.webp"
                 alt="Startup India"
                 className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
               />
               <div className="bg-white">
                 <Image
-                  width={500}
-                  height={300}
+                  width={100}
+                  height={36}
                   src="/mca.webp"
                   alt="MCA Logo"
                    className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
@@ -185,16 +185,16 @@ function Footer() {
           <div className="lg:hidden mt-2 border-slate-200 dark:border-neutral-800/80 space-y-3">
             <div className="flex items-center gap-3">
               <Image
-                width={500}
-                height={300}
+                width={100}
+                height={36}
                 src="/startup_india.webp"
                 alt="Startup India"
                 className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
               />
               <div className="bg-white">
                 <Image
-                  width={500}
-                  height={300}
+                  width={100}
+                  height={36}
                   src="/mca.webp"
                   alt="MCA Logo"
                    className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
