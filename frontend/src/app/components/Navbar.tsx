@@ -247,32 +247,15 @@ function ClientNavbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Listen to scroll with requestAnimationFrame for performance
-  useEffect(() => {
-    let ticking = false;
-
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 50);
-          ticking = false;
-        });
-        ticking = true;
-      }
+      setScrolled(window.scrollY > 50);
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    // Run once on mount to catch initial scroll state
     handleScroll();
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []); // Empty dependency array - effect stays stable across renders
+  }, []);
 
   const handleMobileToggle = useCallback(() => {
     setMobileOpen((prev) => !prev);
@@ -295,11 +278,6 @@ function ClientNavbar() {
     return `w-full max-w-7xl mx-auto hidden xl:flex justify-end items-center gap-4 px-6 py-2 text-sm font-bold tracking-wide transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden py-0" : "h-auto opacity-100"
       }`;
   }, [scrolled]);
-
-  if (!mounted) {
-    // Lightweight placeholder for fast initial render
-    return <header className="w-full bg-background shadow-sm py-3 min-h-17.5 fixed top-0 left-0 right-0 z-50 transition-all duration-500"></header>;
-  }
 
   if (pathname === "/incident-response") return null;
 

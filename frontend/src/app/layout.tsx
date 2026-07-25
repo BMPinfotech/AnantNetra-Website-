@@ -4,18 +4,19 @@ import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import ClientNavbar from "./components/Navbar";
 import Script from "next/script";
+import { ThemeToggle } from "./components/DynamicThemeToggle";
+import { Chatbot } from "./components/DynamicChatbot";
 
-
-import { ThemeToggle } from "./components/Theme-toggle";
-import { Chatbot } from "./components/Chatbot";
 const geistSans = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Roboto_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

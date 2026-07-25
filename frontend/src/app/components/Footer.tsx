@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,23 +12,15 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Instagram
+  Instagram,
+  Smartphone,
 } from "lucide-react";
 import Link from "next/link";
-import { FaWhatsapp } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 function Footer() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // Component ko mount hone ke baad render allow karenge, 
-    // isse initial page load time aur rendering fast hoti hai.
-    setMounted(true);
-  }, []);
-
   const container = useMemo(() => ({
     hidden: { opacity: 0 },
     show: {
@@ -44,11 +36,6 @@ function Footer() {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
   }), []);
-
-  if (!mounted) {
-    // Return an initial lightweight placeholder structure
-    return <footer className="w-full min-h-100 bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden"></footer>;
-  }
 
   return (
     <footer className="w-full bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden">
@@ -96,7 +83,7 @@ function Footer() {
               <a href="mailto:contact@anantnetra.com" className="hover:text-purple-500 transition-colors">contact@anantnetra.com</a>
             </div>
             <div className="flex items-center gap-2 ">
-              <FaWhatsapp className="w-5 h-5 text-purple-500" />
+              <Smartphone className="w-5 h-5 text-purple-500" />
               <span>+91 87695 12003</span>
             </div>
           </div>

@@ -27,11 +27,6 @@ export function Chatbot() {
     const [input, setInput] = useState("");
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -113,10 +108,6 @@ export function Chatbot() {
             },
         ]);
     };
-
-    if (!mounted) {
-        return null; // Return nothing initially to make initial page load fast
-    }
 
     return (
         <>
