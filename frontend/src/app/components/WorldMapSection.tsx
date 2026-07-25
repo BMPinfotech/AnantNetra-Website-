@@ -38,7 +38,14 @@ const StatItem = React.memo(({ value, label, delay }: { value: string, label: st
         style={{ animationDelay: `${delay}s`, animationFillMode: "both" }}
     >
         <h3 className="text-5xl md:text-6xl font-bold text-black ark:text-white dark:bg-clip-text dark:text-white mb-3">{value}</h3>
-        <p className="text-black dark:text-white text-sm md:text-base font-medium tracking-wide" dangerouslySetInnerHTML={{ __html: label }} />
+        <p className="text-black dark:text-white text-sm md:text-base font-medium tracking-wide">
+          {label.split("<br />").map((part, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <br />}
+              {part}
+            </React.Fragment>
+          ))}
+        </p>
     </div>
 ));
 StatItem.displayName = "StatItem";
