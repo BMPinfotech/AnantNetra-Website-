@@ -18,7 +18,6 @@ import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 
 import { motion } from "framer-motion";
-import PreFooterCTA from "./PreFooterCTA";
 import Image from "next/image";
 
 function Footer() {
