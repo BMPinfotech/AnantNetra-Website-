@@ -103,13 +103,13 @@ const Footer = dynamic(() => import("./components/Footer"), {
 export default function PageContent() {
   return (
     <>
-      <BentoGrids />
-      <Features />
-      <WorldMapSection />
-      <AnimatedTestimonialsDemo />
-      <Contact />
-      <PreFooterCTA />
-      <Footer />
+      <section className="content-visibility-auto"><BentoGrids /></section>
+      <section className="content-visibility-auto"><Features /></section>
+      <section className="content-visibility-auto"><WorldMapSection /></section>
+      <section className="content-visibility-auto"><AnimatedTestimonialsDemo /></section>
+      <section className="content-visibility-auto"><Contact /></section>
+      <section className="content-visibility-auto"><PreFooterCTA /></section>
+      <section className="content-visibility-auto"><Footer /></section>
     </>
   );
 }

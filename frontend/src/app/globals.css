@@ -2,9 +2,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-html {
-  scroll-behavior: smooth;
-}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -43,6 +41,11 @@ html {
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+  --animate-infinite-scroll: infinite-scroll var(--duration, 20s) linear infinite;
+  --animate-hero-fade-in: hero-fade-in 0.6s ease-out forwards;
+  --animate-hero-fade-in-delay: hero-fade-in 0.4s ease-out 0.8s forwards;
+  --animate-hero-fade-in-delay-2: hero-fade-in 0.3s ease-out 1s forwards;
 }
 
 :root {
@@ -122,55 +125,21 @@ html {
     @apply bg-background text-foreground;
   }
 }
-/* global.css or navbar.css */
-.navigation-menu-viewport {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: var(--radix-navigation-menu-viewport-height, auto);
-  overflow: hidden;
-  perspective: 2000px;
-  z-index: 50;
+
+@keyframes scroll {
+  to { transform: translate(calc(-50% - 0.5rem)); }
+}
+@keyframes infinite-scroll {
+  to { transform: translateX(-50%); }
+}
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@import "tailwindcss";
-
-@theme inline {
-  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
-  --animate-infinite-scroll: infinite-scroll var(--duration, 20s) linear infinite;
-  --animate-hero-fade-in: hero-fade-in 0.6s ease-out forwards;
-  --animate-hero-fade-in-delay: hero-fade-in 0.4s ease-out 0.8s forwards;
-  --animate-hero-fade-in-delay-2: hero-fade-in 0.3s ease-out 1s forwards;
-}
-  @keyframes scroll {
-    to {
-      transform: translate(calc(-50% - 0.5rem));
-    }
-  }
-  @keyframes infinite-scroll {
-    to {
-      transform: translateX(-50%);
-    }
-  }
-  @keyframes hero-fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-/* Hide scrollbar for all browsers */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
 }
 
 

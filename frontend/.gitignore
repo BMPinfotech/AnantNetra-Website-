@@ -35,6 +35,7 @@ yarn-error.log*
 AGENT.md
 task.md
 upgrade.md
+PERFORMANCE.md
 
 # vercel
 .vercel
