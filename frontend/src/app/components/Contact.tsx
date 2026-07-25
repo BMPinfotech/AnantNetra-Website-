@@ -72,7 +72,7 @@ const Contact = memo(() => {
     >
       {/* Left Section (same as before) */}
       <div className="w-full text-center space-y-6 max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight  xl:-mt-12">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
           Let’s build something amazing together     <span
             className="
     mr-2 inline-flex

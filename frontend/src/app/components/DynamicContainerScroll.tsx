@@ -6,8 +6,8 @@ const ContainerScroll = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex items-center justify-center h-[80rem]">
-        <div className="animate-pulse w-full max-w-5xl h-[40rem] bg-gray-200 dark:bg-neutral-800 rounded-2xl" />
+      <div className="flex items-center justify-center h-320">
+        <div className="animate-pulse w-full max-w-5xl h-160 bg-gray-200 dark:bg-neutral-800 rounded-2xl" />
       </div>
     ),
   }

@@ -8,7 +8,7 @@ function HomePage() {
         <ContainerScroll
           titleComponent={
             <>
-              <h1 className="text-4xl font-normal text-black dark:text-white mb-8 xl:-mt-105">
+               <h1 className="text-4xl font-normal text-black dark:text-white mb-8">
                 Unleash the power of <br />
                 <span className="text-4xl md:text-[clamp(3rem,8vw,6rem)] font-normal -mt-4 leading-tight pb-2 inline-block">
                   Quantum
@@ -35,7 +35,7 @@ function HomePage() {
 
 function HeroSection() {
   return (
-    <section className="relative flex min-h-screen sm:min-h-[95vh] w-full flex-col items-center justify-center overflow-hidden pt-40 pb-16">
+    <section  className="relative flex min-h-screen sm:min-h-[95vh] w-full flex-col items-center justify-center overflow-hidden pt-40 pb-16">
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="relative aspect-video h-full w-full">
           <video

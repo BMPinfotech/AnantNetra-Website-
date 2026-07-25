@@ -1,5 +1,3 @@
-"use client";
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 export function AnimatedTestimonialsDemo() {
@@ -23,25 +21,16 @@ export function AnimatedTestimonialsDemo() {
   return (
     <div className="relative z-20 py-1 md:py-20 bg-white dark:bg-neutral-950 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center text-neutral-800 dark:text-neutral-100 mb-16 lg:-mt-20 xl:-mt-22"
-        >
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-neutral-800 dark:text-neutral-100 mb-16 animate-fade-in-up">
           What Others Say About Us
-        </motion.h2>
+        </h2>
 
         <div className="relative z-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <div
               key={testimonial.name}
-              initial={{ opacity: 0, x: index === 0 ? -50 : 50, y: 20 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="flex flex-col bg-slate-50 dark:bg-neutral-900/50 backdrop-blur-sm border border-slate-200 dark:border-neutral-800 p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
+              className={`flex flex-col bg-slate-50 dark:bg-neutral-900/50 backdrop-blur-sm border border-slate-200 dark:border-neutral-800 p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow ${index === 0 ? "animate-slide-in-left" : "animate-slide-in-right"}`}
+              style={{ animationDelay: `${index * 0.2}s`, animationFillMode: "both" }}
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative w-16 h-16 shrink-0 overflow-hidden rounded-full border-2 border-white dark:border-neutral-700 shadow-sm">
@@ -74,7 +63,7 @@ export function AnimatedTestimonialsDemo() {
                   "{testimonial.quote}"
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

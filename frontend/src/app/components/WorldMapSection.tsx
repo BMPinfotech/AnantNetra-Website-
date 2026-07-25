@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { ExternalLink, MapPin } from "lucide-react";
 
@@ -34,15 +33,13 @@ const locations = [
 ];
 
 const StatItem = React.memo(({ value, label, delay }: { value: string, label: string, delay: number }) => (
-    <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay }}
-        className="flex flex-col items-center group"
+    <div
+        className="flex flex-col items-center group animate-fade-in-up"
+        style={{ animationDelay: `${delay}s`, animationFillMode: "both" }}
     >
         <h3 className="text-5xl md:text-6xl font-bold text-black ark:text-white dark:bg-clip-text dark:text-white mb-3">{value}</h3>
         <p className="text-black dark:text-white text-sm md:text-base font-medium tracking-wide" dangerouslySetInnerHTML={{ __html: label }} />
-    </motion.div>
+    </div>
 ));
 StatItem.displayName = "StatItem";
 
@@ -51,28 +48,18 @@ const WorldMapSection = () => {
 
     return (
         <section id="world-map-section" className="w-full bg-white dark:bg-neutral-950 py-24 relative overflow-hidden flex flex-col items-center justify-center min-h-screen transition-colors duration-300">
-            <div className="max-w-350 mx-auto px-4 w-full relative z-20 flex flex-col items-center -mt-26 md:-mt-20 lg:-mt-16 xl:-mt-20">
+            <div className="max-w-350 mx-auto px-4 w-full relative z-20 flex flex-col items-center">
 
                 <div className="text-center mb-1 md:mb-5 w-full ">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight xl:-mt-6"
-                    >
+                    <h2 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight animate-fade-in-up">
                         Our Growing Footprint
-                    </motion.h2>
+                    </h2>
 
                 </div>
 
                 <div className="relative w-full flex flex-col items-center justify-center">
 
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
-                        className="relative w-full h-75 md:h-150 lg:h-175 flex items-center justify-center"
-                    >
+                    <div className="relative w-full h-75 md:h-150 lg:h-175 flex items-center justify-center animate-scale-in">
                         <ComposableMap
                             projectionConfig={{ scale: 220, center: [20, 0] }}
                             style={{ width: "100%", height: "100%" }}
@@ -135,7 +122,7 @@ const WorldMapSection = () => {
                                 </Marker>
                             ))}
                         </ComposableMap>
-                    </motion.div>
+                    </div>
 
 
                 </div>

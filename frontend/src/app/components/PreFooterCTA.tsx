@@ -1,19 +1,11 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 export default function PreFooterCTA() {
   return (
     <div className="w-full max-w-7xl mx-auto px-6 py-12 md:py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 to-slate-800 dark:from-neutral-900 dark:to-neutral-800 p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 border border-white/10 shadow-2xl"
-      >
+      <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 to-slate-800 dark:from-neutral-900 dark:to-neutral-800 p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 border border-white/10 shadow-2xl animate-fade-in-up">
         {/* Abstract Shapes in CTA for visual interest */}
         <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-pink-500/20 rounded-full blur-2xl" />
         <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl" />
@@ -49,7 +41,7 @@ export default function PreFooterCTA() {
             </Link>
           </Button>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

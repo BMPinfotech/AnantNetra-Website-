@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React from "react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,26 +17,9 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 function Footer() {
-  const container = useMemo(() => ({
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  }), []);
-
-  const item = useMemo(() => ({
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  }), []);
-
   return (
     <footer className="w-full bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden">
       {/* Dynamic Background Elements */}
@@ -47,16 +30,10 @@ function Footer() {
       <Separator className="bg-slate-200 dark:bg-white/5 opacity-50" />
 
       {/* Main Footer Grid */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8"
-      >
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 animate-fade-in-up">
 
         {/* Brand Column (Span 4) */}
-        <motion.div variants={item} className="lg:col-span-4 space-y-6">
+        <div className="lg:col-span-4 space-y-6">
           <Link href="/" className="inline-block group">
             <div className="flex items-center gap-2">
               <div className="relative w-10 h-10">
@@ -94,20 +71,20 @@ function Footer() {
             <SocialButton href="https://github.com" icon={<Github />} label="GitHub" />
             <SocialButton href="mailto:Services@anantnetra.com" icon={<Mail />} label="Email" />
           </div>
-        </motion.div>
+        </div>
 
         {/* Services Column (Span 2) */}
-        <motion.div variants={item} className="lg:col-span-2">
+        <div className="lg:col-span-2">
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Services</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/Services/IT-consult">IT Consultancy</FooterLink>
             <FooterLink href="/Services/Busniessconsult">Business Consultancy</FooterLink>
             <FooterLink href="/Services/Cyber-security">Cyber Security</FooterLink>
           </ul>
-        </motion.div>
+        </div>
 
         {/* Solutions Column (Span 2) */}
-        <motion.div variants={item} className="lg:col-span-2">
+        <div className="lg:col-span-2">
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Solutions</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/Services">Free Consultancy & Audit Call</FooterLink>
@@ -115,10 +92,10 @@ function Footer() {
             <FooterLink href="/incident-response" className="text-pink-500 font-medium">Incident Response</FooterLink>
             <FooterLink href="/Services">NetraSecure AI</FooterLink>
           </ul>
-        </motion.div>
+        </div>
 
         {/* Company Column (Span 2) */}
-        <motion.div variants={item} className="lg:col-span-2">
+        <div className="lg:col-span-2">
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Company</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <FooterLink href="/about-us">About Us</FooterLink>
@@ -152,10 +129,10 @@ function Footer() {
             </p>
           </div>
 
-        </motion.div>
+        </div>
 
         {/* Resources & Legal Badges Column (Span 2) */}
-        <motion.div variants={item} className="lg:col-span-2 flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-2 flex flex-col justify-between space-y-6">
           <div>
             <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Resources</h3>
             <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
@@ -165,7 +142,7 @@ function Footer() {
               <FooterLink href="/Services">Press Releases</FooterLink>
             </ul>
           </div>
-        </motion.div>
+        </div>
 
          {/* Small Divice */}
           <div className="lg:hidden mt-2 border-slate-200 dark:border-neutral-800/80 space-y-3">
@@ -192,7 +169,7 @@ function Footer() {
             </p>
           </div>
 
-      </motion.div>
+      </div>
 
       {/* Bottom Bar */}
       <div className="bg-slate-100 dark:bg-[#050505] py-6 border-t border-slate-200 dark:border-white/5">
