@@ -103,9 +103,9 @@ const Footer = dynamic(() => import("./components/Footer"), {
 export default function PageContent() {
   return (
     <>
+      <BentoGrids />
       <Features />
       <WorldMapSection />
-      <BentoGrids />
       <AnimatedTestimonialsDemo />
       <Contact />
       <PreFooterCTA />
