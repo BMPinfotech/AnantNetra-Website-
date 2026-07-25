@@ -42,11 +42,11 @@ export default function NetraSecureAIPage() {
       <FeaturesSection />
       <ProcessFlowSection />
       <ScreenshotsSection />
-      <VideoDemoSection />
+      {/* <VideoDemoSection /> */}
       <PrivacyEngineSection />
       <ComparisonSection />
       <AudienceSection />
-      <CtaDownloadSection />
+      {/* <CtaDownloadSection /> */}
       <FaqSection />
       <Footer />
     </main>

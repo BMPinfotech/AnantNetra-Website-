@@ -67,6 +67,11 @@ const PlatformMenu = memo(() => (
             <Link href="/netrasecure-ai">NetraSecure AI</Link>
           </NavigationMenuLink>
         </li>
+        {/* <li>
+          <NavigationMenuLink asChild>
+            <Link href="/netrasecure-ai">QUANTIQEN</Link>
+          </NavigationMenuLink>
+        </li> */}
       </ul>
     </NavigationMenuContent>
   </NavigationMenuItem>
@@ -177,7 +182,7 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           {openSection === "platform" && (
             <div className="pl-4 mt-2 ml-2 space-y-1">
               <Link className="block py-1" href="/" onClick={onClose}>AnantNetra</Link>
-              <Link className="block py-1" href="/Services" onClick={onClose}>NetraSecure AI</Link>
+              <Link className="block py-1" href="/netrasecure-ai" onClick={onClose}>NetraSecure AI</Link>
             </div>
           )}
         </li>
@@ -190,7 +195,7 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           {openSection === "company" && (
             <div className="pl-4 mt-2 ml-2 space-y-1">
               <Link className="block py-1" href="/about-us" onClick={onClose}>About Us</Link>
-              <Link href="/meet-the-team" className="block py-1" onClick={onClose}>Meet the Team</Link>
+              {/* <Link href="/meet-the-team" className="block py-1" onClick={onClose}>Meet the Team</Link> */}
               <Link href="/events" className="block py-1" onClick={onClose}>Events</Link>
             </div>
           )}
