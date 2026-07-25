@@ -1,4 +1,4 @@
-import { ElementType } from "react";
+import React, { ElementType } from "react";
 
 interface SectionHeaderProps {
   badgeText: string;
@@ -19,7 +19,7 @@ export default function SectionHeader({
     <div className={`mb-10 lg:mb-14 text-center max-w-2xl mx-auto ${className}`}>
       {/* Badge with Icon */}
       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-cyan-50 text-cyan-700 border border-cyan-200 dark:bg-[#00f2fe]/10 dark:text-[#00f2fe] dark:border-[#00f2fe]/20 mb-4 transition-colors">
-        {Icon && <Icon className="w-3.5 h-3.5" />}
+        {Icon && React.createElement(Icon, { className: "w-3.5 h-3.5" })}
         <span>{badgeText}</span>
       </span>
 
