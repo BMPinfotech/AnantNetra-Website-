@@ -67,11 +67,11 @@ const PlatformMenu = memo(() => (
             <Link href="/netrasecure-ai">NetraSecure AI</Link>
           </NavigationMenuLink>
         </li>
-        {/* <li>
+        <li>
           <NavigationMenuLink asChild>
-            <Link href="/netrasecure-ai">QUANTIQEN</Link>
+            <Link href="/quantiqen">QUANTIQEN</Link>
           </NavigationMenuLink>
-        </li> */}
+        </li>
       </ul>
     </NavigationMenuContent>
   </NavigationMenuItem>
@@ -183,6 +183,7 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
             <div className="pl-4 mt-2 ml-2 space-y-1">
               <Link className="block py-1" href="/" onClick={onClose}>AnantNetra</Link>
               <Link className="block py-1" href="/netrasecure-ai" onClick={onClose}>NetraSecure AI</Link>
+              <Link className="block py-1" href="/quantiqen" onClick={onClose}>QUANTIQEN</Link>
             </div>
           )}
         </li>
