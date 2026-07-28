@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, Link as LinkIcon, Users, ArrowRight } from "lucide-react";
 
@@ -44,10 +45,12 @@ export default function EventCard({
         >
             {/* Banner */}
             <div className="relative h-64 overflow-hidden">
-                <img
+                <Image
                     src={banner}
                     alt={title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute top-4 right-4">
                     <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${isOnline
@@ -98,15 +101,17 @@ export default function EventCard({
                             <Users className="w-3.5 h-3.5" /> Featured Speakers
                         </h4>
                         <div className="flex -space-x-3 overflow-hidden">
-                            {speakers.map((speaker, idx) => (
-                                <div key={idx} className="relative group/speaker" title={`${speaker.name} - ${speaker.designation}`}>
-                                    <img
-                                        className="inline-block h-10 w-10 rounded-full ring-4 ring-white dark:ring-zinc-900 object-cover"
-                                        src={speaker.photo}
-                                        alt={speaker.name}
-                                    />
-                                </div>
-                            ))}
+                                {speakers.map((speaker, idx) => (
+                                    <div key={idx} className="relative group/speaker" title={`${speaker.name} - ${speaker.designation}`}>
+                                        <Image
+                                            width={40}
+                                            height={40}
+                                            className="inline-block h-10 w-10 rounded-full ring-4 ring-white dark:ring-zinc-900 object-cover"
+                                            src={speaker.photo}
+                                            alt={speaker.name}
+                                        />
+                                    </div>
+                                ))}
                             {speakers.length > 3 && (
                                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-zinc-800 text-xs font-bold text-slate-600 dark:text-slate-400 ring-4 ring-white dark:ring-zinc-900">
                                     +{speakers.length - 3}

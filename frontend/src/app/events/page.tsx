@@ -8,7 +8,6 @@ import AgendaSection from "./AgendaSection";
 // import PastEventsGallery from "./PastEventsGallery";
 import Footer from "@/app/components/Footer";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight } from "lucide-react";
 
 const mockUpcomingEvents = [
     {
@@ -100,17 +99,7 @@ const mockUpcomingEvents = [
     }
 ];
 
-const mockPastPhotos = [
-    { url: "https://i.pinimg.com/1200x/54/3f/45/543f4540dea1f26058dc3213b59e8c77.jpg", caption: "Main Stage - TechConf 2025" },
-    { url: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=800&auto=format&fit=crop", caption: "Networking Hour - Mumbai Meetup" },
-    { url: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=800&auto=format&fit=crop", caption: "Workshop Session - Delhi HQ" },
-    { url: "https://i.pinimg.com/736x/d8/83/7c/d8837c48fd4dace523ad8fd96282ba0c.jpg", caption: "Panel Discussion - Bengaluru" },
-    { url: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop", caption: "Keynote Entry - Jaipur Summit" },
-    { url: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop", caption: "Future Tech Expo - 2025" },
-    { url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop", caption: "Developer Hackathon - 2024" },
-    { url: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=800&auto=format&fit=crop", caption: "Annual Leadership Meet" },
-    { url: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=800&auto=format&fit=crop", caption: "IT Strategy Round Table" }
-];
+
 
 export default function EventsPage() {
     const featuredEvent = mockUpcomingEvents[0];
@@ -149,7 +138,7 @@ export default function EventsPage() {
 
             {/* Detailed Featured Event Info (Dynamic based on first event) */}
             {/* <SpeakerSection speakers={featuredEvent.speakers} /> */}
-            <AgendaSection agenda={featuredEvent.agenda} />
+            <div className="content-visibility-auto"><AgendaSection agenda={featuredEvent.agenda} /></div>
 
             {/* Gallery Section */}
             {/* <PastEventsGallery photos={mockPastPhotos} /> */}
