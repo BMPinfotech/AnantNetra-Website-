@@ -57,7 +57,7 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle }: Regis
         if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
@@ -66,15 +66,26 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle }: Regis
         }
         setErrors({});
         setStatus("submitting");
-        console.log("Registration Data:", formData);
-        setTimeout(() => {
+
+        try {
+            const res = await fetch("/api/event-registration", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ ...formData, eventTitle }),
+            });
+
+            if (!res.ok) throw new Error("API request failed");
+
             setStatus("success");
             setTimeout(() => {
                 setStatus("idle");
                 setFormData({ fullName: "", email: "", company: "", linkedin: "", contactNumber: "", transactionId: "", idea: "" });
                 onClose();
             }, 2000);
-        }, 1500);
+        } catch (error) {
+            console.error("Registration failed:", error);
+            setStatus("idle");
+        }
     };
 
     const inputClass = "w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all dark:bg-zinc-800 dark:border-zinc-700 dark:focus:ring-indigo-500/20 dark:text-white";
