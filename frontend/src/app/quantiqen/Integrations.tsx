@@ -21,7 +21,7 @@ const integrations = [
   },
   {
     icon: Cloud,
-    title: "Cloud Posture",
+    title: "Cloud posture (AWS /GCP)",
     description: "AWS, GCP, Azure",
   },
   {
@@ -36,7 +36,7 @@ const integrations = [
   },
   {
     icon: ClipboardList,
-    title: "Ticketing Workflows",
+    title: " Ticketing (Jira / ServiceNow)",
     description: "Jira, ServiceNow, PagerDuty",
   },
 ];
