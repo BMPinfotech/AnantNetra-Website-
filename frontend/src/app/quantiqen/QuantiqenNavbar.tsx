@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useTheme } from "next-themes";
-import gsap from "gsap";
 import { Search, Sun, Moon, Menu, X, Shield } from "lucide-react";
 
 const NAV_LINKS = [
@@ -25,16 +24,24 @@ export default function QuantiqenNavbar() {
   }, []);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(navRef.current, {
-        y: -40,
-        opacity: 0,
-        duration: 0.6,
-        delay: 0.2,
-        ease: "power3.out",
+    let ctx: gsap.Context | null = null;
+
+    const initGsap = async () => {
+      const gsap = (await import("gsap")).default;
+      ctx = gsap.context(() => {
+        gsap.from(navRef.current, {
+          y: -40,
+          opacity: 0,
+          duration: 0.6,
+          delay: 0.2,
+          ease: "power3.out",
+        });
       });
-    });
-    return () => ctx.revert();
+    };
+
+    initGsap();
+
+    return () => ctx?.revert();
   }, []);
 
   useEffect(() => {

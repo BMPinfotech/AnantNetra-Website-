@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Activity,
   AlertTriangle,
@@ -13,8 +11,6 @@ import {
   Terminal,
   ArrowRight,
 } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const alerts = [
   { id: "CVE-2025-3184", icon: ShieldCheck },
@@ -32,58 +28,68 @@ export default function SignalIntakeEngine() {
   const alertsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "top 30%",
-          toggleActions: "play none none reverse",
-        },
-      });
+    let ctx: gsap.Context | null = null;
 
-      tl.fromTo(
-        leftRef.current,
-        { x: -40, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-      )
-        .fromTo(
-          centerRef.current,
-          { scale: 0.85, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" },
-          "-=0.3",
-        )
-        .fromTo(
-          rightRef.current,
-          { x: 40, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-          "-=0.3",
-        );
+    const initGsap = async () => {
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
 
-      const items = alertsRef.current?.children;
-      if (items) {
-        tl.fromTo(
-          items,
-          { x: -15, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.25,
-            stagger: 0.07,
-            ease: "power2.out",
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "top 30%",
+            toggleActions: "play none none reverse",
           },
-          "-=0.15",
-        );
-      }
-    });
+        });
 
-    return () => ctx.revert();
+        tl.fromTo(
+          leftRef.current,
+          { x: -40, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+        )
+          .fromTo(
+            centerRef.current,
+            { scale: 0.85, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" },
+            "-=0.3",
+          )
+          .fromTo(
+            rightRef.current,
+            { x: 40, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+            "-=0.3",
+          );
+
+        const items = alertsRef.current?.children;
+        if (items) {
+          tl.fromTo(
+            items,
+            { x: -15, opacity: 0 },
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.25,
+              stagger: 0.07,
+              ease: "power2.out",
+            },
+            "-=0.15",
+          );
+        }
+      }, sectionRef);
+    };
+
+    initGsap();
+
+    return () => ctx?.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-16 md:py-24 overflow-hidden"
+      className="relative w-full py-16 md:py-24 overflow-hidden content-visibility-auto"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,240,255,0.04)_0%,transparent_70%)]" />
 

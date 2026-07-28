@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, ShieldCheck } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function QuantiqenHero() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -15,49 +11,59 @@ export default function QuantiqenHero() {
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%",
-          end: "top 35%",
-          toggleActions: "play none none reverse",
-        },
-      });
+    let ctx: gsap.Context | null = null;
 
-      tl.fromTo(
-        badgeRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-      )
-        .fromTo(
-          headlineRef.current,
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" },
-          "-=0.3",
-        )
-        .fromTo(
-          subtitleRef.current,
+    const initGsap = async () => {
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            end: "top 35%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        tl.fromTo(
+          badgeRef.current,
           { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-          "-=0.3",
         )
-        .fromTo(
-          ctaRef.current,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-          "-=0.2",
-        );
-    });
+          .fromTo(
+            headlineRef.current,
+            { y: 40, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" },
+            "-=0.3",
+          )
+          .fromTo(
+            subtitleRef.current,
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+            "-=0.3",
+          )
+          .fromTo(
+            ctaRef.current,
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+            "-=0.2",
+          );
+      }, sectionRef);
+    };
 
-    return () => ctx.revert();
+    initGsap();
+
+    return () => ctx?.revert();
   }, []);
 
   return (
     <section
       id="quantiqen-hero"
       ref={sectionRef}
-      className="relative min-h-[calc(100vh-8rem)] flex items-center justify-center overflow-hidden px-4 py-20"
+      className="relative min-h-[calc(100vh-8rem)] flex items-center justify-center overflow-hidden px-4 py-20 content-visibility-auto"
     >
       {/* Background grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.03)_1px,transparent_1px)] bg-size-[60px_60px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />

@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Activity,
   Cloud,
@@ -10,8 +8,6 @@ import {
   Fingerprint,
   ClipboardList,
 } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const integrations = [
   {
@@ -47,47 +43,57 @@ export default function Integrations() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "top 30%",
-          toggleActions: "play none none reverse",
-        },
-      });
+    let ctx: gsap.Context | null = null;
 
-      tl.fromTo(
-        headerRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-      );
+    const initGsap = async () => {
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
 
-      const items = gridRef.current?.children;
-      if (items) {
-        tl.fromTo(
-          items,
-          { y: 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            stagger: 0.08,
-            ease: "power2.out",
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "top 30%",
+            toggleActions: "play none none reverse",
           },
-          "-=0.3",
-        );
-      }
-    });
+        });
 
-    return () => ctx.revert();
+        tl.fromTo(
+          headerRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        );
+
+        const items = gridRef.current?.children;
+        if (items) {
+          tl.fromTo(
+            items,
+            { y: 30, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.4,
+              stagger: 0.08,
+              ease: "power2.out",
+            },
+            "-=0.3",
+          );
+        }
+      }, sectionRef);
+    };
+
+    initGsap();
+
+    return () => ctx?.revert();
   }, []);
 
   return (
     <section
       id="integrations"
       ref={sectionRef}
-      className="relative w-full py-16 md:py-24 overflow-hidden"
+      className="relative w-full py-16 md:py-24 overflow-hidden content-visibility-auto"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,240,255,0.03)_0%,transparent_70%)]" />
 

@@ -1,21 +1,28 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
 
 export default function EmergencyAdvisory() {
   const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(barRef.current, {
-        y: -80,
-        opacity: 0,
-        duration: 0.7,
-        ease: "power3.out",
+    let ctx: gsap.Context | null = null;
+
+    const initGsap = async () => {
+      const gsap = (await import("gsap")).default;
+      ctx = gsap.context(() => {
+        gsap.from(barRef.current, {
+          y: -80,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power3.out",
+        });
       });
-    });
-    return () => ctx.revert();
+    };
+
+    initGsap();
+
+    return () => ctx?.revert();
   }, []);
 
   return (

@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Shield } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function QuantiqenFooter() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -13,35 +9,45 @@ export default function QuantiqenFooter() {
   const copyrightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%",
-          end: "top 40%",
-          toggleActions: "play none none reverse",
-        },
-      });
+    let ctx: gsap.Context | null = null;
 
-      tl.fromTo(
-        bannerRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" },
-      ).fromTo(
-        copyrightRef.current,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
-        "-=0.2",
-      );
-    });
+    const initGsap = async () => {
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
 
-    return () => ctx.revert();
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            end: "top 40%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        tl.fromTo(
+          bannerRef.current,
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" },
+        ).fromTo(
+          copyrightRef.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+          "-=0.2",
+        );
+      }, sectionRef);
+    };
+
+    initGsap();
+
+    return () => ctx?.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-16 md:py-24 overflow-hidden"
+      className="relative w-full py-16 md:py-24 overflow-hidden content-visibility-auto"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,240,255,0.05)_0%,transparent_70%)]" />
 
