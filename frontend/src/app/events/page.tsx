@@ -12,12 +12,12 @@ import { motion } from "framer-motion";
 const mockUpcomingEvents = [
     {
         id: 1,
-        title: "Global Cybersecurity Summit 2026",
-        description: "Join us for a deep dive into the next generation of digital defenses. Featuring keynotes from industry giants, hands-on workshops on AI-driven threat detection, and exclusive networking sessions. Learn how to safeguard your enterprise against emerging quantum-era threats.",
+        title: "Jaipur startup networking meetup",
+        description: "Connect with ambitious founders, entrepreneurs, and business owners to exchange ideas, build meaningful relationships, and grow together. Share your journey, gain valuable insights, and become part of Jaipur's thriving startup ecosystem.",
         banner: "/event/global_cybersecurity.webp",
         date: "Coming Soon",
         time: "To be Announced",
-        location: "Cyber City Convention Center, Building 5, Level 2, Hyderabad",
+        location: "Jaipur, rajasthan, India",
         isOnline: false,
         registrationLink: "https://anantnetra.com/register/cyber-summit-2026",
         speakers: [
