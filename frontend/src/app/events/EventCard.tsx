@@ -44,7 +44,7 @@ export default function EventCard({
             className="group bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-zinc-800 shadow-xl hover:shadow-2xl transition-all duration-300"
         >
             {/* Banner */}
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-70 overflow-hidden">
                 <Image
                     src={banner}
                     alt={title}

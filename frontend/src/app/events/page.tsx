@@ -14,7 +14,7 @@ const mockUpcomingEvents = [
         id: 1,
         title: "Global Cybersecurity Summit 2026",
         description: "Join us for a deep dive into the next generation of digital defenses. Featuring keynotes from industry giants, hands-on workshops on AI-driven threat detection, and exclusive networking sessions. Learn how to safeguard your enterprise against emerging quantum-era threats.",
-        banner: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+        banner: "/event/global_cybersecurity.webp",
         date: "Coming Soon",
         time: "To be Announced",
         location: "Cyber City Convention Center, Building 5, Level 2, Hyderabad",
