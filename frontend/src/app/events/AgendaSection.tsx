@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import { Clock, CheckCircle2 } from "lucide-react";
 
 interface AgendaItem {
-    time: string;
+    id: number;
     activity: string;
     description?: string;
+    topics?: string[]
 }
 
 interface AgendaSectionProps {
@@ -19,10 +20,13 @@ export default function AgendaSection({ agenda }: AgendaSectionProps) {
             <div className="container mx-auto px-4 max-w-4xl">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-                        Event <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600">Agenda</span>
+                        Event <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-purple-500 to-indigo-600">Agenda</span>
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400">
-                        A comprehensive schedule of sessions, workshops, and networking opportunities.
+                        Join an exclusive evening of meaningful conversations, founder networking, collaborative learning, and real-world
+                        business discussions. This event is designed to bring together entrepreneurs, startup founders, business owners, and
+                        innovators to share experiences, exchange ideas, and build valuable connections in a relaxed and engaging
+                        environment
                     </p>
                 </div>
 
@@ -43,14 +47,14 @@ export default function AgendaSection({ agenda }: AgendaSectionProps) {
                             {/* Content Card */}
                             <div className="w-full md:w-1/2 group">
                                 <div className="p-6 bg-slate-50 dark:bg-zinc-900/50 rounded-3xl border border-slate-100 dark:border-zinc-800 hover:border-indigo-500/50 transition-colors shadow-sm hover:shadow-lg dark:hover:shadow-indigo-500/5">
-                                    <div className="flex items-center gap-3 mb-3">
+                                    {/* <div className="flex items-center gap-3 mb-3">
                                         <span className="p-2 bg-indigo-500/10 rounded-xl">
                                             <Clock className="w-5 h-5 text-indigo-500" />
                                         </span>
                                         <span className="text-lg font-bold text-indigo-600 dark:text-indigo-400">
                                             {item.time}
                                         </span>
-                                    </div>
+                                    </div> */}
                                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-500 transition-colors">
                                         {item.activity}
                                     </h3>
@@ -59,6 +63,20 @@ export default function AgendaSection({ agenda }: AgendaSectionProps) {
                                             {item.description}
                                         </p>
                                     )}
+                                    {
+                                        item.topics && item.topics.length > 0 && (
+                                            <div className="flex flex-wrap gap-2 mt-4">
+                                                {item.topics.map((topic, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 border border-blue-100 dark:border-blue-800"
+                                                    >
+                                                        {topic}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
 

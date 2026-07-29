@@ -100,6 +100,62 @@ const mockUpcomingEvents = [
 ];
 
 
+const eventAgendaData = {
+    title: "Event Agenda",
+    subtitle: "A comprehensive schedule of sessions, workshops, and networking opportunities.",
+    description: "Join an exclusive evening of meaningful conversations, founder networking, collaborative learning, and real-world business discussions. This event is designed to bring together entrepreneurs, startup founders, business owners, and innovators to share experiences, exchange ideas, and build valuable connections in a relaxed and engaging environment.",
+    agenda: [
+        {
+            id: 1,
+            activity: "Registration & Welcome Networking",
+            description: "Arrive, collect your welcome kit, enjoy refreshments, and connect with fellow founders before the sessions begin."
+        },
+        {
+            id: 2,
+            activity: "Welcome Address & Community Introduction",
+            description: "An introduction to the Founder Circle initiative, the vision behind the community, and how collaborative founder networks can accelerate business growth."
+        },
+        {
+            id: 3,
+            activity: "Founder Introductions",
+            description: "Every participant will have the opportunity to introduce themselves, their company, what they are building, and the biggest challenge they are currently solving."
+        },
+        {
+            id: 4,
+            activity: "Founder Roundtable & Idea Discussions",
+            description: "An open and collaborative discussion where founders can share business ideas, products, current challenges, and growth strategies. Participants will exchange practical insights, market experiences, and constructive feedback while learning from one another.",
+            topics: [
+                "Current Market Trends",
+                "Building & Scaling Startups",
+                "AI & Technology Opportunities",
+                "Customer Acquisition & Marketing",
+                "Product Development",
+                "Founder Challenges",
+                "Business Growth Strategies",
+                "Networking & Collaboration"
+            ]
+        },
+        {
+            id: 5,
+            activity: "Community Idea Validation & Expert Insights",
+            description: "A collaborative session where founders receive valuable feedback from fellow entrepreneurs. Ideas are discussed openly, followed by practical suggestions, technical perspectives, and growth recommendations to help strengthen business direction."
+        },
+        {
+            id: 6,
+            activity: "Open Networking & Closing",
+            description: "Continue conversations over refreshments, exchange contacts, build new partnerships, and become part of a growing founder community committed to innovation and mutual growth."
+        }
+    ],
+    companyDetails: {
+        name: "AnantNetra Technologies",
+        tagline: "Beyond Technology. Towards Tomorrow.",
+        email: "operations@anantnetra.com",
+        website: "www.AnantNetra.com",
+        callToAction: "Schedule a call with us today to explore how AnantNetra Technologies can support your startup's and growth strategy."
+    }
+};
+
+
 
 export default function EventsPage() {
     const featuredEvent = mockUpcomingEvents[0];
@@ -120,12 +176,12 @@ export default function EventsPage() {
                 <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
                     <div>
                         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                            Upcoming <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600">Events</span>
+                            Upcoming <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-purple-500 to-indigo-600">Events</span>
                         </h2>
                         <p className="text-slate-600 dark:text-slate-400">Discover what's happening next at AnantNetra.</p>
                     </div>
                     <div className="flex gap-4">
-                        <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full" />
+                        <div className="h-1 w-24 bg-linear-to-r from-blue-600 to-indigo-600 rounded-full" />
                     </div>
                 </div>
 
@@ -138,7 +194,7 @@ export default function EventsPage() {
 
             {/* Detailed Featured Event Info (Dynamic based on first event) */}
             {/* <SpeakerSection speakers={featuredEvent.speakers} /> */}
-            <div className="content-visibility-auto"><AgendaSection agenda={featuredEvent.agenda} /></div>
+            <div className="content-visibility-auto"><AgendaSection agenda={eventAgendaData.agenda} /></div>
 
             {/* Gallery Section */}
             {/* <PastEventsGallery photos={mockPastPhotos} /> */}
