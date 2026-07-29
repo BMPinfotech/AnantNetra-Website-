@@ -196,7 +196,7 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle }: Regis
                                                     value={formData.company}
                                                     onChange={handleChange("company")}
                                                     className={getInputClass("company")}
-                                                    placeholder="Optional"
+                                                    placeholder="Company / Organization"
                                                 />
                                                 {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>}
                                             </div>
