@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
-import { X, Loader2 } from "lucide-react";
+import { X, Loader2, AlertCircle } from "lucide-react";
 
 interface RegistrationModalProps {
     isOpen: boolean;
@@ -23,7 +23,15 @@ interface FormData {
 type FormErrors = Partial<Record<keyof FormData, string>>;
 
 export default function RegistrationModal({ isOpen, onClose, eventTitle }: RegistrationModalProps) {
-    const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const [serverErrorMessage, setServerErrorMessage] = useState("");
+    const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    useEffect(() => {
+        return () => {
+            if (errorTimerRef.current) clearTimeout(errorTimerRef.current);
+        };
+    }, []);
     const [errors, setErrors] = useState<FormErrors>({});
     const [formData, setFormData] = useState<FormData>({
         fullName: "",
@@ -65,7 +73,10 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle }: Regis
             return;
         }
         setErrors({});
+        setServerErrorMessage("");
         setStatus("submitting");
+
+        if (errorTimerRef.current) clearTimeout(errorTimerRef.current);
 
         try {
             const res = await fetch("/api/event-registration", {
@@ -74,7 +85,13 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle }: Regis
                 body: JSON.stringify({ ...formData, eventTitle }),
             });
 
-            if (!res.ok) throw new Error("API request failed");
+            if (!res.ok) {
+                const data = await res.json();
+                setServerErrorMessage(data.error || data.message || "Something went wrong. Please try again or contact support.");
+                setStatus("error");
+                errorTimerRef.current = setTimeout(() => setStatus("idle"), 3500);
+                return;
+            }
 
             setStatus("success");
             setTimeout(() => {
@@ -84,7 +101,9 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle }: Regis
             }, 2000);
         } catch (error) {
             console.error("Registration failed:", error);
-            setStatus("idle");
+            setServerErrorMessage("Something went wrong. Please try again or contact support.");
+            setStatus("error");
+            errorTimerRef.current = setTimeout(() => setStatus("idle"), 3500);
         }
     };
 
@@ -230,6 +249,17 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle }: Regis
                                             {errors.idea && <p className="text-red-500 text-xs mt-1">{errors.idea}</p>}
                                         </div>
 
+                                        {serverErrorMessage && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: -8 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                className="flex items-start gap-3 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 text-sm"
+                                                role="alert"
+                                            >
+                                                <AlertCircle className="w-5 h-5 mt-0.5 shrink-0 text-red-500" />
+                                                <span>{serverErrorMessage}</span>
+                                            </motion.div>
+                                        )}
                                         <button
                                             type="submit"
                                             disabled={status === "submitting"}
