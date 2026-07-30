@@ -215,31 +215,42 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
                                                 {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>}
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">LinkedIn Profile</label>
-                                                <input
-                                                    type="url"
-                                                    value={formData.linkedin}
-                                                    onChange={handleChange("linkedin")}
-                                                    className={getInputClass("linkedin")}
-                                                    placeholder="https://linkedin.com/in/..."
-                                                />
-                                                {errors.linkedin && <p className="text-red-500 text-xs mt-1">{errors.linkedin}</p>}
-                                            </div>
-                                        </div>
-
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <div>
-                                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Contact Number</label>
-                                                <input
-                                                    type="tel"
-                                                    value={formData.contactNumber}
-                                                    onChange={handleChange("contactNumber")}
-                                                    className={getInputClass("contactNumber")}
-                                                    placeholder="+1 234 567 8900"
-                                                />
+                                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Contact Number</label>
+                                            <input
+                                                type="tel"
+                                                value={formData.contactNumber}
+                                                onChange={handleChange("contactNumber")}
+                                                className={getInputClass("contactNumber")}
+                                                placeholder="+1 234 567 8900"
+                                            />
                                                 {errors.contactNumber && <p className="text-red-500 text-xs mt-1">{errors.contactNumber}</p>}
+                                        </div> 
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">LinkedIn Profile</label>
+                                            <input
+                                            type="url"
+                                            value={formData.linkedin}
+                                            onChange={handleChange("linkedin")}
+                                            className={getInputClass("linkedin")}
+                                            placeholder="https://linkedin.com/in/..."
+                                            />
+                                            {errors.linkedin && <p className="text-red-500 text-xs mt-1">{errors.linkedin}</p>}
+                                        </div>
+                                        
+
+                                        <div className="flex flex-col sm:flex-row items-start gap-4">
+                                            <div className="w-full sm:w-auto shrink-0">
+                                                <Image 
+                                                    src="/event/qr_code.webp" 
+                                                    width={140} 
+                                                    height={140} 
+                                                    alt="QR Code for Payment"
+                                                    className="rounded-xl border border-slate-200 dark:border-zinc-700 w-full sm:w-35 h-auto"
+                                                />
+                                                <p className="text-xs text-center mt-1.5 text-slate-500 dark:text-slate-400 font-medium">Scan to Pay</p>
                                             </div>
-                                            <div>
+                                            <div className="flex-1 w-full">
                                                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Transaction ID</label>
                                                 <input
                                                     type="text"
