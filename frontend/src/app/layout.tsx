@@ -66,6 +66,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://ui-avatars.com" />
         <link rel="preload" as="video" href="/video_Three-1.WebM" type="video/webm" />
         <link rel="preload" as="video" href="/video_main.webm" type="video/webm" />
       </head>

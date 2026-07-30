@@ -1,6 +1,6 @@
 import React from "react";
+import Image from "next/image";
 import { Awards } from "./Awards";
-import { Cpu, Lightbulb, Rocket } from "lucide-react";
 
 export function ChooseUs() {
   // const achievements = [
@@ -76,10 +76,12 @@ export function ChooseUs() {
                   alt="AnantNetra Technologies Certificate"
                   className="w-full h-auto rounded-2xl"
                 /> */}
-                <img
+                <Image
                   src="/images/certificate.webp"
                   alt="AnantNetra Technologies Certificate"
-                  className="w-full  h-auto rounded-2xl"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-2xl"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent pointer-none" />
               </div>

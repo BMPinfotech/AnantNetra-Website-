@@ -8,17 +8,22 @@ import AgendaSection from "./AgendaSection";
 // import PastEventsGallery from "./PastEventsGallery";
 import Footer from "@/app/components/Footer";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight } from "lucide-react";
+
+interface ISelectedEventRegister {
+    title: string,
+    banner: string, 
+    description: string
+}
 
 const mockUpcomingEvents = [
     {
         id: 1,
-        title: "Global Cybersecurity Summit 2026",
-        description: "Join us for a deep dive into the next generation of digital defenses. Featuring keynotes from industry giants, hands-on workshops on AI-driven threat detection, and exclusive networking sessions. Learn how to safeguard your enterprise against emerging quantum-era threats.",
-        banner: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+        title: "Jaipur startup networking meetup",
+        description: "Connect with ambitious founders, entrepreneurs, and business owners to exchange ideas, build meaningful relationships, and grow together. Share your journey, gain valuable insights, and become part of Jaipur's thriving startup ecosystem.",
+        banner: "/event/global_cybersecurity.webp",
         date: "Coming Soon",
         time: "To be Announced",
-        location: "Cyber City Convention Center, Building 5, Level 2, Hyderabad",
+        location: "Jaipur, rajasthan, India",
         isOnline: false,
         registrationLink: "https://anantnetra.com/register/cyber-summit-2026",
         speakers: [
@@ -100,27 +105,85 @@ const mockUpcomingEvents = [
     }
 ];
 
-const mockPastPhotos = [
-    { url: "https://i.pinimg.com/1200x/54/3f/45/543f4540dea1f26058dc3213b59e8c77.jpg", caption: "Main Stage - TechConf 2025" },
-    { url: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=800&auto=format&fit=crop", caption: "Networking Hour - Mumbai Meetup" },
-    { url: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=800&auto=format&fit=crop", caption: "Workshop Session - Delhi HQ" },
-    { url: "https://i.pinimg.com/736x/d8/83/7c/d8837c48fd4dace523ad8fd96282ba0c.jpg", caption: "Panel Discussion - Bengaluru" },
-    { url: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop", caption: "Keynote Entry - Jaipur Summit" },
-    { url: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop", caption: "Future Tech Expo - 2025" },
-    { url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop", caption: "Developer Hackathon - 2024" },
-    { url: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=800&auto=format&fit=crop", caption: "Annual Leadership Meet" },
-    { url: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=800&auto=format&fit=crop", caption: "IT Strategy Round Table" }
-];
+
+const eventAgendaData = {
+    title: "Event Agenda",
+    subtitle: "A comprehensive schedule of sessions, workshops, and networking opportunities.",
+    description: "Join an exclusive evening of meaningful conversations, founder networking, collaborative learning, and real-world business discussions. This event is designed to bring together entrepreneurs, startup founders, business owners, and innovators to share experiences, exchange ideas, and build valuable connections in a relaxed and engaging environment.",
+    agenda: [
+        {
+            id: 1,
+            activity: "Registration & Welcome Networking",
+            description: "Arrive, collect your welcome kit, enjoy refreshments, and connect with fellow founders before the sessions begin."
+        },
+        {
+            id: 2,
+            activity: "Welcome Address & Community Introduction",
+            description: "An introduction to the Founder Circle initiative, the vision behind the community, and how collaborative founder networks can accelerate business growth."
+        },
+        {
+            id: 3,
+            activity: "Founder Introductions",
+            description: "Every participant will have the opportunity to introduce themselves, their company, what they are building, and the biggest challenge they are currently solving."
+        },
+        {
+            id: 4,
+            activity: "Founder Roundtable & Idea Discussions",
+            description: "An open and collaborative discussion where founders can share business ideas, products, current challenges, and growth strategies. Participants will exchange practical insights, market experiences, and constructive feedback while learning from one another.",
+            topics: [
+                "Current Market Trends",
+                "Building & Scaling Startups",
+                "AI & Technology Opportunities",
+                "Customer Acquisition & Marketing",
+                "Product Development",
+                "Founder Challenges",
+                "Business Growth Strategies",
+                "Networking & Collaboration"
+            ]
+        },
+        {
+            id: 5,
+            activity: "Community Idea Validation & Expert Insights",
+            description: "A collaborative session where founders receive valuable feedback from fellow entrepreneurs. Ideas are discussed openly, followed by practical suggestions, technical perspectives, and growth recommendations to help strengthen business direction."
+        },
+        {
+            id: 6,
+            activity: "Open Networking & Closing",
+            description: "Continue conversations over refreshments, exchange contacts, build new partnerships, and become part of a growing founder community committed to innovation and mutual growth."
+        }
+    ],
+    companyDetails: {
+        name: "AnantNetra Technologies",
+        tagline: "Beyond Technology. Towards Tomorrow.",
+        email: "operations@anantnetra.com",
+        website: "www.AnantNetra.com",
+        callToAction: "Schedule a call with us today to explore how AnantNetra Technologies can support your startup's and growth strategy."
+    }
+};
+
+
 
 export default function EventsPage() {
     const featuredEvent = mockUpcomingEvents[0];
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedEventTitle, setSelectedEventTitle] = useState("");
+    const [selectedEvent, setSelectedEvent] = useState({
+        title: "",
+        banner: "",
+        description: ""
+    });
 
-    const handleRegister = (title: string) => {
-        setSelectedEventTitle(title);
+    const handleRegister = ({title, banner, description}: ISelectedEventRegister) => {
+        // setSelectedEventTitle(title);
+        setSelectedEvent({
+            title,
+            banner,
+            description
+        })
         setIsModalOpen(true);
     };
+
+    console.log("Check Selected Event", selectedEvent)
 
     return (
         <main className="min-h-screen pt-20 bg-white dark:bg-black">
@@ -131,12 +194,12 @@ export default function EventsPage() {
                 <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
                     <div>
                         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                            Upcoming <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600">Events</span>
+                            Upcoming <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-purple-500 to-indigo-600">Events</span>
                         </h2>
                         <p className="text-slate-600 dark:text-slate-400">Discover what's happening next at AnantNetra.</p>
                     </div>
                     <div className="flex gap-4">
-                        <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full" />
+                        <div className="h-1 w-24 bg-linear-to-r from-blue-600 to-indigo-600 rounded-full" />
                     </div>
                 </div>
 
@@ -149,7 +212,7 @@ export default function EventsPage() {
 
             {/* Detailed Featured Event Info (Dynamic based on first event) */}
             {/* <SpeakerSection speakers={featuredEvent.speakers} /> */}
-            <AgendaSection agenda={featuredEvent.agenda} />
+            <div className="content-visibility-auto"><AgendaSection agenda={eventAgendaData.agenda} /></div>
 
             {/* Gallery Section */}
             {/* <PastEventsGallery photos={mockPastPhotos} /> */}
@@ -157,7 +220,8 @@ export default function EventsPage() {
             <RegistrationModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                eventTitle={selectedEventTitle}
+                // eventTitle={selectedEventTitle}
+                selectedEvent={selectedEvent}
             />
 
             <Footer />
