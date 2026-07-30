@@ -90,7 +90,7 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
             const res = await fetch("/api/event-registration", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...formData, eventTitle }),
+                body: JSON.stringify({ ...formData, eventTitle: selectedEvent.title }),
             });
 
             if (!res.ok) {
