@@ -315,12 +315,12 @@ function ClientNavbar() {
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="flex gap-4">
               <ServicesMenu />
-
-              {!scrolled && (
+              <CompanyMenu />
+              {/* {!scrolled && (
                 <>
                   <CompanyMenu />
                 </>
-              )}
+              )} */}
 
               <PlatformMenu />
               <ResourcesMenu />
