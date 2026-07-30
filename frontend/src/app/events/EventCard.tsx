@@ -20,7 +20,11 @@ interface EventCardProps {
     isOnline: boolean;
     registrationLink?: string;
     speakers: Speaker[];
-    onRegister?: (title: string) => void;
+    onRegister?: (event: {
+        title: string;
+        banner: string;
+        description: string;
+    }) => void;
 }
 
 export default function EventCard({
@@ -125,7 +129,7 @@ export default function EventCard({
                 {/* Footer Actions */}
                 <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-zinc-800">
                     <button
-                        onClick={() => onRegister?.(title)}
+                        onClick={() => onRegister?.({title, banner, description })}
                         className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:gap-3 transition-all duration-300"
                     >
                         Register Now <ArrowRight className="w-4 h-4" />

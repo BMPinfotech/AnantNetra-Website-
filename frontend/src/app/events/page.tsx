@@ -9,6 +9,12 @@ import AgendaSection from "./AgendaSection";
 import Footer from "@/app/components/Footer";
 import { motion } from "framer-motion";
 
+interface ISelectedEventRegister {
+    title: string,
+    banner: string, 
+    description: string
+}
+
 const mockUpcomingEvents = [
     {
         id: 1,
@@ -161,11 +167,23 @@ export default function EventsPage() {
     const featuredEvent = mockUpcomingEvents[0];
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedEventTitle, setSelectedEventTitle] = useState("");
+    const [selectedEvent, setSelectedEvent] = useState({
+        title: "",
+        banner: "",
+        description: ""
+    });
 
-    const handleRegister = (title: string) => {
-        setSelectedEventTitle(title);
+    const handleRegister = ({title, banner, description}: ISelectedEventRegister) => {
+        // setSelectedEventTitle(title);
+        setSelectedEvent({
+            title,
+            banner,
+            description
+        })
         setIsModalOpen(true);
     };
+
+    console.log("Check Selected Event", selectedEvent)
 
     return (
         <main className="min-h-screen pt-20 bg-white dark:bg-black">
@@ -202,7 +220,8 @@ export default function EventsPage() {
             <RegistrationModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                eventTitle={selectedEventTitle}
+                // eventTitle={selectedEventTitle}
+                selectedEvent={selectedEvent}
             />
 
             <Footer />

@@ -3,11 +3,19 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
 import { X, Loader2, AlertCircle } from "lucide-react";
+import Image from "next/image";
+
+interface EventData {
+  title: string;
+  banner: string;
+  description: string;
+}
 
 interface RegistrationModalProps {
     isOpen: boolean;
     onClose: () => void;
-    eventTitle: string;
+    eventTitle?: string;
+    selectedEvent: EventData
 }
 
 interface FormData {
@@ -22,7 +30,7 @@ interface FormData {
 
 type FormErrors = Partial<Record<keyof FormData, string>>;
 
-export default function RegistrationModal({ isOpen, onClose, eventTitle }: RegistrationModalProps) {
+export default function RegistrationModal({ isOpen, onClose, eventTitle, selectedEvent }: RegistrationModalProps) {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [serverErrorMessage, setServerErrorMessage] = useState("");
     const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -132,18 +140,24 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle }: Regis
                         <div className="relative h-150 overflow-y-auto rounded-3xl bg-white dark:bg-zinc-900 shadow-2xl border border-slate-200 dark:border-zinc-800">
                             <button
                                 onClick={onClose}
-                                className="absolute right-4 top-4 z-10 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
+                                className="absolute right-4 top-4 z-10 p-2 rounded-full text-white duration-300 bg-black hover:bg-slate-100 hover:text-black dark:text-white dark:hover:bg-zinc-800 transition-colors"
                             >
-                                <X className="w-5 h-5 text-white" />
+                                <X className="w-5 h-5 " />
                             </button>
 
                             <div className="bg-linear-to-r from-indigo-600 to-purple-600 p-6 text-center">
                                 <div className="inline-flex bg-white p-2 rounded-2xl mb-3">
-                                    <QRCodeSVG value={eventTitle} size={80} bgColor="#ffffff" fgColor="#000000" />
+                                    {/* <QRCodeSVG value={eventTitle} size={80} bgColor="#ffffff" fgColor="#000000" /> */}
+                                    <Image 
+                                    src={selectedEvent.banner}
+                                    width={500}
+                                    height={300}
+                                    alt={selectedEvent.title}
+                                    />
                                 </div>
-                                <h3 className="text-xl font-bold text-white">Register for Event</h3>
-                                <p className="text-indigo-200 text-sm mt-1">Global Cybersecurity Summit 2026</p>
-                                <p className="text-indigo-100 text-xs mt-2">Scan the QR code to complete your payment, then fill in the details below.</p>
+                                {/* <h3 className="text-xl font-bold text-white">Register for Event</h3> */}
+                                <p className="text-indigo-100 text-lg mt-1">{selectedEvent.title}</p>
+                                <p className="text-indigo-200 text-xs mt-2">{selectedEvent.description}</p>
                             </div>
 
                             <div className="p-6">
