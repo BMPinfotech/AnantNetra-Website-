@@ -71,11 +71,6 @@ export function ChooseUs() {
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-3xl mx-auto mb-16">
             <div className="w-full lg:w-1/2 group">
               <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white dark:bg-zinc-900 p-2">
-                {/* <img
-                  src="/images/Anantnetra-Technologies-Certificate.WebP"
-                  alt="AnantNetra Technologies Certificate"
-                  className="w-full h-auto rounded-2xl"
-                /> */}
                 <Image
                   src="/images/certificate.webp"
                   alt="AnantNetra Technologies Certificate"
@@ -86,32 +81,19 @@ export function ChooseUs() {
                 <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent pointer-none" />
               </div>
             </div>
-
-            <div className="w-full lg:w-1/2 text-center lg:text-left">
-              <span className="inline-block py-1 px-3 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-sm font-bold mb-4 border border-blue-100 dark:border-blue-800">
-                Official Recognition
-              </span>
-              <h4 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">
-                Certification of Appreciation
-              </h4>
-              <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                This certificate is awarded to <strong>AnantNetra Technologies</strong> by <strong>Indian Icon Awards</strong> in recognition of its ongoing contributions and untiring efforts in the field of technology.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                  <div className="w-1.5 h-1.5 rounded-full bg-teal-500" />
-                  <span className="text-sm font-medium">Innovation Excellence</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                  <span className="text-sm font-medium">Research-Driven Approach</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                  <span className="text-sm font-medium">Global Technology Standards</span>
-                </div>
+            <div className="w-full lg:w-1/2 group">
+              <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white dark:bg-zinc-900 p-2">
+                <Image
+                  src="/images/anantnetra_technologies_awards.webp"
+                  alt="AnantNetra Technologies Awards"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-2xl"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent pointer-none" />
               </div>
             </div>
+           
           </div>
 
           <div className="relative pt-10 border-t border-slate-100 dark:border-zinc-800/50">
