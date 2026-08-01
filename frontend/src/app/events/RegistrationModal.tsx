@@ -6,6 +6,7 @@ import { X, Loader2, AlertCircle } from "lucide-react";
 import Image from "next/image";
 
 interface EventData {
+  fee: string;
   title: string;
   banner: string;
   description: string;
@@ -34,6 +35,10 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [serverErrorMessage, setServerErrorMessage] = useState("");
     const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const upiId = "Parthvyas@slc";
+    const merchantName = "Anantnetra technologies private limited";
+
+    const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(merchantName)}&am=${selectedEvent.fee}&cu=INR`;
 
     useEffect(() => {
         return () => {
@@ -241,13 +246,14 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
 
                                         <div className="flex flex-col sm:flex-row items-start gap-4">
                                             <div className="w-full sm:w-auto shrink-0">
-                                                <Image 
-                                                    src="/event/qr_code.webp" 
+                                                 <QRCodeSVG value={upiUrl} size={150} bgColor="#ffffff" fgColor="#000000" />
+                                                {/* <Image 
+                                                    src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=upi://pay?pa=Parthvyas@slc&am=399&cu=INR" 
                                                     width={140} 
                                                     height={140} 
-                                                    alt="QR Code for Payment"
+                                                    alt="QR Code for Payment 399"
                                                     className="rounded-xl border border-slate-200 dark:border-zinc-700 w-full sm:w-35 h-auto"
-                                                />
+                                                /> */}
                                                 <p className="text-xs text-center mt-1.5 text-slate-500 dark:text-slate-400 font-medium">Scan to Pay</p>
                                             </div>
                                             <div className="flex-1 w-full">
