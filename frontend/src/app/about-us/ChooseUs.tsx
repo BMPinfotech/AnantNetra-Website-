@@ -84,8 +84,8 @@ export function ChooseUs() {
             <div className="w-full lg:w-1/2 group">
               <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white dark:bg-zinc-900 p-2">
                 <Image
-                  src="/images/Anantnetra-Technologies-Certificate.webp"
-                  alt="AnantNetra Technologies Certificate"
+                  src="/images/anantnetra_technologies_awards.webp"
+                  alt="AnantNetra Technologies Awards"
                   width={600}
                   height={400}
                   className="w-full h-auto rounded-2xl"
