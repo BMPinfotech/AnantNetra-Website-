@@ -41,6 +41,17 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
 
     const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(merchantName)}&am=${selectedEvent.fee}&cu=INR&tn=${encodeURIComponent(selectedEvent.title)}`;
 
+    const [paymentUrl, setPaymentUrl] = useState<string>(upiUrl);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        if (/Android/i.test(window.navigator.userAgent)) {
+            const fallback = encodeURIComponent(upiUrl);
+            const intentUrl = `intent://pay?pa=${upiId}&pn=${encodeURIComponent(merchantName)}&am=${selectedEvent.fee}&cu=INR&tn=${encodeURIComponent(selectedEvent.title)}#Intent;scheme=upi;action=android.intent.action.VIEW;category=android.intent.category.DEFAULT;launchFlags=0x10000000;S.browser_fallback_url=${fallback};end`;
+            setPaymentUrl(intentUrl);
+        }
+    }, [upiUrl, selectedEvent]);
+
     const handlePayNow = (e: React.MouseEvent<HTMLAnchorElement>) => {
         setShowUpiFallback(false);
         const timer = window.setTimeout(() => {
@@ -274,7 +285,7 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
                                                     </div>
                                                 <div>
                                                 <a
-                                                    href={upiUrl}
+                                                    href={paymentUrl}
                                                     onClick={handlePayNow}
                                                     className="w-full px-4 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition-colors hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 text-center"
                                                 >
