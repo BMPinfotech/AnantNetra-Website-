@@ -34,11 +34,24 @@ type FormErrors = Partial<Record<keyof FormData, string>>;
 export default function RegistrationModal({ isOpen, onClose, eventTitle, selectedEvent }: RegistrationModalProps) {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [serverErrorMessage, setServerErrorMessage] = useState("");
+    const [showUpiFallback, setShowUpiFallback] = useState(false);
     const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const upiId = "Parthvyas@slc";
     const merchantName = "Anantnetra technologies private limited";
 
-    const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(merchantName)}&am=${selectedEvent.fee}&cu=INR`;
+    const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(merchantName)}&am=${selectedEvent.fee}&cu=INR&tn=${encodeURIComponent(selectedEvent.title)}`;
+
+    const handlePayNow = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        setShowUpiFallback(false);
+        const timer = window.setTimeout(() => {
+            setShowUpiFallback(true);
+        }, 1200);
+        const onVisibility = () => {
+            document.removeEventListener("visibilitychange", onVisibility);
+            window.clearTimeout(timer);
+        };
+        document.addEventListener("visibilitychange", onVisibility);
+    };
 
     useEffect(() => {
         return () => {
@@ -152,7 +165,6 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
 
                             <div className="bg-linear-to-r from-indigo-600 to-purple-600 p-6 text-center">
                                 <div className="inline-flex bg-white p-2 rounded-2xl mb-3">
-                                    {/* <QRCodeSVG value={eventTitle} size={80} bgColor="#ffffff" fgColor="#000000" /> */}
                                     <Image 
                                     src={selectedEvent.banner}
                                     width={500}
@@ -160,7 +172,6 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
                                     alt={selectedEvent.title}
                                     />
                                 </div>
-                                {/* <h3 className="text-xl font-bold text-white">Register for Event</h3> */}
                                 <p className="text-indigo-100 text-lg mt-1">{selectedEvent.title}</p>
                                 <p className="text-indigo-200 text-xs mt-2">{selectedEvent.description}</p>
                             </div>
@@ -245,28 +256,37 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
                                         
 
                                         <div className="flex flex-col sm:flex-row items-start gap-4">
-                                            <div className="w-full sm:w-auto shrink-0">
+                                            <div className="w-full sm:w-auto shrink-0 ">
                                                  <QRCodeSVG value={upiUrl} size={150} bgColor="#ffffff" fgColor="#000000" />
-                                                {/* <Image 
-                                                    src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=upi://pay?pa=Parthvyas@slc&am=399&cu=INR" 
-                                                    width={140} 
-                                                    height={140} 
-                                                    alt="QR Code for Payment 399"
-                                                    className="rounded-xl border border-slate-200 dark:border-zinc-700 w-full sm:w-35 h-auto"
-                                                /> */}
-                                                <p className="text-xs text-center mt-1.5 text-slate-500 dark:text-slate-400 font-medium">Scan to Pay</p>
+                                                <p className="text-xs text-left lg:text-center mt-1.5 text-slate-500 dark:text-slate-400 font-medium">Scan to Pay</p>
                                             </div>
-                                            <div className="flex-1 w-full">
-                                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Transaction ID</label>
-                                                <input
-                                                    type="text"
-                                                    value={formData.transactionId}
-                                                    onChange={handleChange("transactionId")}
-                                                    className={getInputClass("transactionId")}
-                                                    placeholder="TXN123456789"
-                                                />
-                                                {errors.transactionId && <p className="text-red-500 text-xs mt-1">{errors.transactionId}</p>}
+                                            <div className="space-y-2 w-full">
+                                                <div className="flex-1 w-full">
+                                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Transaction ID</label>
+                                                    <input
+                                                        type="text"
+                                                        value={formData.transactionId}
+                                                        onChange={handleChange("transactionId")}
+                                                        className={getInputClass("transactionId")}
+                                                        placeholder="TXN123456789"
+                                                    />
+                                                    {errors.transactionId && <p className="text-red-500 text-xs mt-1">{errors.transactionId}</p>}
+                                                    </div>
+                                                <div>
+                                                <a
+                                                    href={upiUrl}
+                                                    onClick={handlePayNow}
+                                                    className="w-full px-4 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition-colors hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 text-center"
+                                                >
+                                                    Pay Now (₹{selectedEvent.fee})
+                                                </a>
+                                                {showUpiFallback && (
+                                                    <p className="text-xs text-center mt-1.5 text-amber-600 dark:text-amber-400 font-medium">
+                                                    No UPI app detected. Open your UPI app and scan the QR code to complete the payment.
+                                                    </p>
+                                                )}
                                             </div>
+                                        </div>
                                         </div>
 
                                         <div>

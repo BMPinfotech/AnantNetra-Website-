@@ -87,14 +87,14 @@ export default function EventCard({
       {isFeatured ? (
         <div className="flex flex-col lg:flex-row">
           {/* Banner */}
-          <div className="relative w-full lg:w-1/2 aspect-video min-h-75 bg-slate-900 overflow-hidden">
+          <div className="relative w-full lg:w-1/2 aspect-3/2 bg-slate-900 overflow-hidden">
             <Image
               src={banner}
               alt={title}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-contain transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full bg-center object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute top-4 left-4 z-10">
               {/* <span className="px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-amber-500 text-black shadow-md">
@@ -229,7 +229,7 @@ export default function EventCard({
                 alt={title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-contain transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute top-3 right-3 z-10">
                 <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
