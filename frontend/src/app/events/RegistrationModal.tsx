@@ -84,11 +84,9 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
     const isAndroid = typeof window !== "undefined" && /Android/i.test(window.navigator.userAgent);
 
     const buildPaymentUrl = (pkg?: string | null) => {
-        if (isAndroid && pkg) {
-            const fallback = encodeURIComponent(upiUrl);
-            return `intent://pay?pa=${upiId}&pn=${encodeURIComponent(merchantName)}&am=${selectedEvent.fee}&cu=INR&tn=${encodeURIComponent(selectedEvent.title)}#Intent;scheme=upi;package=${pkg};action=android.intent.action.VIEW;category=android.intent.category.DEFAULT;launchFlags=0x10000000;S.browser_fallback_url=${fallback};end`;
-        }
-        return upiUrl;
+        if (!isAndroid) return upiUrl;
+        const pkgPart = pkg ? `package=${pkg};` : "";
+        return `intent://pay?pa=${upiId}&pn=${encodeURIComponent(merchantName)}&am=${selectedEvent.fee}&cu=INR&tn=${encodeURIComponent(selectedEvent.title)}#Intent;scheme=upi;${pkgPart}action=android.intent.action.VIEW;category=android.intent.category.DEFAULT;launchFlags=0x10000000;S.browser_fallback_url=${encodeURIComponent(upiUrl)};end`;
     };
 
     const handlePayNow = (e: React.MouseEvent<HTMLAnchorElement>) => {
