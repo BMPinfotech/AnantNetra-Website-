@@ -90,11 +90,20 @@ export default function EventCard({
           <div className="relative w-full lg:w-1/2 aspect-3/2 bg-slate-900 overflow-hidden">
             <Image
               src={banner}
+              alt=""
+              aria-hidden
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-90"
+            />
+            <Image
+              src={banner}
               alt={title}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="w-full h-full bg-center object-cover transition-transform duration-500 group-hover:scale-105"
+              className="relative w-full h-full bg-center object-contain transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute top-4 left-4 z-10">
               {/* <span className="px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-amber-500 text-black shadow-md">
