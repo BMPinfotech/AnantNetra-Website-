@@ -114,7 +114,7 @@ const mockUpcomingEvents = [
     id: 1,
     title: "Jaipur startup networking meetup",
     description: "Connect with ambitious founders, entrepreneurs, and business owners to exchange ideas, build meaningful relationships, and grow together. Share your journey, gain valuable insights, and become part of Jaipur's thriving startup ecosystem.",
-    banner: "/event/jaipur_startup_networking.webp",
+    banner: "/event/jaipur.webp",
     date: "15 AUGUST 2026",
     day: "FRIDAY",
     fee: "399",

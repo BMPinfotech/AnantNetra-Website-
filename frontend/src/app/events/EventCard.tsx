@@ -87,37 +87,38 @@ export default function EventCard({
       {isFeatured ? (
         <div className="flex flex-col lg:flex-row">
           {/* Banner */}
-          <div className="relative w-full lg:w-1/2 aspect-3/2 bg-slate-900 overflow-hidden">
+        <div className="relative w-full lg:w-1/2  lg:aspect-none lg:min-h-full bg-slate-900 overflow-hidden">
+          <div className="block lg:hidden w-full h-auto">
             <Image
               src={banner}
-              alt=""
-              aria-hidden
-              fill
+              alt={title}
+              width={1246}
+              height={1065}
               priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-90"
+              className="w-full h-auto object-contain"
             />
+          </div>
+
+          <div className="hidden lg:block relative w-full min-h-full">
             <Image
               src={banner}
               alt={title}
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="relative w-full h-full bg-center object-contain transition-transform duration-500 group-hover:scale-105"
+              sizes="50vw"
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute top-4 left-4 z-10">
-              {/* <span className="px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-amber-500 text-black shadow-md">
-                🔥 Featured Event
-              </span> */}
-            </div>
-            <div className="absolute top-4 right-4 z-10">
-              <span className={`px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                isOnline ? "bg-green-500/90 text-white" : "bg-blue-600/90 text-white"
-              }`}>
-                {isOnline ? "Online" : "Offline"}
-              </span>
-            </div>
           </div>
+          {/* Badge */}
+          <div className="absolute top-4 right-4 z-10">
+            <span className={`px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+              isOnline ? "bg-green-500/90 text-white" : "bg-blue-600/90 text-white"
+            }`}>
+              {isOnline ? "Online" : "Offline"}
+            </span>
+          </div>
+
+        </div>
 
           {/* Details */}
           <div className="p-6 sm:p-8 lg:w-1/2 flex flex-col justify-between space-y-5">
