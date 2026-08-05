@@ -87,10 +87,10 @@ function Footer() {
         <div className="lg:col-span-2">
           <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Solutions</h3>
           <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-            <FooterLink href="/Services">Free Consultancy & Audit Call</FooterLink>
-            <FooterLink href="/Services">IT Audit / Product / Service</FooterLink>
+            <FooterLink href="/contact">Free Consultancy & Audit Call</FooterLink>
+            <FooterLink href="/Services/IT-consult">IT Audit / Product / Service</FooterLink>
             <FooterLink href="/incident-response" className="text-pink-500 font-medium">Incident Response</FooterLink>
-            <FooterLink href="/Services">NetraSecure AI</FooterLink>
+            <FooterLink href="/netrasecure-ai">NetraSecure AI</FooterLink>
           </ul>
         </div>
 
