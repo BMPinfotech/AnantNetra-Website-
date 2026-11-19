@@ -80,7 +80,7 @@ export const Card: React.FC<CardProps> = ({ rotate, scale, translate, children }
       }}
       className="box-border max-w-[85%] xl:max-w-5xl -mt-12 mx-auto h-auto xl:h-160 w-full border-4 border-white dark:border-[#6C6C6C] p-2 xl:p-2 bg-slate-100 dark:bg-[#222222] rounded-[30px] shadow-2xl"
     >
-      <div className="box-border w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 xl:rounded-2xl xl:p-4">
+      <div className="box-border w-full overflow-hidden rounded-2xl bg-brand-surface/70 xl:rounded-2xl xl:p-4">
         {children}
       </div>
     </motion.div>
