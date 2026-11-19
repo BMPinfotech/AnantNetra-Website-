@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-type SectionTone = "dark" | "light" | "transparent";
+type SectionTone = "dark" | "transparent";
 
 type SectionProps = {
   id?: string;
@@ -14,7 +14,6 @@ type SectionProps = {
 
 const toneClasses: Record<SectionTone, string> = {
   dark: "bg-brand-ink text-brand-text",
-  light: "bg-brand-light text-brand-body",
   transparent: "bg-transparent",
 };
 

@@ -17,11 +17,17 @@ export function ThemeToggle() {
     <Button
       variant="outline"
       size="icon"
-      className="fixed bottom-6 left-6 z-50 h-14 w-14 rounded-full border border-zinc-200 bg-white text-zinc-950 shadow-lg hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+      className="fixed bottom-6 left-6 z-50 h-14 w-14 rounded-full border border-line-dark bg-brand-surface/90 text-brand-text shadow-lg backdrop-blur-md transition-colors hover:border-brand-accent/40 hover:bg-brand-surface hover:text-brand-accent focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
       onClick={() => setTheme(currentTheme === "light" ? "dark" : "light")}
-      aria-label="Toggle theme"
+      aria-label={
+        currentTheme === "light" ? "Switch to dark mode" : "Switch to light mode"
+      }
     >
-      {currentTheme === "light" ? <SunIcon className="size-5" suppressHydrationWarning /> : <Moon className="size-5" suppressHydrationWarning />}
+      {currentTheme === "light" ? (
+        <SunIcon className="size-5" suppressHydrationWarning />
+      ) : (
+        <Moon className="size-5" suppressHydrationWarning />
+      )}
     </Button>
   );
 }

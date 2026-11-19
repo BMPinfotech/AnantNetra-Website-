@@ -6,8 +6,8 @@ const WorldMapSection = dynamic(
   () => import("./components/WorldMapSection"),
   {
     loading: () => (
-      <section className="w-full min-h-screen bg-white dark:bg-neutral-950 flex items-center justify-center">
-        <div className="animate-pulse w-full max-w-350 h-175 bg-gray-200 dark:bg-neutral-800 rounded-lg" />
+      <section className="w-full min-h-screen bg-brand-ink flex items-center justify-center">
+        <div className="animate-pulse w-full max-w-350 h-175 bg-white/5 rounded-lg" />
       </section>
     ),
   }
@@ -16,12 +16,12 @@ const WorldMapSection = dynamic(
 const Features = dynamic(() => import("./components/Feature"), {
   ssr: false,
   loading: () => (
-    <section className="w-full min-h-screen bg-white dark:bg-neutral-950 flex items-center justify-center">
+    <section className="w-full min-h-screen bg-brand-ink flex items-center justify-center">
       <div className="animate-pulse w-full max-w-7xl px-6">
-        <div className="h-12 w-96 mx-auto bg-gray-200 dark:bg-neutral-800 rounded mb-16" />
+        <div className="h-12 w-96 mx-auto bg-white/5 rounded mb-16" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="h-64 bg-gray-200 dark:bg-neutral-800 rounded-3xl" />
+            <div key={i} className="h-64 bg-white/5 rounded-3xl" />
           ))}
         </div>
       </div>
@@ -32,12 +32,12 @@ const Features = dynamic(() => import("./components/Feature"), {
 const BentoGrids = dynamic(() => import("./components/BentoGrid"), {
   ssr: false,
   loading: () => (
-    <section className="w-full py-4 bg-neutral-50 dark:bg-neutral-950">
+    <section className="w-full py-4 bg-brand-ink">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="animate-pulse h-12 w-96 mx-auto bg-gray-200 dark:bg-neutral-800 rounded mb-16" />
+        <div className="animate-pulse h-12 w-96 mx-auto bg-white/5 rounded mb-16" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="h-48 bg-gray-200 dark:bg-neutral-800 rounded-xl" />
+            <div key={i} className="h-48 bg-white/5 rounded-xl" />
           ))}
         </div>
       </div>
@@ -50,12 +50,12 @@ const AnimatedTestimonialsDemo = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full bg-white dark:bg-neutral-950 py-20 overflow-hidden">
+      <div className="w-full bg-brand-ink py-20 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="animate-pulse h-10 w-72 mx-auto bg-gray-200 dark:bg-neutral-800 rounded mb-16" />
+          <div className="animate-pulse h-10 w-72 mx-auto bg-white/5 rounded mb-16" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {Array.from({ length: 2 }).map((_, i) => (
-              <div key={i} className="h-48 bg-gray-200 dark:bg-neutral-800 rounded-3xl" />
+              <div key={i} className="h-48 bg-white/5 rounded-3xl" />
             ))}
           </div>
         </div>
@@ -69,8 +69,8 @@ const Contact = dynamic(() => import("./components/Contact"), {
   loading: () => (
     <div className="w-full max-w-8xl mx-auto px-6 lg:px-20 py-16">
       <div className="animate-pulse space-y-8 max-w-3xl mx-auto">
-        <div className="h-12 w-96 mx-auto bg-gray-200 dark:bg-neutral-800 rounded" />
-        <div className="h-96 bg-gray-200 dark:bg-neutral-800 rounded-2xl" />
+        <div className="h-12 w-96 mx-auto bg-white/5 rounded" />
+        <div className="h-96 bg-white/5 rounded-2xl" />
       </div>
     </div>
   ),
@@ -80,7 +80,7 @@ const PreFooterCTA = dynamic(() => import("./components/PreFooterCTA"), {
   ssr: false,
   loading: () => (
     <div className="w-full max-w-7xl mx-auto px-6 py-12 md:py-16">
-      <div className="animate-pulse h-40 bg-gray-200 dark:bg-neutral-800 rounded-3xl" />
+      <div className="animate-pulse h-40 bg-white/5 rounded-3xl" />
     </div>
   ),
 });
@@ -88,11 +88,11 @@ const PreFooterCTA = dynamic(() => import("./components/PreFooterCTA"), {
 const Footer = dynamic(() => import("./components/Footer"), {
   ssr: false,
   loading: () => (
-    <footer className="w-full bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800">
+    <footer className="w-full border-t border-line-dark bg-brand-ink">
       <div className="animate-pulse max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-48 bg-gray-200 dark:bg-neutral-800 rounded col-span-2" />
+            <div key={i} className="h-48 bg-white/5 rounded col-span-2" />
           ))}
         </div>
       </div>

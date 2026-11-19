@@ -28,9 +28,11 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const metadataTitle = `${site.name} — ${site.positioning}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "AnantNetra Technologies — AI, Cybersecurity & Product Engineering",
+  title: metadataTitle,
   description:
     "AnantNetra Technologies builds AI-powered products, cybersecurity solutions and scalable digital systems that help businesses solve complex challenges and operate with confidence.",
   applicationName: site.name,
@@ -44,7 +46,7 @@ export const metadata: Metadata = {
     canonical: site.url,
   },
   openGraph: {
-    title: "AnantNetra Technologies — AI, Cybersecurity & Product Engineering",
+    title: metadataTitle,
     description:
       "AnantNetra Technologies builds AI-powered products, cybersecurity solutions and scalable digital systems that help businesses solve complex challenges and operate with confidence.",
     url: site.url,
@@ -62,7 +64,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AnantNetra Technologies — AI, Cybersecurity & Product Engineering",
+    title: metadataTitle,
     description:
       "AnantNetra Technologies builds AI-powered products, cybersecurity solutions and scalable digital systems that help businesses solve complex challenges and operate with confidence.",
     images: ["/favicon.png"],

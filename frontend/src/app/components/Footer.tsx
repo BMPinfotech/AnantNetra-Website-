@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import {
+  BadgeCheck,
+  Landmark,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+} from "lucide-react";
 
 import { site } from "@/lib/site";
 
@@ -36,6 +44,9 @@ const linkGroups = [
   },
 ] as const;
 
+const linkClass =
+  "rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink";
+
 function FooterLink({
   href,
   label,
@@ -49,7 +60,7 @@ function FooterLink({
     <li>
       <Link
         href={href}
-        className="group inline-flex items-center gap-2 text-sm text-brand-muted transition-colors hover:text-brand-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+        className={`group inline-flex items-center gap-2 text-sm text-brand-muted ${linkClass} hover:text-brand-text`}
       >
         <span className="h-px w-0 bg-brand-accent transition-all duration-200 group-hover:w-3" />
         {label}
@@ -78,7 +89,7 @@ function SocialLink({
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line-dark bg-white/5 text-brand-muted transition-colors hover:border-brand-accent/40 hover:bg-brand-accent/10 hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line-dark bg-white/5 text-brand-muted transition-colors hover:border-brand-accent/40 hover:bg-brand-accent/10 hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
     >
       {children}
     </a>
@@ -96,7 +107,7 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <Link
               href="/"
-              className="inline-flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+              className="inline-flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
             >
               <Image
                 src="/lightLogo.svg"
@@ -106,11 +117,11 @@ export default function Footer() {
                 className="h-9 w-9 object-contain"
               />
               <span className="font-heading text-xl font-semibold tracking-tight">
-                AnantNetra
+                {site.shortName}
               </span>
             </Link>
 
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-brand-muted">
+            <p className="brand-prose mt-5 max-w-sm text-sm">
               {site.description}
             </p>
             <p className="mt-3 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-brand-accent">
@@ -120,14 +131,14 @@ export default function Footer() {
             <div className="mt-7 space-y-3 text-sm text-brand-muted">
               <a
                 href={`mailto:${site.email}`}
-                className="flex items-center gap-2.5 transition-colors hover:text-brand-text"
+                className={`flex items-center gap-2.5 rounded-sm hover:text-brand-text ${linkClass}`}
               >
                 <Mail className="h-4 w-4 shrink-0 text-brand-accent" />
                 {site.email}
               </a>
               <a
                 href={site.phoneHref}
-                className="flex items-center gap-2.5 transition-colors hover:text-brand-text"
+                className={`flex items-center gap-2.5 rounded-sm hover:text-brand-text ${linkClass}`}
               >
                 <Phone className="h-4 w-4 shrink-0 text-brand-accent" />
                 {site.phone}
@@ -152,8 +163,15 @@ export default function Footer() {
           </div>
 
           {linkGroups.map((group) => (
-            <div key={group.title} className="lg:col-span-2">
-              <h2 className="font-heading text-sm font-semibold text-brand-text">
+            <nav
+              key={group.title}
+              aria-labelledby={`footer-${group.title.toLowerCase()}`}
+              className="lg:col-span-2"
+            >
+              <h2
+                id={`footer-${group.title.toLowerCase()}`}
+                className="font-heading text-sm font-semibold text-brand-text"
+              >
                 {group.title}
               </h2>
               <ul className="mt-5 space-y-3">
@@ -166,30 +184,26 @@ export default function Footer() {
                   />
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
 
         <div className="mt-14 flex flex-col gap-6 border-t border-line-dark pt-8 md:flex-row md:items-end md:justify-between">
-          <div className="flex flex-wrap items-center gap-5">
-            <div className="rounded-lg bg-white px-3 py-2">
-              <Image
-                src="/startup_india.webp"
-                alt="Startup India"
-                width={96}
-                height={32}
-                className="h-7 w-auto object-contain"
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center gap-2 rounded-lg border border-line-dark bg-white/5 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-muted">
+              <BadgeCheck
+                className="h-3.5 w-3.5 text-brand-lavender"
+                aria-hidden="true"
               />
-            </div>
-            <div className="rounded-lg bg-white px-3 py-2">
-              <Image
-                src="/mca.webp"
-                alt="Ministry of Corporate Affairs"
-                width={96}
-                height={32}
-                className="h-7 w-auto object-contain"
+              Startup India
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-lg border border-line-dark bg-white/5 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-muted">
+              <Landmark
+                className="h-3.5 w-3.5 text-brand-lavender"
+                aria-hidden="true"
               />
-            </div>
+              MCA Registered
+            </span>
             <p className="font-mono text-[11px] text-brand-muted">
               <span className="font-semibold text-brand-text">CIN:</span>{" "}
               {site.cin}
@@ -199,13 +213,13 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-brand-muted">
             <Link
               href="/PrivacyPolicy"
-              className="transition-colors hover:text-brand-text"
+              className={`rounded-sm hover:text-brand-text ${linkClass}`}
             >
               Privacy Policy
             </Link>
             <Link
               href="/Terms"
-              className="transition-colors hover:text-brand-text"
+              className={`rounded-sm hover:text-brand-text ${linkClass}`}
             >
               Terms & Conditions
             </Link>
@@ -214,7 +228,7 @@ export default function Footer() {
 
         <div className="mt-8 border-t border-line-dark pt-6">
           <p className="text-center text-xs text-brand-muted md:text-left">
-            © 2026 ANANTNETRA TECHNOLOGIES PVT LTD. All rights reserved.
+            {site.copyright}
           </p>
         </div>
       </div>

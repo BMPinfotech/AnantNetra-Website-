@@ -22,7 +22,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative overflow-hidden border-b border-white/10 bg-brand-ink py-20 text-brand-text md:py-28",
+        "relative overflow-hidden border-b border-line-dark bg-brand-ink py-20 text-brand-text md:py-28",
         className,
       )}
     >
@@ -36,17 +36,15 @@ export function PageHero({
         )}
       >
         {eyebrow ? (
-          <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-accent">
+          <span className="brand-eyebrow mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-brand-accent">
             {eyebrow}
           </span>
         ) : null}
 
-        <h1 className="max-w-4xl font-heading text-4xl font-semibold leading-[1.08] tracking-tight md:text-5xl lg:text-6xl">
-          {title}
-        </h1>
+        <h1 className="brand-display max-w-4xl">{title}</h1>
 
         {description ? (
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-brand-muted md:text-lg">
+          <p className="brand-prose mt-5 max-w-prose text-base md:text-lg">
             {description}
           </p>
         ) : null}

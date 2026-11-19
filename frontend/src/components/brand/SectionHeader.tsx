@@ -7,7 +7,6 @@ type SectionHeaderProps = {
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
-  tone?: "light" | "dark";
   className?: string;
 };
 
@@ -16,7 +15,6 @@ export function SectionHeader({
   title,
   description,
   align = "center",
-  tone = "light",
   className,
 }: SectionHeaderProps) {
   return (
@@ -28,32 +26,15 @@ export function SectionHeader({
       )}
     >
       {eyebrow ? (
-        <span
-          className={cn(
-            "font-mono text-[11px] font-semibold uppercase tracking-[0.2em]",
-            tone === "dark" ? "text-brand-accent" : "text-brand-accent",
-          )}
-        >
-          {eyebrow}
-        </span>
+        <span className="brand-eyebrow text-brand-accent">{eyebrow}</span>
       ) : null}
 
-      <h2
-        className={cn(
-          "max-w-3xl font-heading text-3xl font-semibold leading-tight tracking-tight md:text-4xl lg:text-[2.75rem]",
-          tone === "dark" ? "text-brand-text" : "text-brand-ink",
-        )}
-      >
+      <h2 className="brand-heading max-w-3xl text-3xl leading-tight text-brand-text md:text-4xl lg:text-[2.75rem]">
         {title}
       </h2>
 
       {description ? (
-        <p
-          className={cn(
-            "max-w-2xl text-base leading-relaxed md:text-lg",
-            tone === "dark" ? "text-brand-muted" : "text-brand-body/75",
-          )}
-        >
+        <p className="brand-prose max-w-prose text-base md:text-lg">
           {description}
         </p>
       ) : null}

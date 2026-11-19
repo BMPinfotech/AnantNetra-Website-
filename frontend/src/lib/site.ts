@@ -11,6 +11,8 @@ export const site = {
   phone: "+91 87695 12003",
   phoneHref: "tel:+918769512003",
   location: "Jaipur, Rajasthan, India",
+  copyright:
+    "© 2026 ANANTNETRA TECHNOLOGIES PVT LTD. All rights reserved.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://anantnetra.com",
   social: {
     linkedin: "https://www.linkedin.com/company/anantnetra-technologies/",

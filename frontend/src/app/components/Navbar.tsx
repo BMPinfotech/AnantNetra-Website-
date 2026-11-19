@@ -11,243 +11,291 @@ import {
 } from "@/components/ui/navigation-menu";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/brand/ButtonLink";
+import { StatusPill } from "@/components/brand/StatusPill";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
+import { cn } from "@/lib/utils";
+import { site } from "@/lib/site";
+
+type NavItem = {
+  label: string;
+  href: string;
+  description?: string;
+  status?: "available" | "coming-soon";
+};
+
+const services: NavItem[] = [
+  {
+    label: "Cybersecurity",
+    href: "/Services/Cyber-security",
+    description: "Assessments, audits and practical security advisory.",
+  },
+  {
+    label: "Technology Consulting",
+    href: "/Services/IT-consult",
+    description: "Strategy, engineering and cloud architecture.",
+  },
+  {
+    label: "Business Consultancy",
+    href: "/Services/Busniessconsult",
+    description: "Operational clarity and sustainable growth.",
+  },
+];
+
+const products: NavItem[] = [
+  {
+    label: "QUANTIQEN",
+    href: "/quantiqen",
+    description: "Security Decision Infrastructure platform.",
+    status: "available",
+  },
+  {
+    label: "NetraSecure AI",
+    href: "/netrasecure-ai",
+    description: "AI-powered cybersecurity assistant.",
+    status: "coming-soon",
+  },
+];
+
+const company: NavItem[] = [
+  {
+    label: "About Us",
+    href: "/about-us",
+    description: "Who we are and what we are building.",
+  },
+  {
+    label: "Events",
+    href: "/events",
+    description: "Upcoming activities and company updates.",
+  },
+];
+
+const partners: NavItem[] = [
+  {
+    label: "Partner With Us",
+    href: "/contact",
+    description: "Explore partnership opportunities.",
+  },
+  {
+    label: "Request a Security Assessment",
+    href: "/Services/Cyber-security",
+    description: "Start a scoped security review.",
+  },
+  {
+    label: "Report a Security Concern",
+    href: "/incident-response",
+    description: "Share details with our team.",
+  },
+];
+
+const mobileSections = [
+  { id: "services", label: "Services", items: services },
+  { id: "products", label: "Products", items: products },
+  { id: "company", label: "Company", items: company },
+  { id: "partners", label: "Partners", items: partners },
+];
+
+function isActivePath(pathname: string, href: string) {
+  return href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
+}
+
+const statusLabel = {
+  available: "Available",
+  "coming-soon": "Coming Soon",
+} as const;
+
 // --- Memoized Desktop Sub-components ---
 
-const ServicesMenu = memo(() => (
-  <NavigationMenuItem>
-    <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-55 p-4 md:right-auto md:left-1 md:origin-top-right">
-      <ul className="space-y-2 text-sm">
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/Services/IT-consult" className="block p-2  rounded-md ">
-              <strong className="block font-medium">Technology Consulting</strong>
-              <span className="text-xs text-slate-500 dark:text-slate-400">Strategy, engineering & cloud architecture</span>
-            </Link>
-          </NavigationMenuLink>
-        </li>
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/Services/Busniessconsult" className="block p-2 rounded-md ">
-              <strong className="block font-medium">Business Consultancy</strong>
-              <span className="text-xs text-slate-500 dark:text-slate-400">Optimizing operations & growth</span>
-            </Link>
-          </NavigationMenuLink>
-        </li>
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/Services/Cyber-security" className="block p-2 rounded-md ">
-              <strong className="block font-medium">Cybersecurity</strong>
-              <span className="text-xs text-slate-500 dark:text-slate-400">Protecting your digital assets</span>
-            </Link>
-          </NavigationMenuLink>
-        </li>
-      </ul>
-    </NavigationMenuContent>
-  </NavigationMenuItem>
-));
-ServicesMenu.displayName = "ServicesMenu";
+const DesktopMenu = memo(function DesktopMenu({
+  label,
+  items,
+  pathname,
+  width = "w-64",
+}: {
+  label: string;
+  items: NavItem[];
+  pathname: string;
+  width?: string;
+}) {
+  const isActive = items.some((item) => isActivePath(pathname, item.href));
 
-const PlatformMenu = memo(() => (
-  <NavigationMenuItem>
-    <NavigationMenuTrigger>Platform</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-55 p-5">
-      <ul className="space-y-2 text-sm">
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/">AnantNetra</Link>
-          </NavigationMenuLink>
-        </li>
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/netrasecure-ai">NetraSecure AI</Link>
-          </NavigationMenuLink>
-        </li>
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/quantiqen">QUANTIQEN</Link>
-          </NavigationMenuLink>
-        </li>
-      </ul>
-    </NavigationMenuContent>
-  </NavigationMenuItem>
-));
-PlatformMenu.displayName = "PlatformMenu";
-
-const CompanyMenu = memo(() => (
-  <NavigationMenuItem>
-    <NavigationMenuTrigger>Company</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-55 p-5">
-      <ul className="space-y-2 text-sm">
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/about-us">About Us</Link>
-          </NavigationMenuLink>
-        </li>
-        {/* TODO: Now it hidden "Meet the Team" navigation. In feature it will shows */}
-        {/* <li>
-          <NavigationMenuLink asChild>
-            <Link href="/meet-the-team">Meet the Team</Link>
-          </NavigationMenuLink>
-        </li> */}
-        <li>
-          <NavigationMenuLink asChild>
-            <Link href="/events">Events</Link>
-          </NavigationMenuLink>
-        </li>
-      </ul>
-    </NavigationMenuContent>
-  </NavigationMenuItem>
-));
-CompanyMenu.displayName = "CompanyMenu";
-
-const ResourcesMenu = memo(() => (
-  <NavigationMenuItem>
-    <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-55 p-4">
-      <div className="grid grid-rows-5 gap-4 text-sm">
-        <NavigationMenuLink asChild><Link href="/quantiqen">QUANTIQEN</Link></NavigationMenuLink>
-        <NavigationMenuLink asChild><Link href="/netrasecure-ai">NetraSecure AI</Link></NavigationMenuLink>
-        <NavigationMenuLink asChild><Link href="/Services/Cyber-security">Cybersecurity</Link></NavigationMenuLink>
-        <NavigationMenuLink asChild><Link href="/Services/IT-consult">Technology Consulting</Link></NavigationMenuLink>
-        <NavigationMenuLink asChild><Link href="/events">Events</Link></NavigationMenuLink>
-      </div>
-    </NavigationMenuContent>
-  </NavigationMenuItem>
-));
-ResourcesMenu.displayName = "ResourcesMenu";
-
-const PartnersMenu = memo(() => (
-  <NavigationMenuItem>
-    <NavigationMenuTrigger>Partners</NavigationMenuTrigger>
-    <NavigationMenuContent className="w-auto min-w-47.5 p-4 md:right-0 md:left-auto md:origin-top-right">
-      <ul className="space-y-2 text-sm">
-        <li><NavigationMenuLink asChild><Link href="/contact">Partner With Us</Link></NavigationMenuLink></li>
-        <li><NavigationMenuLink asChild><Link href="/Services/Cyber-security">Request a Security Assessment</Link></NavigationMenuLink></li>
-        <li><NavigationMenuLink asChild><Link href="/incident-response">Report a Security Concern</Link></NavigationMenuLink></li>
-      </ul>
-    </NavigationMenuContent>
-  </NavigationMenuItem>
-));
-PartnersMenu.displayName = "PartnersMenu";
+  return (
+    <NavigationMenuItem>
+      <NavigationMenuTrigger
+        className={cn(isActive && "bg-white/5 text-brand-text")}
+      >
+        {label}
+      </NavigationMenuTrigger>
+      <NavigationMenuContent className={cn("p-2", width)}>
+        <ul className="space-y-1">
+          {items.map((item) => (
+            <li key={item.href}>
+              <NavigationMenuLink
+                asChild
+                className="rounded-lg p-2.5 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-accent"
+              >
+                <Link
+                  href={item.href}
+                  data-active={
+                    isActivePath(pathname, item.href) ? "true" : undefined
+                  }
+                  aria-current={
+                    isActivePath(pathname, item.href) ? "page" : undefined
+                  }
+                >
+                  <span className="block font-medium text-brand-text">
+                    {item.label}
+                  </span>
+                  {item.description ? (
+                    <span className="mt-0.5 block text-xs leading-relaxed text-brand-muted">
+                      {item.description}
+                    </span>
+                  ) : null}
+                  {item.status ? (
+                    <StatusPill status={item.status} className="mt-2">
+                      {statusLabel[item.status]}
+                    </StatusPill>
+                  ) : null}
+                </Link>
+              </NavigationMenuLink>
+            </li>
+          ))}
+        </ul>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  );
+});
 
 // --- Mobile Sub-menu logic ---
 
-const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const MobileMenu = memo(function MobileMenu({
+  isOpen,
+  pathname,
+  onClose,
+}: {
+  isOpen: boolean;
+  pathname: string;
+  onClose: () => void;
+}) {
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const toggleSection = useCallback((section: string) => {
     setOpenSection((prev) => (prev === section ? null : section));
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) setOpenSection(null);
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="xl:hidden bg-background border-t shadow-sm">
-      <ul className="flex flex-col p-4 space-y-3 text-sm">
-        <li>
-          <Link
-            href="/incident-response"
-            className="block w-full py-2 font-bold bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] to-[#5155fd]"
-            onClick={onClose}
-          >
-            Report an Incident
-          </Link>
-        </li>
+    <div
+      id="mobile-navigation"
+      className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line-dark bg-brand-ink xl:hidden"
+    >
+      <nav aria-label="Mobile" className="brand-container py-4">
+        <ul className="space-y-1 text-sm">
+          <li>
+            <Link
+              href="/incident-response"
+              className="flex items-center justify-between rounded-lg px-3 py-2.5 font-semibold text-brand-accent transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+              onClick={onClose}
+            >
+              Report an Incident
+            </Link>
+          </li>
 
-        {/* SERVICES */}
-        <li>
-          <button onClick={() => toggleSection("services")} className="flex justify-between items-center w-full py-2 font-medium">
-            Services <ChevronDown size={20} className={openSection === "services" ? "rotate-180 transition-transform" : "transition-transform"} />
-          </button>
-          {openSection === "services" && (
-            <div className="pl-4 mt-2 space-y-2">
-              <Link href="/Services/IT-consult" className="block py-1" onClick={onClose}>Technology Consulting</Link>
-              <Link href="/Services/Busniessconsult" className="block py-1" onClick={onClose}>Business Consultancy</Link>
-              <Link href="/Services/Cyber-security" className="block py-1" onClick={onClose}>Cybersecurity</Link>
-            </div>
-          )}
-        </li>
-      
+          {mobileSections.map((section) => {
+            const expanded = openSection === section.id;
+            const sectionActive = section.items.some((item) =>
+              isActivePath(pathname, item.href),
+            );
 
-        {/* PLATFORM */}
-        <li>
-          <button onClick={() => toggleSection("platform")} className="flex justify-between items-center w-full py-2 font-medium">
-            Platform <ChevronDown size={20} className={openSection === "platform" ? "rotate-180 transition-transform" : "transition-transform"} />
-          </button>
-          {openSection === "platform" && (
-            <div className="pl-4 mt-2 ml-2 space-y-1">
-              <Link className="block py-1" href="/" onClick={onClose}>AnantNetra</Link>
-              <Link className="block py-1" href="/netrasecure-ai" onClick={onClose}>NetraSecure AI</Link>
-              <Link className="block py-1" href="/quantiqen" onClick={onClose}>QUANTIQEN</Link>
-            </div>
-          )}
-        </li>
+            return (
+              <li key={section.id}>
+                <button
+                  type="button"
+                  onClick={() => toggleSection(section.id)}
+                  aria-expanded={expanded}
+                  aria-controls={`mobile-${section.id}`}
+                  className={cn(
+                    "flex w-full items-center justify-between rounded-lg px-3 py-2.5 font-medium text-brand-text transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent",
+                    sectionActive && "bg-white/5",
+                  )}
+                >
+                  {section.label}
+                  <ChevronDown
+                    size={18}
+                    aria-hidden="true"
+                    className={cn(
+                      "transition-transform duration-200",
+                      expanded && "rotate-180",
+                    )}
+                  />
+                </button>
 
-        {/* COMPANY */}
-        <li>
-          <button onClick={() => toggleSection("company")} className="flex justify-between items-center w-full py-2 font-medium">
-            Company <ChevronDown size={20} className={openSection === "company" ? "rotate-180 transition-transform" : "transition-transform"} />
-          </button>
-          {openSection === "company" && (
-            <div className="pl-4 mt-2 ml-2 space-y-1">
-              <Link className="block py-1" href="/about-us" onClick={onClose}>About Us</Link>
-              {/* <Link href="/meet-the-team" className="block py-1" onClick={onClose}>Meet the Team</Link> */}
-              <Link href="/events" className="block py-1" onClick={onClose}>Events</Link>
-            </div>
-          )}
-        </li>
+                {expanded ? (
+                  <ul
+                    id={`mobile-${section.id}`}
+                    className="mt-1 space-y-1 border-l border-line-dark pl-3"
+                  >
+                    {section.items.map((item) => (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          onClick={onClose}
+                          aria-current={
+                            isActivePath(pathname, item.href)
+                              ? "page"
+                              : undefined
+                          }
+                          className={cn(
+                            "flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-brand-muted transition-colors hover:bg-white/5 hover:text-brand-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent",
+                            isActivePath(pathname, item.href) &&
+                              "bg-white/5 text-brand-text",
+                          )}
+                        >
+                          <span>{item.label}</span>
+                          {item.status ? (
+                            <StatusPill status={item.status}>
+                              {statusLabel[item.status]}
+                            </StatusPill>
+                          ) : null}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </li>
+            );
+          })}
 
-        {/* RESOURCES */}
-        <li>
-          <button onClick={() => toggleSection("resources")} className="flex justify-between items-center w-full py-2 font-medium">
-            Resources <ChevronDown size={20} className={openSection === "resources" ? "rotate-180 transition-transform" : "transition-transform"} />
-          </button>
-          {openSection === "resources" && (
-            <div className="pl-4 mt-2 grid grid-cols-1 gap-1 ml-2">
-              <Link className="block py-1" href="/quantiqen" onClick={onClose}>QUANTIQEN</Link>
-              <Link className="block py-1" href="/netrasecure-ai" onClick={onClose}>NetraSecure AI</Link>
-              <Link className="block py-1" href="/Services/Cyber-security" onClick={onClose}>Cybersecurity</Link>
-              <Link className="block py-1" href="/Services/IT-consult" onClick={onClose}>Technology Consulting</Link>
-              <Link className="block py-1" href="/events" onClick={onClose}>Events</Link>
-            </div>
-          )}
-        </li>
+          <li>
+            <Link
+              href="/contact"
+              onClick={onClose}
+              className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-brand-text transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+            >
+              Contact Us
+            </Link>
+          </li>
 
-        {/* PARTNERS */}
-        <li>
-          <button onClick={() => toggleSection("partners")} className="flex justify-between items-center w-full py-2 font-medium">
-            Partners <ChevronDown size={20} className={openSection === "partners" ? "rotate-180 transition-transform" : "transition-transform"} />
-          </button>
-          {openSection === "partners" && (
-            <div className="pl-4 mt-2 ml-2 space-y-1">
-              <Link className="block py-1" href="/contact" onClick={onClose}>Partner With Us</Link>
-              <Link className="block py-1" href="/Services/Cyber-security" onClick={onClose}>Request a Security Assessment</Link>
-              <Link className="block py-1" href="/incident-response" onClick={onClose}>Report a Security Concern</Link>
-            </div>
-          )}
-        </li>
-
-        <li>
-          <Link href="/Services/Cyber-security" onClick={onClose} className="flex justify-between items-center w-full py-2 font-medium">
-            Threat Advisory
-          </Link>
-        </li>
-
-        <li>
-          <Link href="/contact" className="block w-full py-2 font-medium" onClick={onClose}>
-            Contact Us
-          </Link>
-        </li>
-      </ul>
+          <li className="pt-2">
+            <ButtonLink href="/contact" className="w-full" onClick={onClose}>
+              Talk to Us
+            </ButtonLink>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 });
-MobileMenu.displayName = "MobileMenu";
 
 function ClientNavbar() {
   const pathname = usePathname();
@@ -263,6 +311,27 @@ function ClientNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileOpen]);
+
   const handleMobileToggle = useCallback(() => {
     setMobileOpen((prev) => !prev);
   }, []);
@@ -271,18 +340,22 @@ function ClientNavbar() {
     setMobileOpen(false);
   }, []);
 
- const headerClass = useMemo(() => {
-  return `fixed top-0 left-0 right-0 z-50 overflow-visible
-    transition-[background-color,backdrop-filter,box-shadow,padding] duration-500
-    ${scrolled
-        ? "w-full bg-white dark:bg-black backdrop-blur-none shadow-white/5 shadow-lg py-1"
-        : "w-full bg-background  shadow-sm py-3"
-      }`;
-}, [scrolled]);
+  const headerClass = useMemo(() => {
+    return cn(
+      "fixed left-0 right-0 top-0 z-50 overflow-visible border-b transition-[background-color,backdrop-filter,padding,box-shadow] duration-300",
+      scrolled
+        ? "border-line-dark bg-brand-ink/90 py-1 shadow-lg shadow-black/20 backdrop-blur-md"
+        : "border-transparent bg-background/95 py-3",
+    );
+  }, [scrolled]);
 
   const topBarClass = useMemo(() => {
-    return `w-full max-w-7xl mx-auto hidden xl:flex justify-end items-center gap-4 px-6 py-2 text-sm font-bold tracking-wide transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden py-0" : "h-auto opacity-100"
-      }`;
+    return cn(
+      "mx-auto hidden w-full max-w-7xl items-center justify-end gap-5 px-6 text-xs font-semibold tracking-wide transition-all duration-300 xl:flex",
+      scrolled
+        ? "h-0 overflow-hidden py-0 opacity-0"
+        : "h-auto py-2 opacity-100",
+    );
   }, [scrolled]);
 
   if (pathname === "/incident-response") return null;
@@ -290,60 +363,110 @@ function ClientNavbar() {
   return (
     <header className={headerClass}>
       <div className={topBarClass}>
-        <Link href="/incident-response" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
+        <Link
+          href="/incident-response"
+          className="text-brand-accent transition-colors hover:text-brand-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+        >
           Report an Incident
         </Link>
-        <Link href="/Services/Cyber-security" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
+        <Link
+          href="/Services/Cyber-security"
+          className="text-brand-lavender transition-colors hover:text-brand-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+        >
           Threat Advisory
         </Link>
-        <Link href="/contact" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 animate-gradient-x hover:opacity-80 transition-opacity">
+        <Link
+          href="/contact"
+          className="text-brand-muted transition-colors hover:text-brand-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+        >
           Contact Us
         </Link>
       </div>
 
-      <nav className={`max-w-7xl mx-auto px-4 flex items-center justify-between transition-all duration-500 overflow-visible ${scrolled ? "py-2" : "py-1"}`}>
-        <div className="flex items-center gap-2">
-          <Image src="/darkLogo.svg" alt="AnantNetra Logo" width={50} height={50} className="dark:hidden" />
-          <Image src="/lightLogo.svg" alt="AnantNetra Logo" width={50} height={50} className="hidden dark:block" />
-          <Link href="/" className="text-xl font-semibold">
-            <span>AnantNetra</span>
-          </Link>
-        </div>
+      <nav
+        aria-label="Main"
+        className={cn(
+          "mx-auto flex max-w-7xl items-center justify-between gap-4 overflow-visible px-4 transition-all duration-300",
+          scrolled ? "py-2" : "py-1",
+        )}
+      >
+        <Link
+          href="/"
+          aria-label={`${site.name} home`}
+          className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+        >
+          <Image
+            src="/lightLogo.svg"
+            alt={`${site.name} logo`}
+            width={50}
+            height={50}
+            priority
+            className="h-11 w-11 object-contain"
+          />
+          <span className="font-heading text-xl font-semibold tracking-tight text-brand-text">
+            {site.shortName}
+          </span>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden xl:block">
           <NavigationMenu viewport={false}>
-            <NavigationMenuList className="flex gap-4">
-              <ServicesMenu />
-              <CompanyMenu />
-              {/* {!scrolled && (
-                <>
-                  <CompanyMenu />
-                </>
-              )} */}
-
-              <PlatformMenu />
-              <ResourcesMenu />
-
-              <PartnersMenu />
+            <NavigationMenuList className="flex items-center gap-1">
+              <DesktopMenu
+                label="Services"
+                items={services}
+                pathname={pathname}
+              />
+              <DesktopMenu
+                label="Products"
+                items={products}
+                pathname={pathname}
+                width="w-72"
+              />
+              <DesktopMenu label="Company" items={company} pathname={pathname} />
+              <DesktopMenu
+                label="Partners"
+                items={partners}
+                pathname={pathname}
+                width="w-72"
+              />
             </NavigationMenuList>
           </NavigationMenu>
         </div>
 
-        {/* Mobile Menu Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="xl:hidden"
-          onClick={handleMobileToggle}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </Button>
+        <div className="flex items-center gap-2">
+          <ButtonLink
+            href="/contact"
+            size="sm"
+            className="hidden xl:inline-flex"
+          >
+            Talk to Us
+          </ButtonLink>
+
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="text-brand-text hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-brand-accent xl:hidden"
+            onClick={handleMobileToggle}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+          >
+            {mobileOpen ? (
+              <X className="h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            )}
+          </Button>
+        </div>
       </nav>
 
-      {/* Mobile Menu Dropdown */}
-      <MobileMenu isOpen={mobileOpen} onClose={handleMobileClose} />
+      <MobileMenu
+        isOpen={mobileOpen}
+        pathname={pathname}
+        onClose={handleMobileClose}
+      />
     </header>
   );
 }

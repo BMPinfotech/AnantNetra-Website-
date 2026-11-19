@@ -10,14 +10,14 @@ type StatusPillProps = {
 
 const statusClasses = {
   available:
-    "border-emerald-500/25 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+    "border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
   "coming-soon":
-    "border-brand-lavender/35 bg-brand-lavender/15 text-brand-ink dark:text-brand-lavender",
-  neutral: "border-line-light bg-brand-ink/5 text-brand-body dark:border-line-dark dark:bg-white/5 dark:text-brand-muted",
+    "border-brand-lavender/35 bg-brand-lavender/15 text-brand-lavender",
+  neutral: "border-line-dark bg-white/5 text-brand-muted",
 } as const;
 
 const dotClasses = {
-  available: "bg-emerald-500",
+  available: "bg-emerald-400",
   "coming-soon": "bg-brand-lavender",
   neutral: "bg-brand-muted",
 } as const;
