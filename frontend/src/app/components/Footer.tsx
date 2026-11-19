@@ -188,8 +188,8 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col gap-6 border-t border-line-dark pt-8 md:flex-row md:items-end md:justify-between">
-          <div className="flex flex-wrap items-center gap-3">
+        <div className="mt-14 border-t border-line-dark pt-8">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-lg border border-line-dark bg-white/5 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-muted">
               <BadgeCheck
                 className="h-3.5 w-3.5 text-brand-lavender"
@@ -210,7 +210,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-brand-muted">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-brand-muted">
             <Link
               href="/PrivacyPolicy"
               className={`rounded-sm hover:text-brand-text ${linkClass}`}
@@ -227,7 +227,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-line-dark pt-6">
-          <p className="text-center text-xs text-brand-muted md:text-left">
+          <p className="text-center text-xs text-brand-muted">
             {site.copyright}
           </p>
         </div>

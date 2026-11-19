@@ -74,13 +74,13 @@ function HeroSection() {
         <div className="mt-18 flex flex-col sm:flex-row items-center justify-center gap-4 w-full animate-hero-fade-in-delay-2">
           <Link
             href="/contact"
-            className="flex w-full sm:w-56 items-center justify-center rounded-lg bg-brand-accent px-6 py-3.5 text-base md:text-lg font-semibold text-brand-ink shadow-lg shadow-brand-accent/20 transition-all duration-300 hover:scale-105 hover:bg-[#ff8d4d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
+            className="flex w-full sm:w-60 items-center justify-center rounded-lg bg-brand-accent px-6 py-3.5 text-sm md:text-base font-semibold text-brand-ink shadow-lg shadow-brand-accent/20 transition-all duration-300 hover:scale-105 hover:bg-[#ff8d4d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
           >
             Discuss a Project
           </Link>
           <a
             href="#products"
-            className="flex w-full sm:w-56 items-center justify-center rounded-lg border border-white/50 bg-white/10 backdrop-blur-sm px-6 py-3.5 text-base md:text-lg font-medium text-brand-text shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
+            className="flex w-full sm:w-60 items-center justify-center rounded-lg border border-white/50 bg-white/10 backdrop-blur-sm px-6 py-3.5 text-sm md:text-base font-medium text-brand-text shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
           >
             Explore Our Products
           </a>
