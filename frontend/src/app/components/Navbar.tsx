@@ -176,22 +176,16 @@ const DesktopMenu = memo(function DesktopMenu({
 const MobileMenu = memo(function MobileMenu({
   isOpen,
   pathname,
+  openSection,
+  onToggleSection,
   onClose,
 }: {
   isOpen: boolean;
   pathname: string;
+  openSection: string | null;
+  onToggleSection: (section: string) => void;
   onClose: () => void;
 }) {
-  const [openSection, setOpenSection] = useState<string | null>(null);
-
-  const toggleSection = useCallback((section: string) => {
-    setOpenSection((prev) => (prev === section ? null : section));
-  }, []);
-
-  useEffect(() => {
-    if (!isOpen) setOpenSection(null);
-  }, [isOpen]);
-
   if (!isOpen) return null;
 
   return (
@@ -221,7 +215,7 @@ const MobileMenu = memo(function MobileMenu({
               <li key={section.id}>
                 <button
                   type="button"
-                  onClick={() => toggleSection(section.id)}
+                  onClick={() => onToggleSection(section.id)}
                   aria-expanded={expanded}
                   aria-controls={`mobile-${section.id}`}
                   className={cn(
@@ -300,6 +294,7 @@ const MobileMenu = memo(function MobileMenu({
 function ClientNavbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -312,14 +307,13 @@ function ClientNavbar() {
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     if (!mobileOpen) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMobileOpen(false);
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        setOpenSection(null);
+      }
     };
 
     const previousOverflow = document.body.style.overflow;
@@ -334,10 +328,16 @@ function ClientNavbar() {
 
   const handleMobileToggle = useCallback(() => {
     setMobileOpen((prev) => !prev);
+    setOpenSection(null);
   }, []);
 
   const handleMobileClose = useCallback(() => {
     setMobileOpen(false);
+    setOpenSection(null);
+  }, []);
+
+  const handleToggleSection = useCallback((section: string) => {
+    setOpenSection((prev) => (prev === section ? null : section));
   }, []);
 
   const headerClass = useMemo(() => {
@@ -465,6 +465,8 @@ function ClientNavbar() {
       <MobileMenu
         isOpen={mobileOpen}
         pathname={pathname}
+        openSection={openSection}
+        onToggleSection={handleToggleSection}
         onClose={handleMobileClose}
       />
     </header>

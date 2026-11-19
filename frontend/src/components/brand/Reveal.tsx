@@ -18,15 +18,6 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
     const node = ref.current;
     if (!node) return;
 
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (reducedMotion) {
-      setVisible(true);
-      return;
-    }
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -46,7 +37,9 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
       ref={ref}
       className={cn(
         "transition-all duration-700 ease-out motion-reduce:transition-none",
-        visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
+        visible
+          ? "translate-y-0 opacity-100"
+          : "translate-y-4 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100",
         className,
       )}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}

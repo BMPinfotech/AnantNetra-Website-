@@ -51,7 +51,7 @@ export default function BentoGrids() {
               </CardHeader>
               <CardContent className="pt-0! pb-2! px-2">
                 <p className="text-neutral-600 dark:text-neutral-400 text-[15px] leading-relaxed">
-                  Our systems don't just process data; they think, adapt, and evolve. Powered by modular AI infrastructure, we provide a foundation that scales with your needs, ensuring your technology is always ahead of the curve.
+                  Our systems don&apos;t just process data; they think, adapt, and evolve. Powered by modular AI infrastructure, we provide a foundation that scales with your needs, ensuring your technology is always ahead of the curve.
                 </p>
               </CardContent>
             </Card>

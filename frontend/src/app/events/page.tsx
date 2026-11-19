@@ -319,7 +319,7 @@ export default function EventsPage() {
                         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
                             Upcoming <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-purple-500 to-indigo-600">Events</span>
                         </h2>
-                        <p className="text-slate-600 dark:text-slate-400">Discover what's happening next at AnantNetra.</p>
+                        <p className="text-slate-600 dark:text-slate-400">Discover what&apos;s happening next at AnantNetra.</p>
                     </div>
                     <div className="flex gap-4">
                         <div className="h-1 w-24 bg-linear-to-r from-blue-600 to-indigo-600 rounded-full" />
