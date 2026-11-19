@@ -21,7 +21,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Mail, Phone, Rocket } from "lucide-react";
+import { Mail, MapPin, Phone, Rocket } from "lucide-react";
+
+import { site } from "@/lib/site";
 
 const Contact = memo(() => {
   const [result, setResult] = useState<string>("");
@@ -92,19 +94,26 @@ const Contact = memo(() => {
           Our team is here to help you every step of the way.
         </p>
 
-        {/* <div className="space-y-4 mt-6">
-          <div className="flex items-center gap-3">
-            <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            <p className="text-gray-700 dark:text-gray-300">
-              Services@anantnetra.com
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <Phone className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            <p className="text-gray-700 dark:text-gray-300">+91 72299 84997</p>
-          </div>
-
-        </div> */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-gray-600 dark:text-gray-400">
+          <a
+            href={`mailto:${site.email}`}
+            className="inline-flex items-center gap-2 transition-colors hover:text-brand-accent"
+          >
+            <Mail className="h-4 w-4 text-brand-accent" />
+            {site.email}
+          </a>
+          <a
+            href={site.phoneHref}
+            className="inline-flex items-center gap-2 transition-colors hover:text-brand-accent"
+          >
+            <Phone className="h-4 w-4 text-brand-accent" />
+            {site.phone}
+          </a>
+          <span className="inline-flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-brand-accent" />
+            {site.location}
+          </span>
+        </div>
 
 
       </div>

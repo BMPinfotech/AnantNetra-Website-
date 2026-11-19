@@ -25,8 +25,8 @@ const ServicesMenu = memo(() => (
         <li>
           <NavigationMenuLink asChild>
             <Link href="/Services/IT-consult" className="block p-2  rounded-md ">
-              <strong className="block font-medium">IT Consultancy</strong>
-              <span className="text-xs text-slate-500 dark:text-slate-400">Strategic planning & tech roadmaps</span>
+              <strong className="block font-medium">Technology Consulting</strong>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Strategy, engineering & cloud architecture</span>
             </Link>
           </NavigationMenuLink>
         </li>
@@ -41,7 +41,7 @@ const ServicesMenu = memo(() => (
         <li>
           <NavigationMenuLink asChild>
             <Link href="/Services/Cyber-security" className="block p-2 rounded-md ">
-              <strong className="block font-medium">Cyber Security</strong>
+              <strong className="block font-medium">Cybersecurity</strong>
               <span className="text-xs text-slate-500 dark:text-slate-400">Protecting your digital assets</span>
             </Link>
           </NavigationMenuLink>
@@ -110,11 +110,11 @@ const ResourcesMenu = memo(() => (
     <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
     <NavigationMenuContent className="w-auto min-w-55 p-4">
       <div className="grid grid-rows-5 gap-4 text-sm">
-        <NavigationMenuLink asChild><Link href="/Services">Blog</Link></NavigationMenuLink>
-        <NavigationMenuLink asChild><Link href="/Services">Knowledge Base</Link></NavigationMenuLink>
-        <NavigationMenuLink asChild><Link href="/Services">Press Releases</Link></NavigationMenuLink>
-        <NavigationMenuLink asChild><Link href="/Services">Data Sheets</Link></NavigationMenuLink>
-        <NavigationMenuLink asChild><Link href="/Services">White Papers</Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/quantiqen">QUANTIQEN</Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/netrasecure-ai">NetraSecure AI</Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/Services/Cyber-security">Cybersecurity</Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/Services/IT-consult">Technology Consulting</Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/events">Events</Link></NavigationMenuLink>
       </div>
     </NavigationMenuContent>
   </NavigationMenuItem>
@@ -126,9 +126,9 @@ const PartnersMenu = memo(() => (
     <NavigationMenuTrigger>Partners</NavigationMenuTrigger>
     <NavigationMenuContent className="w-auto min-w-47.5 p-4 md:right-0 md:left-auto md:origin-top-right">
       <ul className="space-y-2 text-sm">
-        <li><NavigationMenuLink asChild><Link href="/Services">Apply for Fellowship</Link></NavigationMenuLink></li>
-        <li><NavigationMenuLink asChild><Link href="/Services">Apply for Accelerator</Link></NavigationMenuLink></li>
-        <li><NavigationMenuLink asChild><Link href="/Services">Apply as an Investor</Link></NavigationMenuLink></li>
+        <li><NavigationMenuLink asChild><Link href="/contact">Partner With Us</Link></NavigationMenuLink></li>
+        <li><NavigationMenuLink asChild><Link href="/Services/Cyber-security">Request a Security Assessment</Link></NavigationMenuLink></li>
+        <li><NavigationMenuLink asChild><Link href="/incident-response">Report a Security Concern</Link></NavigationMenuLink></li>
       </ul>
     </NavigationMenuContent>
   </NavigationMenuItem>
@@ -166,9 +166,9 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           </button>
           {openSection === "services" && (
             <div className="pl-4 mt-2 space-y-2">
-              <Link href="/Services/IT-consult" className="block py-1" onClick={onClose}>IT Consultancy</Link>
+              <Link href="/Services/IT-consult" className="block py-1" onClick={onClose}>Technology Consulting</Link>
               <Link href="/Services/Busniessconsult" className="block py-1" onClick={onClose}>Business Consultancy</Link>
-              <Link href="/Services/Cyber-security" className="block py-1" onClick={onClose}>Cyber Security</Link>
+              <Link href="/Services/Cyber-security" className="block py-1" onClick={onClose}>Cybersecurity</Link>
             </div>
           )}
         </li>
@@ -209,11 +209,11 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           </button>
           {openSection === "resources" && (
             <div className="pl-4 mt-2 grid grid-cols-1 gap-1 ml-2">
-              <Link className="block py-1" href="/Services" onClick={onClose}>Blog</Link>
-              <Link className="block py-1" href="/Services" onClick={onClose}>Knowledge Base</Link>
-              <Link className="block py-1" href="/Services" onClick={onClose}>Press Releases</Link>
-              <Link className="block py-1" href="/Services" onClick={onClose}>Data Sheets</Link>
-              <Link className="block py-1" href="/Services" onClick={onClose}>White Papers</Link>
+              <Link className="block py-1" href="/quantiqen" onClick={onClose}>QUANTIQEN</Link>
+              <Link className="block py-1" href="/netrasecure-ai" onClick={onClose}>NetraSecure AI</Link>
+              <Link className="block py-1" href="/Services/Cyber-security" onClick={onClose}>Cybersecurity</Link>
+              <Link className="block py-1" href="/Services/IT-consult" onClick={onClose}>Technology Consulting</Link>
+              <Link className="block py-1" href="/events" onClick={onClose}>Events</Link>
             </div>
           )}
         </li>
@@ -225,15 +225,15 @@ const MobileMenu = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           </button>
           {openSection === "partners" && (
             <div className="pl-4 mt-2 ml-2 space-y-1">
-              <Link className="block py-1" href="/Services" onClick={onClose}>Apply for Fellowship</Link>
-              <Link className="block py-1" href="/Services" onClick={onClose}>Apply for Accelerator</Link>
-              <Link className="block py-1" href="/Services" onClick={onClose}>Apply as an Investor</Link>
+              <Link className="block py-1" href="/contact" onClick={onClose}>Partner With Us</Link>
+              <Link className="block py-1" href="/Services/Cyber-security" onClick={onClose}>Request a Security Assessment</Link>
+              <Link className="block py-1" href="/incident-response" onClick={onClose}>Report a Security Concern</Link>
             </div>
           )}
         </li>
 
         <li>
-          <Link href="/Services" onClick={onClose} className="flex justify-between items-center w-full py-2 font-medium">
+          <Link href="/Services/Cyber-security" onClick={onClose} className="flex justify-between items-center w-full py-2 font-medium">
             Threat Advisory
           </Link>
         </li>
@@ -293,7 +293,7 @@ function ClientNavbar() {
         <Link href="/incident-response" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
           Report an Incident
         </Link>
-        <Link href="/Services" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
+        <Link href="/Services/Cyber-security" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 hover:opacity-80 transition-opacity">
           Threat Advisory
         </Link>
         <Link href="/contact" className="bg-clip-text text-transparent bg-linear-to-r from-[#fc4a82] via-purple-500 to-blue-600 animate-gradient-x hover:opacity-80 transition-opacity">
