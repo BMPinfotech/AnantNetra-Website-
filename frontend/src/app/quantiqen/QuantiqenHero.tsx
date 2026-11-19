@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function QuantiqenHero() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -65,65 +66,53 @@ export default function QuantiqenHero() {
       ref={sectionRef}
       className="relative min-h-[calc(100vh-8rem)] flex items-center justify-center overflow-hidden px-4 py-20 content-visibility-auto"
     >
-      {/* Background grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.03)_1px,transparent_1px)] bg-size-[60px_60px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-
-      {/* Center glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[36rem] h-[36rem] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Badge */}
         <div
           ref={badgeRef}
-          className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-slate-200 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-sm"
+          className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm"
         >
-          <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
           <span
-            className="text-[11px] font-semibold tracking-[0.15em] text-slate-700 dark:text-slate-300"
+            className="text-[11px] font-semibold tracking-[0.18em] text-slate-300 uppercase"
             style={{ fontFamily: "var(--font-jetbrains-mono, monospace)" }}
           >
-            THE SDI PLATFORM &mdash; SECURITY DECISION INTELLIGENCE, BUILT IN INDIA
+            Security Decision Infrastructure (SDI)
           </span>
         </div>
 
-        {/* Headline */}
         <h1
           ref={headlineRef}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-bold leading-[1.1] tracking-tight mb-6"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-bold leading-[1.1] tracking-tight mb-6 text-white"
         >
-          <span className="bg-linear-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent dark:from-white dark:via-cyan-300 dark:to-blue-400">
-            QUANTIQEN
-          </span>{" "}
-          <span className="text-slate-800 dark:text-slate-200">
-            runs on SDI &mdash; the core layer that turns alert noise into{" "}
-          </span>
-          <span className="text-cyan-400">one auditable decision.</span>
+          Turn Security Intelligence Into Decisions Your Organization Can Act On.
         </h1>
 
-        {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="text-lg sm:text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-         SDI is our deterministic risk-and-decision core: risk scoring,
-          business impact, and bounded AI explanation, merged into one
-          ayer your team can trust and your auditor can read. No black
-          box. No guesswork.
+          QUANTIQEN is a Security Decision Infrastructure platform designed to help organizations connect security signals with business context, evaluate security risks, understand business impact and make more informed next-step decisions.
         </p>
 
-        {/* CTAs */}
         <div
           ref={ctaRef}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <button className="px-6 py-3 text-sm font-bold rounded-lg bg-cyan-500 text-white hover:bg-cyan-400 hover:shadow-[0_0_30px_-5px_rgba(0,240,255,0.5)] active:scale-95 transition-all duration-300 cursor-pointer">
-            REQUEST ACCESS
-          </button>
-
-          <button className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-cyan-400 transition-colors duration-300 cursor-pointer">
-            See how BIS scoring works
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-          </button>
+          <Link
+            href="/contact"
+            className="px-6 py-3 text-sm font-bold rounded-lg bg-cyan-500 text-white hover:bg-cyan-400 hover:shadow-[0_0_30px_-5px_rgba(0,240,255,0.5)] active:scale-95 transition-all duration-300"
+          >
+            Request a Demo
+          </Link>
+          <a
+            href="#pricing"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg border border-white/10 text-slate-300 hover:border-cyan-400/50 hover:text-cyan-400 hover:bg-cyan-400/5 transition-all duration-300"
+          >
+            Explore Pricing
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </section>

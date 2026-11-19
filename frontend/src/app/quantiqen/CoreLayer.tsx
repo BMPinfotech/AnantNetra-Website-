@@ -23,10 +23,10 @@ const stages = [
     description:"Run it through the deterministic BIS formula. Same inputs, same score, every time — no model drift.",
   },
   {
-    number: "0N",
+    number: "04",
     title: "Decide",
     icon: Target,
-    description:"AI explains the score in plain language, bounded to what the engine already computed. It never re-scores.",
+    description: "AI explains the score in plain language, bounded to what the engine already computed. It never re-scores.",
   },
 ];
 
@@ -96,12 +96,15 @@ export default function CoreLayer() {
             className="text-xs font-semibold text-cyan-400 tracking-[0.2em] mb-4 block"
             style={{ fontFamily: "var(--font-jetbrains-mono, monospace)" }}
           >
-            SDI DETERMINISTIC CORE LAYER
+            HOW IT WORKS (CONCEPTUAL WORKFLOW)
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white max-w-3xl mx-auto leading-tight">
-            We Don&apos;t Just Detect Risks &mdash;{" "}
-            <span className="text-cyan-400">We Deliver Decisions</span>
+            From signals to decisions in{" "}
+            <span className="text-cyan-400">four clear stages</span>
           </h2>
+          <p className="mt-4 text-slate-400 max-w-2xl mx-auto text-base leading-relaxed">
+            This is a conceptual workflow showing how QUANTIQEN helps teams move from noisy inputs to clearer next steps.
+          </p>
         </div>
 
         <div

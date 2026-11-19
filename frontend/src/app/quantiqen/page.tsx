@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { JetBrains_Mono } from "next/font/google";
 import QuantiqenHero from "./QuantiqenHero";
+import ProblemAndSDI from "./ProblemAndSDI";
+import CapabilitiesAndWho from "./CapabilitiesAndWho";
+import PricingSection from "./PricingSection";
+import FaqSectionQ from "./FaqSectionQ";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -9,91 +13,77 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
-const SignalIntakeEngine = dynamic(
-  () => import("./SignalIntakeEngine"),
-  { loading: () => <div className="min-h-75" /> },
-);
+const SignalIntakeEngine = dynamic(() => import("./SignalIntakeEngine"), {
+  loading: () => <div className="min-h-[18rem]" />,
+});
 const CoreLayer = dynamic(() => import("./CoreLayer"), {
-  loading: () => <div className="min-h-75" />,
+  loading: () => <div className="min-h-[18rem]" />,
 });
 const BuiltDifferent = dynamic(() => import("./BuiltDifferent"), {
-  loading: () => <div className="min-h-75" />,
+  loading: () => <div className="min-h-[18rem]" />,
 });
 const IndiaMoat = dynamic(() => import("./IndiaMoat"), {
-  loading: () => <div className="min-h-75" />,
+  loading: () => <div className="min-h-[18rem]" />,
 });
 const Integrations = dynamic(() => import("./Integrations"), {
-  loading: () => <div className="min-h-50" />,
+  loading: () => <div className="min-h-[12rem]" />,
 });
 const QuantiqenFooter = dynamic(() => import("./QuantiqenFooter"), {
-  loading: () => <div className="min-h-50" />,
+  loading: () => <div className="min-h-[12rem]" />,
 });
-const Footer = dynamic(
-  () => import("../components/Footer"),
-  { loading: () => <div className="min-h-25" /> },
-);
+const Footer = dynamic(() => import("../components/Footer"), {
+  loading: () => <div className="min-h-[6rem]" />,
+});
 
 export const metadata: Metadata = {
-  title: "Quantiqen — SDI Security Decision Intelligence Platform | AnantNetra",
+  title: "QUANTIQEN — Security Decision Infrastructure | AnantNetra",
   description:
-    "Quantiqen runs on SDI — AnantNetra's deterministic risk-and-decision core. BIS scoring, business impact analysis, and bounded AI explanation in one auditable layer. Built in India.",
+    "QUANTIQEN helps organizations connect security signals with business context, evaluate risks, and make more informed security decisions. Security Decision Infrastructure by AnantNetra Technologies.",
   openGraph: {
-    title: "Quantiqen — SDI Security Decision Intelligence Platform | AnantNetra",
+    title: "QUANTIQEN — Security Decision Infrastructure | AnantNetra",
     description:
-      "Quantiqen runs on SDI — AnantNetra's deterministic risk-and-decision core. BIS scoring, business impact analysis, and bounded AI explanation in one auditable layer.",
+      "Turn security intelligence into decisions your organization can act on. QUANTIQEN is Security Decision Infrastructure by AnantNetra Technologies.",
     url: "https://anantnetra.com/quantiqen",
     siteName: "AnantNetra",
-    images: [
-      {
-        url: "/favicon.png",
-        width: 512,
-        height: 512,
-      },
-    ],
+    images: [{ url: "/favicon.png", width: 512, height: 512 }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Quantiqen — SDI Security Decision Intelligence Platform | AnantNetra",
+    title: "QUANTIQEN — Security Decision Infrastructure | AnantNetra",
     description:
-      "Deterministic risk scoring, business impact analysis, and bounded AI explanation in one auditable layer.",
+      "Security Decision Infrastructure to help teams prioritize and decide with confidence.",
     images: ["/favicon.png"],
   },
   alternates: {
     canonical: "https://anantnetra.com/quantiqen",
   },
   keywords: [
+    "QUANTIQEN",
+    "Security Decision Infrastructure",
     "SDI",
-    "Security Decision Intelligence",
-    "BIS scoring",
-    "Quantiqen",
+    "security risk scoring",
     "AnantNetra",
-    "cybersecurity platform",
-    "risk scoring",
-    "DPDP Act compliance",
-    "India cybersecurity",
+    "security API",
   ],
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function QuantiqenPage() {
   return (
-    <div className={`pt-14 ${jetbrainsMono.variable}`}>
+    <div className={`pt-14 ${jetbrainsMono.variable} bg-[#030712]`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: "Quantiqen",
+            name: "QUANTIQEN",
             applicationCategory: "SecurityApplication",
             operatingSystem: "Web",
             description:
-              "SDI platform that turns alert noise into auditable decisions using deterministic BIS scoring, business impact analysis, and bounded AI explanation.",
+              "Security Decision Infrastructure platform helping organizations connect security signals with business context and make informed decisions.",
             url: "https://anantnetra.com/quantiqen",
             author: {
               "@type": "Organization",
@@ -103,8 +93,13 @@ export default function QuantiqenPage() {
         }}
       />
       <QuantiqenHero />
-      <SignalIntakeEngine />
+      <ProblemAndSDI />
       <CoreLayer />
+      <CapabilitiesAndWho />
+      <PricingSection />
+      <FaqSectionQ />
+      {/* Existing sections (preserved) */}
+      <SignalIntakeEngine />
       <BuiltDifferent />
       <IndiaMoat />
       <Integrations />
