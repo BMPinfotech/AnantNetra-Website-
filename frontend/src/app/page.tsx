@@ -1,9 +1,6 @@
-import dynamic from "next/dynamic";
 import HomePage from "@/app/components/HomePage";
 
-const PageContent = dynamic(() => import("./page-content"), {
-  loading: () => <div className="min-h-screen" />,
-});
+import PageContent from "./page-content";
 
 export default function Page() {
   return (
@@ -13,4 +10,3 @@ export default function Page() {
     </main>
   );
 }
-
