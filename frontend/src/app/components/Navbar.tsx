@@ -115,7 +115,7 @@ const DesktopMenu = memo(function DesktopMenu({
   label,
   items,
   pathname,
-  width = "w-96",
+  width = "md:w-[420px]",
 }: {
   label: string;
   items: NavItem[];
@@ -416,25 +416,25 @@ function ClientNavbar() {
                 label="Services"
                 items={services}
                 pathname={pathname}
-                width="w-96"
+                width="md:w-[420px]"
               />
               <DesktopMenu
                 label="Products"
                 items={products}
                 pathname={pathname}
-                width="w-[28rem]"
+                width="md:w-[420px]"
               />
               <DesktopMenu
                 label="Company"
                 items={company}
                 pathname={pathname}
-                width="w-96"
+                width="md:w-[420px]"
               />
               <DesktopMenu
                 label="Partners"
                 items={partners}
                 pathname={pathname}
-                width="w-[28rem]"
+                width="md:w-[420px]"
               />
             </NavigationMenuList>
           </NavigationMenu>
