@@ -1,11 +1,22 @@
+import type { Metadata } from "next";
+
 import Contact from "@/app/components/Contact";
-import { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
+
 import Footer from "../components/Footer";
 
-export const metadata: Metadata = {
-  title: "Contact Us | AnantNetra",
-  description: "Have a question or a project idea? Get in touch with our team today.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Contact Us | AnantNetra Technologies",
+  description:
+    "Contact AnantNetra Technologies to discuss AI solutions, cybersecurity, product engineering, or technology consulting for your organization.",
+  path: "/contact",
+  keywords: [
+    "Contact AnantNetra Technologies",
+    "Technology Consulting",
+    "Cybersecurity Solutions",
+    "AI Product Development",
+  ],
+});
 
 export default function ContactPage() {
   return (

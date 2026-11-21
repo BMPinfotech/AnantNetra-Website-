@@ -74,12 +74,12 @@ const Contact = memo(() => {
     >
       {/* Left Section (same as before) */}
       <div className="w-full text-center space-y-6 max-w-7xl mx-auto">
-        <h2 className="font-heading text-4xl font-bold leading-tight text-brand-text md:text-5xl lg:text-6xl">
+        <h1 className="font-heading text-4xl font-bold leading-tight text-brand-text md:text-5xl lg:text-6xl">
           Let’s build something amazing together{" "}
           <span className="mr-2 inline-flex rounded-full border border-brand-accent/30 bg-brand-accent/10 p-2 text-brand-accent">
             <Rocket className="size-8" aria-hidden="true" />
           </span>
-        </h2>
+        </h1>
         <p className="brand-prose mx-auto mt-2 max-w-prose text-lg">
           Have a question, a project idea, or just want to say hello?
           Our team is here to help you every step of the way.
