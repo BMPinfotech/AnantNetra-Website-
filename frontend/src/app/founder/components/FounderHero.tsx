@@ -63,7 +63,7 @@ export function FounderHero() {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <ButtonLink href={founderProfile.ctas.primary.href} external>
                 {founderProfile.ctas.primary.label}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -72,20 +72,23 @@ export function FounderHero() {
               <ButtonLink href={founderProfile.ctas.secondary.href} variant="secondary">
                 {founderProfile.ctas.secondary.label}
               </ButtonLink>
+            </div>
 
-              <ButtonLink
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+              <a
                 href={founderProfile.linkedinUrl}
-                variant="ghost"
-                external
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-brand-muted transition-colors hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink rounded-md"
                 aria-label="Visit LinkedIn profile"
               >
                 <Linkedin className="h-4 w-4" aria-hidden="true" />
-                {founderProfile.ctas.linkedin.label}
-              </ButtonLink>
+                LinkedIn
+              </a>
 
               <a
                 href={`mailto:${founderProfile.email}`}
-                className="inline-flex items-center gap-2 text-sm font-medium text-brand-muted transition-colors hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink rounded-md px-1 py-1"
+                className="inline-flex items-center gap-2 text-sm font-medium text-brand-muted transition-colors hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink rounded-md"
                 aria-label={`Email ${founderProfile.email}`}
               >
                 <Mail className="h-4 w-4" aria-hidden="true" />
@@ -139,24 +142,7 @@ export function FounderHero() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 divide-x divide-white/10 border-t border-white/10 bg-brand-ink/40">
-                <div className="px-4 py-4 sm:px-5">
-                  <p className="font-mono text-[10px] font-semibold tracking-[0.14em] text-brand-muted uppercase">
-                    Organization
-                  </p>
-                  <p className="mt-2 text-sm font-medium text-brand-text">
-                    {founderProfile.organization}
-                  </p>
-                </div>
-                <div className="px-4 py-4 sm:px-5">
-                  <p className="font-mono text-[10px] font-semibold tracking-[0.14em] text-brand-muted uppercase">
-                    Primary Platform
-                  </p>
-                  <p className="mt-2 text-sm font-medium text-brand-text">
-                    {founderProfile.primaryPlatform}
-                  </p>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
