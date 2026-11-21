@@ -1,14 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BadgeCheck, Landmark, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import {
-  BadgeCheck,
-  Landmark,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter,
-} from "lucide-react";
+  SiFacebook,
+  SiInstagram,
+  SiMedium,
+  SiQuora,
+  SiReddit,
+  SiThreads,
+  SiX,
+  SiYoutube,
+} from "react-icons/si";
 
 import { site } from "@/lib/site";
 
@@ -149,12 +151,33 @@ export default function Footer() {
               </p>
             </div>
 
-            <div className="mt-7 flex items-center gap-2">
+            <div className="mt-7 flex flex-wrap items-center gap-2">
+              <SocialLink href={site.social.instagram} label="Instagram">
+                <SiInstagram className="h-4 w-4" />
+              </SocialLink>
               <SocialLink href={site.social.linkedin} label="LinkedIn">
                 <Linkedin className="h-4 w-4" />
               </SocialLink>
+              <SocialLink href={site.social.facebook} label="Facebook">
+                <SiFacebook className="h-4 w-4" />
+              </SocialLink>
               <SocialLink href={site.social.x} label="X (Twitter)">
-                <Twitter className="h-4 w-4" />
+                <SiX className="h-4 w-4" />
+              </SocialLink>
+              <SocialLink href={site.social.threads} label="Threads">
+                <SiThreads className="h-4 w-4" />
+              </SocialLink>
+              <SocialLink href={site.social.youtube} label="YouTube">
+                <SiYoutube className="h-4 w-4" />
+              </SocialLink>
+              <SocialLink href={site.social.quora} label="Quora">
+                <SiQuora className="h-4 w-4" />
+              </SocialLink>
+              <SocialLink href={site.social.medium} label="Medium">
+                <SiMedium className="h-4 w-4" />
+              </SocialLink>
+              <SocialLink href={site.social.reddit} label="Reddit">
+                <SiReddit className="h-4 w-4" />
               </SocialLink>
               <SocialLink href={`mailto:${site.email}`} label="Email">
                 <Mail className="h-4 w-4" />
