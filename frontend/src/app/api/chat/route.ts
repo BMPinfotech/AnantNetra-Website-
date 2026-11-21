@@ -1,14 +1,33 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
+
+import { flushQuantiqen, trackLog } from "@/lib/quantiqen/client";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export async function POST(req: Request) {
+  // Flush buffered telemetry after the response is sent (serverless-safe).
+  after(async () => {
+    await flushQuantiqen();
+  });
+
+  const startedAt = Date.now();
+
   try {
     const { message } = await req.json();
 
     if (!message) {
       console.error("No message provided");
+      await trackLog({
+        level: "warn",
+        message: "Chat request rejected: missing message",
+        attributes: {
+          route: "/api/chat",
+          stage: "validation",
+          status: 400,
+          durationMs: Date.now() - startedAt,
+        },
+      });
       return NextResponse.json({ error: "Message is required" }, { status: 400 });
     }
 
@@ -52,6 +71,16 @@ export async function POST(req: Request) {
     // Check for specific error types
     if (error.message?.includes("429") || error.status === 429) {
       console.warn("Quota exceeded.");
+      await trackLog({
+        level: "warn",
+        message: "Gemini quota exceeded",
+        attributes: {
+          route: "/api/chat",
+          stage: "quota",
+          status: 429,
+          durationMs: Date.now() - startedAt,
+        },
+      });
       return NextResponse.json(
         { reply: "I'm currently receiving too many requests. Please try again in a moment." },
         { status: 429 }
@@ -60,11 +89,32 @@ export async function POST(req: Request) {
 
     if (error.message?.includes("404") || error.status === 404) {
       console.error("Model not found or API version mismatch.");
+      await trackLog({
+        level: "error",
+        message: "Gemini model not found or API version mismatch",
+        attributes: {
+          route: "/api/chat",
+          stage: "model-config",
+          status: 404,
+          durationMs: Date.now() - startedAt,
+        },
+      });
       return NextResponse.json(
         { reply: "System configuration error. Please contact support." },
         { status: 404 }
       );
     }
+
+    await trackLog({
+      level: "error",
+      message: "Chat request failed",
+      attributes: {
+        route: "/api/chat",
+        stage: "generate",
+        status: 500,
+        durationMs: Date.now() - startedAt,
+      },
+    });
 
     return NextResponse.json({ error: "Failed to generate response" }, { status: 500 });
   }

@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback, useSyncExternalStore } from "react";
-import { useTheme } from "next-themes";
-import { Search, Sun, Moon, Menu, X, Shield } from "lucide-react";
+import { Search, Menu, X, Shield } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Overview", href: "#quantiqen-hero" },
@@ -15,7 +14,6 @@ const NAV_LINKS = [
 const emptySubscribe = () => () => {};
 
 export default function QuantiqenNavbar() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
   const mounted = useSyncExternalStore(
     emptySubscribe,
     () => true,
@@ -68,8 +66,6 @@ export default function QuantiqenNavbar() {
     return () => observers.forEach((o) => o.disconnect());
   }, [mounted]);
 
-  const currentTheme = theme === "system" ? resolvedTheme : theme;
-
   const scrollToSection = useCallback((href: string) => {
     const id = href.slice(1);
     const el = document.getElementById(id);
@@ -78,10 +74,6 @@ export default function QuantiqenNavbar() {
     }
     setMobileOpen(false);
   }, []);
-
-  const toggleTheme = useCallback(() => {
-    setTheme(currentTheme === "light" ? "dark" : "light");
-  }, [currentTheme, setTheme]);
 
   return (
     <div
@@ -116,20 +108,6 @@ export default function QuantiqenNavbar() {
         </nav>
 
         <div className="flex items-center gap-1 md:gap-2">
-          {mounted && (
-            <button
-              onClick={toggleTheme}
-              className="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-all duration-300 cursor-pointer"
-              aria-label="Toggle theme"
-            >
-              {currentTheme === "light" ? (
-                <Moon className="w-4 h-4" suppressHydrationWarning />
-              ) : (
-                <Sun className="w-4 h-4" suppressHydrationWarning />
-              )}
-            </button>
-          )}
-
           <button
             className="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-all duration-300 cursor-pointer"
             aria-label="Search"

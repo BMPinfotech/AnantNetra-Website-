@@ -7,7 +7,6 @@ import { site } from "@/lib/site";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import ClientNavbar from "./components/Navbar";
-import { ThemeToggle } from "./components/DynamicThemeToggle";
 import { Chatbot } from "./components/DynamicChatbot";
 
 const inter = Inter({
@@ -53,10 +52,10 @@ export const metadata: Metadata = {
     siteName: site.name,
     images: [
       {
-        url: "/favicon.png",
-        width: 512,
-        height: 512,
-        alt: site.name,
+        url: "/logo.WebP",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} logo`,
       },
     ],
     locale: "en_US",
@@ -67,7 +66,7 @@ export const metadata: Metadata = {
     title: metadataTitle,
     description:
       "AnantNetra Technologies builds AI-powered products, cybersecurity solutions and scalable digital systems that help businesses solve complex challenges and operate with confidence.",
-    images: ["/favicon.png"],
+    images: ["/logo.WebP"],
   },
   keywords: [
     "AnantNetra Technologies",
@@ -118,7 +117,6 @@ export default function RootLayout({
           </a>
 
           <ClientNavbar />
-          <ThemeToggle />
           <Chatbot />
 
           <main id="main-content">{children}</main>

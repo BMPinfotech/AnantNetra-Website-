@@ -1,11 +1,43 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+import { flushQuantiqen, trackLog } from "@/lib/quantiqen/client";
+
 export async function POST(req: Request) {
+  // Flush buffered telemetry after the response is sent (serverless-safe).
+  after(async () => {
+    await flushQuantiqen();
+  });
+
+  const startedAt = Date.now();
+
   try {
     const { fullName, email, company, linkedin, contactNumber, transactionId, idea, eventTitle } = await req.json();
 
-    if (!fullName || !email || !contactNumber || !transactionId || !idea) {
+    const missingFields = [
+      ["fullName", fullName],
+      ["email", email],
+      ["contactNumber", contactNumber],
+      ["transactionId", transactionId],
+      ["idea", idea],
+    ]
+      .filter(([, value]) => !value)
+      .map(([name]) => name as string);
+
+    if (missingFields.length > 0) {
+      await trackLog({
+        level: "warn",
+        message: "Event registration rejected: missing required fields",
+        attributes: {
+          route: "/api/event-registration",
+          stage: "validation",
+          status: 400,
+          missingCount: missingFields.length,
+          // Field names only — never the submitted values.
+          missingFields: missingFields.join(","),
+          durationMs: Date.now() - startedAt,
+        },
+      });
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -135,11 +167,30 @@ export async function POST(req: Request) {
       });
     } catch (userError) {
       console.error("Failed to send confirmation email to user:", userError);
+      await trackLog({
+        level: "error",
+        message: "Event registration: user confirmation email failed",
+        attributes: {
+          route: "/api/event-registration",
+          stage: "user-confirmation",
+          durationMs: Date.now() - startedAt,
+        },
+      });
     }
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error("Error sending registration email:", error);
+    await trackLog({
+      level: "error",
+      message: "Event registration: SMTP send failed",
+      attributes: {
+        route: "/api/event-registration",
+        stage: "smtp",
+        status: 500,
+        durationMs: Date.now() - startedAt,
+      },
+    });
     return NextResponse.json({ error: "Failed to send registration email" }, { status: 500 });
   }
 }
