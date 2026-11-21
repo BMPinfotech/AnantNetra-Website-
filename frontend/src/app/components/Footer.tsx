@@ -1,221 +1,237 @@
-"use client";
-
-import React from "react";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import {
-  Github,
-  Linkedin,
-  Twitter,
-  Mail,
-  ArrowRight,
-  Phone,
-  MapPin,
-  Facebook,
-  Instagram,
-  Smartphone,
-} from "lucide-react";
-import Link from "next/link";
-
 import Image from "next/image";
+import Link from "next/link";
+import {
+  BadgeCheck,
+  Landmark,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+} from "lucide-react";
 
-function Footer() {
-  return (
-    <footer className="w-full bg-slate-50 dark:bg-[#0a0a0a] border-t border-slate-200 dark:border-neutral-800 font-sans relative overflow-hidden">
-      {/* Dynamic Background Elements */}
-      {/* <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
-      <div className="absolute -top-20 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" /> */}
+import { site } from "@/lib/site";
 
-      <Separator className="bg-slate-200 dark:bg-white/5 opacity-50" />
+const linkGroups = [
+  {
+    title: "Company",
+    links: [
+      { label: "About Us", href: "/about-us" },
+      { label: "Contact Us", href: "/contact" },
+    ],
+  },
+  {
+    title: "Services",
+    links: [
+      { label: "Cybersecurity", href: "/Services/Cyber-security" },
+      { label: "Technology Consulting", href: "/Services/IT-consult" },
+      { label: "Incident Response", href: "/incident-response" },
+    ],
+  },
+  {
+    title: "Products",
+    links: [
+      { label: "QUANTIQEN", href: "/quantiqen" },
+      { label: "NetraSecure AI", href: "/netrasecure-ai", badge: "Coming Soon" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/PrivacyPolicy" },
+      { label: "Terms & Conditions", href: "/Terms" },
+    ],
+  },
+] as const;
 
-      {/* Main Footer Grid */}
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 animate-fade-in-up">
+const linkClass =
+  "rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink";
 
-        {/* Brand Column (Span 4) */}
-        <div className="lg:col-span-4 space-y-6">
-          <Link href="/" className="inline-block group">
-            <div className="flex items-center gap-2">
-              <div className="relative w-10 h-10">
-                <Image src="/darkLogo.svg" alt="AnantNetra" width={40} height={40} className="dark:hidden w-full h-full object-contain" />
-                <Image src="/lightLogo.svg" alt="AnantNetra" width={40} height={40} className="hidden dark:block w-full h-full object-contain" />
-              </div>
-              <h2 className="text-2xl font-bold max-w-5xl w-[95%] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm shadow-white/5 shadow-lg rounded-full py-1">
-                AnantNetra
-              </h2>
-            </div>
-          </Link>
-          <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-sm">
-            Beyond Technology. Towards Tomorrow.<br />
-            Designing intelligent, ethical, and secure digital solutions that empower enterprises, startups, and communities globally.
-          </p>
-
-          <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-purple-500" />
-              <span>Jaipur, Rajasthan, India</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-purple-500" />
-              <a href="mailto:contact@anantnetra.com" className="hover:text-purple-500 transition-colors">contact@anantnetra.com</a>
-            </div>
-            <div className="flex items-center gap-2 ">
-              <Smartphone className="w-5 h-5 text-purple-500" />
-              <span>+91 87695 12003</span>
-            </div>
-          </div>
-
-          <div className="flex gap-3">
-            <SocialButton href="https://www.linkedin.com/company/anantnetra-technologies/" icon={<Linkedin />} label="LinkedIn" />
-            <SocialButton href="https://x.com/anantnetratech" icon={<Twitter />} label="Twitter" />
-            <SocialButton href="https://github.com" icon={<Github />} label="GitHub" />
-            <SocialButton href="mailto:Services@anantnetra.com" icon={<Mail />} label="Email" />
-          </div>
-        </div>
-
-        {/* Services Column (Span 2) */}
-        <div className="lg:col-span-2">
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Services</h3>
-          <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-            <FooterLink href="/Services/IT-consult">IT Consultancy</FooterLink>
-            <FooterLink href="/Services/Busniessconsult">Business Consultancy</FooterLink>
-            <FooterLink href="/Services/Cyber-security">Cyber Security</FooterLink>
-          </ul>
-        </div>
-
-        {/* Solutions Column (Span 2) */}
-        <div className="lg:col-span-2">
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Solutions</h3>
-          <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-            <FooterLink href="/contact">Free Consultancy & Audit Call</FooterLink>
-            <FooterLink href="/Services/IT-consult">IT Audit / Product / Service</FooterLink>
-            <FooterLink href="/incident-response" className="text-pink-500 font-medium">Incident Response</FooterLink>
-            <FooterLink href="/netrasecure-ai">NetraSecure AI</FooterLink>
-          </ul>
-        </div>
-
-        {/* Company Column (Span 2) */}
-        <div className="lg:col-span-2">
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Company</h3>
-          <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-            <FooterLink href="/about-us">About Us</FooterLink>
-            <FooterLink href="/events">Events</FooterLink>
-            <FooterLink href="/contact">Contact Us</FooterLink>
-          </ul>
-
-          {/* Large Divice */}
-          <div className="hidden lg:block mt-20  border-slate-200 dark:border-neutral-800/80 space-y-3">
-            <div className="flex items-center gap-3">
-              <Image
-                width={100}
-                height={36}
-                src="/startup_india.webp"
-                alt="Startup India"
-                className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
-              />
-              <div className="bg-white">
-                <Image
-                  width={100}
-                  height={36}
-                  src="/mca.webp"
-                  alt="MCA Logo"
-                   className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
-              />
-              </div>
-              
-            </div>
-            <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
-              <span className="font-bold text-slate-700 dark:text-slate-300">CIN:</span> U62099RJ2026PTC112881
-            </p>
-          </div>
-
-        </div>
-
-        {/* Resources & Legal Badges Column (Span 2) */}
-        <div className="lg:col-span-2 flex flex-col justify-between space-y-6">
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-6 text-lg">Resources</h3>
-            <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-              <FooterLink href="/Services">Blog</FooterLink>
-              <FooterLink href="/Services">Knowledge Base</FooterLink>
-              <FooterLink href="/Services">White Papers</FooterLink>
-              <FooterLink href="/Services">Press Releases</FooterLink>
-            </ul>
-          </div>
-        </div>
-
-         {/* Small Divice */}
-          <div className="lg:hidden mt-2 border-slate-200 dark:border-neutral-800/80 space-y-3">
-            <div className="flex items-center gap-3">
-              <Image
-                width={100}
-                height={36}
-                src="/startup_india.webp"
-                alt="Startup India"
-                className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
-              />
-              <div className="bg-white">
-                <Image
-                  width={100}
-                  height={36}
-                  src="/mca.webp"
-                  alt="MCA Logo"
-                   className="h-9 w-auto object-contain filter grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100"
-                />
-              </div>
-            </div>
-            <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
-              <span className="font-bold text-slate-700 dark:text-slate-300">CIN:</span> U62099RJ2026PTC112881
-            </p>
-          </div>
-
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="bg-slate-100 dark:bg-[#050505] py-6 border-t border-slate-200 dark:border-white/5">
-        <div className="max-w-8xl mx-auto px-6 flex flex-col items-center justify-center gap-4 text-xs text-slate-500 dark:text-slate-500">
-          <p className="text-center">© 2026 AnantNetra Technologies. All Rights Reserved.</p>
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href="/PrivacyPolicy" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/Terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="/#world-map-section" className="hover:text-slate-900 dark:hover:text-white transition-colors">Sitemap</Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-// Helper Components
-
-function FooterLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
+function FooterLink({
+  href,
+  label,
+  badge,
+}: {
+  href: string;
+  label: string;
+  badge?: string;
+}) {
   return (
     <li>
       <Link
         href={href}
-        className={`hover:text-purple-500 dark:hover:text-purple-400 transition-colors flex items-center gap-1 group ${className}`}
+        className={`group inline-flex items-center gap-2 text-sm text-brand-muted ${linkClass} hover:text-brand-text`}
       >
-        <span className="w-0 overflow-hidden group-hover:w-2 transition-all duration-300 text-purple-500">›</span>
-        {children}
+        <span className="h-px w-0 bg-brand-accent transition-all duration-200 group-hover:w-3" />
+        {label}
+        {badge ? (
+          <span className="rounded-full border border-brand-lavender/30 bg-brand-lavender/10 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.1em] text-brand-lavender">
+            {badge}
+          </span>
+        ) : null}
       </Link>
     </li>
   );
 }
 
-function SocialButton({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
+function SocialLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
-    <Button
-      variant="outline"
-      size="icon"
-      className="rounded-full w-9 h-9 border-slate-300 dark:border-white/10 hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300 dark:bg-white/5 dark:text-white"
-      asChild
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       aria-label={label}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line-dark bg-white/5 text-brand-muted transition-colors hover:border-brand-accent/40 hover:bg-brand-accent/10 hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
     >
-      <a href={href} target="_blank" rel="noopener noreferrer">
-        {React.cloneElement(icon as React.ReactElement<{ className?: string }>, { className: "w-4 h-4" })}
-      </a>
-    </Button>
+      {children}
+    </a>
   );
 }
 
-export default Footer;
+export default function Footer() {
+  return (
+    <footer className="relative overflow-hidden border-t border-line-dark bg-brand-ink text-brand-text">
+      <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-brand-accent/5 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-brand-lavender/5 blur-3xl" />
+
+      <div className="brand-container relative z-10 py-16 md:py-20">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-4">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+            >
+              <Image
+                src="/lightLogo.svg"
+                alt=""
+                width={40}
+                height={40}
+                className="h-9 w-9 object-contain"
+              />
+              <span className="font-heading text-xl font-semibold tracking-tight">
+                {site.shortName}
+              </span>
+            </Link>
+
+            <p className="brand-prose mt-5 max-w-sm text-sm">
+              {site.description}
+            </p>
+            <p className="mt-3 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-brand-accent">
+              {site.tagline}
+            </p>
+
+            <div className="mt-7 space-y-3 text-sm text-brand-muted">
+              <a
+                href={`mailto:${site.email}`}
+                className={`flex items-center gap-2.5 rounded-sm hover:text-brand-text ${linkClass}`}
+              >
+                <Mail className="h-4 w-4 shrink-0 text-brand-accent" />
+                {site.email}
+              </a>
+              <a
+                href={site.phoneHref}
+                className={`flex items-center gap-2.5 rounded-sm hover:text-brand-text ${linkClass}`}
+              >
+                <Phone className="h-4 w-4 shrink-0 text-brand-accent" />
+                {site.phone}
+              </a>
+              <p className="flex items-center gap-2.5">
+                <MapPin className="h-4 w-4 shrink-0 text-brand-accent" />
+                {site.location}
+              </p>
+            </div>
+
+            <div className="mt-7 flex items-center gap-2">
+              <SocialLink href={site.social.linkedin} label="LinkedIn">
+                <Linkedin className="h-4 w-4" />
+              </SocialLink>
+              <SocialLink href={site.social.x} label="X (Twitter)">
+                <Twitter className="h-4 w-4" />
+              </SocialLink>
+              <SocialLink href={`mailto:${site.email}`} label="Email">
+                <Mail className="h-4 w-4" />
+              </SocialLink>
+            </div>
+          </div>
+
+          {linkGroups.map((group) => (
+            <nav
+              key={group.title}
+              aria-labelledby={`footer-${group.title.toLowerCase()}`}
+              className="lg:col-span-2"
+            >
+              <h2
+                id={`footer-${group.title.toLowerCase()}`}
+                className="font-heading text-sm font-semibold text-brand-text"
+              >
+                {group.title}
+              </h2>
+              <ul className="mt-5 space-y-3">
+                {group.links.map((link) => (
+                  <FooterLink
+                    key={link.href}
+                    href={link.href}
+                    label={link.label}
+                    badge={"badge" in link ? link.badge : undefined}
+                  />
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+
+        <div className="mt-14 border-t border-line-dark pt-8">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <span className="inline-flex items-center gap-2 rounded-lg border border-line-dark bg-white/5 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-muted">
+              <BadgeCheck
+                className="h-3.5 w-3.5 text-brand-lavender"
+                aria-hidden="true"
+              />
+              Startup India
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-lg border border-line-dark bg-white/5 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-muted">
+              <Landmark
+                className="h-3.5 w-3.5 text-brand-lavender"
+                aria-hidden="true"
+              />
+              MCA Registered
+            </span>
+            <p className="font-mono text-[11px] text-brand-muted">
+              <span className="font-semibold text-brand-text">CIN:</span>{" "}
+              {site.cin}
+            </p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-brand-muted">
+            <Link
+              href="/PrivacyPolicy"
+              className={`rounded-sm hover:text-brand-text ${linkClass}`}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/Terms"
+              className={`rounded-sm hover:text-brand-text ${linkClass}`}
+            >
+              Terms & Conditions
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-8 border-t border-line-dark pt-6">
+          <p className="text-center text-xs text-brand-muted">
+            {site.copyright}
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

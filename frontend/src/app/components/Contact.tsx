@@ -21,7 +21,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Mail, Phone, Rocket } from "lucide-react";
+import { Mail, MapPin, Phone, Rocket } from "lucide-react";
+
+import { site } from "@/lib/site";
 
 const Contact = memo(() => {
   const [result, setResult] = useState<string>("");
@@ -72,39 +74,37 @@ const Contact = memo(() => {
     >
       {/* Left Section (same as before) */}
       <div className="w-full text-center space-y-6 max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-          Let’s build something amazing together     <span
-            className="
-    mr-2 inline-flex
-    bg-linear-to-r from-[#fc0915] via-[#ee3984] to-[#7800da]
-    p-2 rounded-full
-    drop-shadow-[0_0_25px_rgba(238,57,132,0.5)]
-    hover:drop-shadow-[0_0_40px_rgba(238,57,132,0.7)]
-    transition-all duration-500
-  "
-          >
-            <Rocket className="size-8 text-white" />
+        <h2 className="font-heading text-4xl font-bold leading-tight text-brand-text md:text-5xl lg:text-6xl">
+          Let’s build something amazing together{" "}
+          <span className="mr-2 inline-flex rounded-full border border-brand-accent/30 bg-brand-accent/10 p-2 text-brand-accent">
+            <Rocket className="size-8" aria-hidden="true" />
           </span>
-
         </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto ">
+        <p className="brand-prose mx-auto mt-2 max-w-prose text-lg">
           Have a question, a project idea, or just want to say hello?
           Our team is here to help you every step of the way.
         </p>
 
-        {/* <div className="space-y-4 mt-6">
-          <div className="flex items-center gap-3">
-            <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            <p className="text-gray-700 dark:text-gray-300">
-              Services@anantnetra.com
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <Phone className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            <p className="text-gray-700 dark:text-gray-300">+91 72299 84997</p>
-          </div>
-
-        </div> */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-brand-muted">
+          <a
+            href={`mailto:${site.email}`}
+            className="inline-flex items-center gap-2 transition-colors hover:text-brand-accent"
+          >
+            <Mail className="h-4 w-4 text-brand-accent" />
+            {site.email}
+          </a>
+          <a
+            href={site.phoneHref}
+            className="inline-flex items-center gap-2 transition-colors hover:text-brand-accent"
+          >
+            <Phone className="h-4 w-4 text-brand-accent" />
+            {site.phone}
+          </a>
+          <span className="inline-flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-brand-accent" />
+            {site.location}
+          </span>
+        </div>
 
 
       </div>
@@ -113,7 +113,7 @@ const Contact = memo(() => {
       <div className="w-full flex justify-center">
         <form
           onSubmit={handleSubmit}
-          className="bg-white dark:bg-neutral-900 shadow-xl rounded-2xl p-8 border border-gray-200 dark:border-neutral-800 w-full max-w-3xl mx-auto">
+          className="mx-auto w-full max-w-3xl rounded-2xl border border-line-dark bg-brand-surface/70 p-6 shadow-xl shadow-black/20 md:p-8">
           <FieldSet>
             <FieldLegend>Contact Form</FieldLegend>
             <FieldDescription>

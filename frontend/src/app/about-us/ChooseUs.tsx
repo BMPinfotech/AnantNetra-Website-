@@ -54,7 +54,7 @@ export function ChooseUs() {
           <div className="max-w-4xl mx-auto p-8 rounded-3xl bg-linear-to-br from-blue-50 to-teal-50 dark:from-blue-900/10 dark:to-teal-900/10 border border-blue-100/50 dark:border-blue-800/20 mb-20">
             <h3 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Participation & Global Engagement</h3>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed italic text-left">
-              "AnantNetra actively participates in international conferences, research collaborations, hackathons, and technology forums to contribute to the global innovation ecosystem. Our involvement in academic research, AI development programs, and industry events enables us to remain at the forefront of emerging technologies and continuously deliver cutting-edge solutions."
+              &ldquo;AnantNetra actively participates in international conferences, research collaborations, hackathons, and technology forums to contribute to the global innovation ecosystem. Our involvement in academic research, AI development programs, and industry events enables us to remain at the forefront of emerging technologies and continuously deliver cutting-edge solutions.&rdquo;
             </p>
           </div>
         </div>

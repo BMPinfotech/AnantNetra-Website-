@@ -18,7 +18,7 @@ export const CardSpotlight: React.FC<CardSpotlightProps> = ({
   return (
     <div
       className={cn(
-        "group/spotlight relative rounded-md border border-neutral-800 bg-neutral-50 dark:bg-black dark:border-neutral-800 p-10 overflow-hidden",
+        "group/spotlight relative rounded-md border border-line-dark bg-brand-surface/70 p-10 overflow-hidden",
         className
       )}
       {...props}
@@ -26,7 +26,7 @@ export const CardSpotlight: React.FC<CardSpotlightProps> = ({
       <div
         className="pointer-events-none absolute z-0 -inset-px rounded-md opacity-0 group-hover/spotlight:opacity-100 transition duration-300"
         style={{
-          background: `radial-gradient(350px circle at 50% 50%, rgba(255,255,255,0.15), transparent 80%)`,
+          background: `radial-gradient(350px circle at 50% 50%, rgba(244,123,53,0.18), transparent 80%)`,
         }}
       />
       {children}

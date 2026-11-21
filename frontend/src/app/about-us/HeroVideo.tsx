@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useSyncExternalStore } from "react";
 
 interface Particle {
   id: number;
@@ -9,21 +9,24 @@ interface Particle {
   opacity: number;
 }
 
-const HeroVideo = () => {
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [mounted, setMounted] = useState(false);
+const emptySubscribe = () => () => {};
 
-  useEffect(() => {
-    const generatedParticles: Particle[] = Array.from({ length: 25 }).map((_, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      delay: Math.random() * 5,
-      opacity: Math.random() * 0.8 + 0.2,
-    }));
-    setParticles(generatedParticles);
-    setMounted(true);
-  }, []);
+const createParticles = (): Particle[] =>
+  Array.from({ length: 25 }).map((_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    delay: Math.random() * 5,
+    opacity: Math.random() * 0.8 + 0.2,
+  }));
+
+const HeroVideo = () => {
+  const [particles] = useState<Particle[]>(createParticles);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
 
   return (
     <section className="relative w-full h-auto md:h-[95vh] overflow-hidden rounded-b-3xl">

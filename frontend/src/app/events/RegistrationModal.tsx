@@ -237,7 +237,7 @@ export default function RegistrationModal({ isOpen, onClose, eventTitle, selecte
                                             </svg>
                                         </div>
                                         <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Registration Successful!</h4>
-                                        <p className="text-slate-600 dark:text-slate-400">We'll send you more details shortly.</p>
+                                        <p className="text-slate-600 dark:text-slate-400">We&apos;ll send you more details shortly.</p>
                                     </motion.div>
                                 ) : (
                                     <form onSubmit={handleSubmit} className="space-y-4">

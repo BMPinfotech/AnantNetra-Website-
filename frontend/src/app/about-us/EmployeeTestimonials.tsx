@@ -68,12 +68,12 @@ export const EmployeeTestimonials = () => {
             >
               {/* Quote Mark Decoration */}
               <div className="text-6xl text-indigo-100 dark:text-indigo-900/50 absolute top-4 right-6 font-serif leading-none">
-                "
+                &ldquo;
               </div>
               
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <p className="text-neutral-700 dark:text-neutral-300 italic mb-8 relative z-10">
-                  "{testimonial.quote}"
+                  &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 
                 <div className="flex items-center gap-4 mt-auto">

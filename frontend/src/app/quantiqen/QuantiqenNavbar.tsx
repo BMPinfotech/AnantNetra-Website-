@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { Search, Sun, Moon, Menu, X, Shield } from "lucide-react";
 
@@ -12,16 +12,18 @@ const NAV_LINKS = [
   { label: "Integrations", href: "#integrations" },
 ];
 
+const emptySubscribe = () => () => {};
+
 export default function QuantiqenNavbar() {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const navRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     let ctx: gsap.Context | null = null;

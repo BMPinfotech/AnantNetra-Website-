@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { memo } from "react";
 import {
   ShieldCheck,
@@ -57,22 +57,22 @@ const FeatureItem = memo(({ feature, index }: { feature: typeof features[0], ind
       style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "both" }}
     >
       <SpotlightCard
-        spotlightColor="rgba(18, 51, 157, 0.94)"
-        className="group relative h-full flex flex-col bg-white dark:bg-neutral-900 backdrop-blur-lg rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl dark:shadow-2xl dark:shadow-black/30 transition-all duration-500 hover:border-slate-300 dark:hover:border-white/20 hover:scale-105 hover:-translate-y-2"
+        spotlightColor="rgba(244, 123, 53, 0.35)"
+        className="group relative h-full flex flex-col bg-brand-surface/70 backdrop-blur-lg rounded-3xl border border-line-dark shadow-xl shadow-black/30 transition-all duration-500 hover:border-brand-accent/40 hover:scale-105 hover:-translate-y-2"
       >
-        <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(196,181,253,0.15),transparent_80%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(244,123,53,0.12),transparent_80%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
         <CardHeader className="flex flex-col z-20 items-center text-center space-y-4 pt-10">
-          <div className="p-4 z-20 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-neutral-800 shadow-inner">
-            <Icon className="h-8 w-8 text-slate-700 dark:text-slate-300" />
+          <div className="p-4 z-20 rounded-full border border-line-dark bg-white/5 shadow-inner">
+            <Icon className="h-8 w-8 text-brand-accent" />
           </div>
-          <CardTitle className="text-xl z-20 font-semibold text-slate-900 dark:text-slate-100">
+          <CardTitle className="text-xl z-20 font-semibold text-brand-text">
             {feature.title}
           </CardTitle>
         </CardHeader>
 
         <CardContent className="grow z-20 flex items-center justify-center pb-10 px-6">
-          <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+          <p className="text-brand-muted text-sm leading-relaxed">
             {feature.description}
           </p>
         </CardContent>
@@ -85,14 +85,14 @@ FeatureItem.displayName = "FeatureItem";
 function Features() {
   return (
     <section className="relative w-full min-h-screen py-8 md:py-18 flex items-center justify-center overflow-hidden 
-  bg-white dark:bg-neutral-950"
+  bg-brand-ink"
     >
       <div className="relative z-10 mx-auto w-full px-2 sm:px-6 text-center">
-        <h2 className="text-4xl font-bold tracking-tight md:text-6xl text-slate-900 dark:text-slate-100 animate-fade-in-up">
+        <h2 className="text-4xl font-bold tracking-tight md:text-6xl text-brand-text animate-fade-in-up">
           Beyond Technology. Towards Tomorrow.
         </h2>
 
-        <p className="mt-6 text-lg leading-8 text-slate-700 dark:text-slate-400 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.1s", animationFillMode: "both" }}>
+        <p className="mt-6 text-lg leading-8 text-brand-muted max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.1s", animationFillMode: "both" }}>
           At AnantNetra Technologies, we design intelligent, secure, and ethical
           innovations that empower businesses to thrive in a connected future.
         </p>

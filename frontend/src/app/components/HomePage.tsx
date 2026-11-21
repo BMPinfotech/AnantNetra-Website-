@@ -1,14 +1,17 @@
+import Link from "next/link";
+
 import ContainerScroll from "./DynamicContainerScroll";
+import { site } from "@/lib/site";
 
 function HomePage() {
   return (
-    <div className="relative w-full bg-white dark:bg-black">
+    <div className="relative w-full bg-brand-ink">
       <HeroSection />
       <div id="video-section" className="flex flex-col overflow-hidden relative z-20">
         <ContainerScroll
           titleComponent={
             <>
-               <h1 className="text-4xl font-normal text-black dark:text-white mb-8">
+              <h1 className="text-4xl font-normal text-brand-text mb-8">
                 Unleash the power of <br />
                 <span className="text-4xl md:text-[clamp(3rem,8vw,6rem)] font-normal -mt-4 leading-tight pb-2 inline-block">
                   Quantum
@@ -35,7 +38,7 @@ function HomePage() {
 
 function HeroSection() {
   return (
-    <section  className="relative flex min-h-screen sm:min-h-[95vh] w-full flex-col items-center justify-center overflow-hidden pt-40 pb-16">
+    <section className="relative flex min-h-screen sm:min-h-[95vh] w-full flex-col items-center justify-center overflow-hidden pt-40 pb-16">
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="relative aspect-video h-full w-full">
           <video
@@ -47,36 +50,39 @@ function HeroSection() {
             preload="none"
             className="h-full w-full object-cover mt-20"
           />
-          <div className="absolute inset-0 bg-black/50 dark:bg-black/50" />
+          {/* Brand-ink overlay keeps the hero copy readable without hiding the video */}
+          <div className="absolute inset-0 bg-brand-ink/75" />
+          <div className="absolute inset-0 bg-linear-to-b from-brand-ink/60 via-brand-ink/55 to-brand-ink" />
         </div>
       </div>
 
       <div className="relative z-10 flex w-full max-w-6xl flex-col items-center text-center px-4 sm:px-6 md:px-8">
-        <h1 className="mx-auto max-w-5xl text-[2.5rem] leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white drop-shadow-lg animate-hero-fade-in">
-          AI-Driven Solutions for a Smarter & Secure Future
+        <span className="brand-eyebrow mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-brand-accent backdrop-blur-sm animate-hero-fade-in">
+          {site.positioning}
+        </span>
+
+        <h1 className="mx-auto max-w-5xl text-[2.5rem] leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl font-normal text-brand-text drop-shadow-lg animate-hero-fade-in">
+          Building Intelligent Technology for a More Secure Digital World.
         </h1>
 
-        <p className="mx-auto mt-6 max-w-3xl text-sm sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-gray-200 drop-shadow-md animate-hero-fade-in-delay">
-          Transforming enterprises with next-generation{" "}
-          <span className="font-semibold text-white">Artificial Intelligence</span>,{" "}
-          <span className="font-semibold text-white">Cybersecurity</span>{" "}
-          and{" "}
-          <span className="font-semibold text-white">IT Consulting</span>{" "}
-          — driving innovation, resilience and sustainable growth.
+        <p className="mx-auto mt-6 max-w-3xl text-sm sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-brand-muted drop-shadow-md animate-hero-fade-in-delay">
+          At AnantNetra Technologies, we build AI-powered products,
+          cybersecurity solutions and scalable digital systems that help
+          businesses solve complex challenges and operate with confidence.
         </p>
 
         <div className="mt-18 flex flex-col sm:flex-row items-center justify-center gap-4 w-full animate-hero-fade-in-delay-2">
-          <a
-            href="#video-section"
-            className="flex w-full sm:w-56 items-center justify-center rounded-lg bg-white px-6 py-3.5 text-base md:text-lg font-medium text-black shadow-lg transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-white/20"
+          <Link
+            href="/contact"
+            className="flex w-full sm:w-60 items-center justify-center rounded-lg bg-brand-accent px-6 py-3.5 text-sm md:text-base font-semibold text-brand-ink shadow-lg shadow-brand-accent/20 transition-all duration-300 hover:scale-105 hover:bg-[#ff8d4d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
           >
-            Explore Now
-          </a>
+            Discuss a Project
+          </Link>
           <a
-            href="#contact"
-            className="flex w-full sm:w-56 items-center justify-center rounded-lg border border-white/50 bg-white/10 backdrop-blur-sm px-6 py-3.5 text-base md:text-lg font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:border-white"
+            href="#products"
+            className="flex w-full sm:w-60 items-center justify-center rounded-lg border border-white/50 bg-white/10 backdrop-blur-sm px-6 py-3.5 text-sm md:text-base font-medium text-brand-text shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
           >
-            Contact Us
+            Explore Our Products
           </a>
         </div>
       </div>
