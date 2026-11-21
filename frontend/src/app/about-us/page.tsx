@@ -1,11 +1,29 @@
-import React from 'react'
-import { OurTimeline } from './OurTimeline'
-import Hero from './Hero'
-import HeroVideo from "./HeroVideo"
-import { ChooseUs } from './ChooseUs'
-import Footer from "../components/Footer"
-import EmployeeTestimonials from './EmployeeTestimonials'
-import DynamicOurVision from './DynamicOurVision'
+import type { Metadata } from "next";
+import React from "react";
+
+import { buildMetadata } from "@/lib/metadata";
+
+import { OurTimeline } from "./OurTimeline";
+import Hero from "./Hero";
+import HeroVideo from "./HeroVideo";
+import { ChooseUs } from "./ChooseUs";
+import Footer from "../components/Footer";
+import EmployeeTestimonials from "./EmployeeTestimonials";
+import DynamicOurVision from "./DynamicOurVision";
+
+export const metadata: Metadata = buildMetadata({
+  title: "About Us | AnantNetra Technologies",
+  description:
+    "Learn about AnantNetra Technologies, our mission, vision, and approach to building AI-powered products, cybersecurity solutions, and scalable digital systems.",
+  path: "/about-us",
+  keywords: [
+    "About AnantNetra Technologies",
+    "AI Product Development",
+    "Cybersecurity Solutions",
+    "Technology Consulting",
+    "Software Engineering",
+  ],
+});
 
 function Page() {
   return (

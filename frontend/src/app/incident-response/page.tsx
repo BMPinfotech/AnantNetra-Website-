@@ -22,11 +22,9 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
 
 const IncidentResponsePage = () => {
     const router = useRouter();
-    const { theme } = useTheme();
     const [result, setResult] = useState<string>("");
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

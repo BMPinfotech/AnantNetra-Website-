@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       "Turn security intelligence into decisions your organization can act on. QUANTIQEN is Security Decision Infrastructure by AnantNetra Technologies.",
     url: "https://anantnetra.com/quantiqen",
     siteName: "AnantNetra",
-    images: [{ url: "/favicon.png", width: 512, height: 512 }],
+    images: [{ url: "/logo.WebP", width: 1200, height: 630, alt: "AnantNetra Technologies logo" }],
     locale: "en_US",
     type: "website",
   },
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "QUANTIQEN — Security Decision Infrastructure | AnantNetra",
     description:
       "Security Decision Infrastructure to help teams prioritize and decide with confidence.",
-    images: ["/favicon.png"],
+    images: ["/logo.WebP"],
   },
   alternates: {
     canonical: "https://anantnetra.com/quantiqen",

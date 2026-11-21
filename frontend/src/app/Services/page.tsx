@@ -1,6 +1,24 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import React from "react";
-import Footer from "../components/Footer";
 import { Rocket } from "lucide-react";
+
+import { buildMetadata } from "@/lib/metadata";
+
+import Footer from "../components/Footer";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Services | AnantNetra Technologies",
+  description:
+    "Explore AnantNetra Technologies services across cybersecurity, technology consulting, and business consulting. More service details are coming soon.",
+  path: "/Services",
+  keywords: [
+    "AnantNetra Technologies services",
+    "Cybersecurity Solutions",
+    "Technology Consulting",
+    "Business Consulting",
+  ],
+});
 
 export default function Page() {
   return (
@@ -25,8 +43,26 @@ export default function Page() {
           This service will be available very soon.
         </p>
 
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-muted-foreground mb-8">
           Stay tuned for updates.
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
+          <Link href="/quantiqen" className="text-brand-accent hover:text-brand-accent/80 underline-offset-4 hover:underline">
+            QUANTIQEN
+          </Link>
+          <span className="text-muted-foreground">•</span>
+          <Link href="/netrasecure-ai" className="text-brand-accent hover:text-brand-accent/80 underline-offset-4 hover:underline">
+            NetraSecure AI
+          </Link>
+          <span className="text-muted-foreground">•</span>
+          <Link href="/about-us" className="text-brand-accent hover:text-brand-accent/80 underline-offset-4 hover:underline">
+            About Us
+          </Link>
+          <span className="text-muted-foreground">•</span>
+          <Link href="/contact" className="text-brand-accent hover:text-brand-accent/80 underline-offset-4 hover:underline">
+            Contact
+          </Link>
         </div>
       </div>
 

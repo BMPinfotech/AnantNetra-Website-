@@ -15,8 +15,15 @@ export const site = {
     "© 2026 ANANTNETRA TECHNOLOGIES PVT LTD. All rights reserved.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://anantnetra.com",
   social: {
+    instagram: "https://www.instagram.com/anantnetra.tech/",
     linkedin: "https://www.linkedin.com/company/anantnetra-technologies/",
-    x: "https://x.com/anantnetratech",
+    facebook: "https://www.facebook.com/anantnetratechnologies/",
+    x: "https://x.com/anantnetra_tech",
+    threads: "https://www.threads.com/@anantnetra.tech?hl=en",
+    youtube: "https://www.youtube.com/@anantnetra-technologies",
+    quora: "https://www.quora.com/profile/Anantnetra-Technologies-Private-Limited",
+    medium: "https://medium.com/@anantnetra",
+    reddit: "https://www.reddit.com/user/Anantnetra_tech/",
   },
 } as const;
 

@@ -14,7 +14,7 @@ export function buildMetadata({
   description,
   path = "/",
   keywords = [],
-  image = "/favicon.png",
+  image = "/logo.WebP",
 }: BuildMetadataOptions): Metadata {
   const url = new URL(path, site.url).toString();
 

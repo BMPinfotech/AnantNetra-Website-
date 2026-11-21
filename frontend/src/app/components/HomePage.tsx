@@ -11,12 +11,12 @@ function HomePage() {
         <ContainerScroll
           titleComponent={
             <>
-              <h1 className="text-4xl font-normal text-brand-text mb-8">
+              <h2 className="text-4xl font-normal text-brand-text mb-8">
                 Unleash the power of <br />
                 <span className="text-4xl md:text-[clamp(3rem,8vw,6rem)] font-normal -mt-4 leading-tight pb-2 inline-block">
                   Quantum
                 </span>
-              </h1>
+              </h2>
             </>
           }
         >
